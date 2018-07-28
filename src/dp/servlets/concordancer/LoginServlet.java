@@ -11,6 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import dp.model.concordancer.*;
 import dp.dao.concordancer.*;
+import dp.concordancer.forms.UserForm;
 
 /**
  * Servlet implementation class LoginServlet
@@ -51,17 +52,24 @@ public class LoginServlet extends HttpServlet {
 
 			response.setContentType("text/html");
 			HttpSession session = request.getSession(true);
-			RequestDispatcher dispatcher = null;
-			LoginDao logindao = new LoginDao();
+			User user = new User();
+			UserForm u = new UserForm();
+			LoginDataAccessObject logindao = new LoginDao();
 			String name = request.getParameter("username");
 			String pass = request.getParameter("password");
 
-			User u = logindao.getUser(name, pass);
+			u = logindao.getUser(name, pass);
 			
 			if (u.getIsRegistered() == true) {
 
-				session.setAttribute("currentSessionUser", u);
-				List<Project> projects = getProjects(u);
+				user.setUserid(u.getUser_id());
+				user.setUsername(u.getUsername());
+				user.setPassword(u.getPassword());
+				user.setIsRegistered(u.getIsRegistered());
+				
+				
+				session.setAttribute("currentSessionUser", user);
+				List<Project> projects = getProjects(user);
 				session.setAttribute("projects", projects);				
 		        response.setContentType("text/html;charset=UTF-8");//sends response back to client to be handled by Ajax
 		        response.getWriter().write("True");
@@ -81,11 +89,10 @@ public class LoginServlet extends HttpServlet {
 	private List<Project> getProjects(User user)
 
 	{
-		LoginDao dao = new LoginDao();
-		List<Project> projects = dao.getProjects(user);// get a list of projects associated with this user. Array of
+		ProjectDataAccessObject pdao = new ProjectDao();
+		List<Project> projects = pdao.getProjects(user);// get a list of projects associated with this user. Array of
 														// project objects. Setattribute the object. Go to next page
-		// HttpSession session = request.getSession(true);
-		// session.setAttribute("user_projects", projects);
+		
 		return projects;
 	}
 }

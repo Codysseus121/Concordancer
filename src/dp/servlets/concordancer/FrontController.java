@@ -54,10 +54,10 @@ public class FrontController extends HttpServlet {
 		// response.addHeader("Access-Control-Allow-Origin", "*");
 		RequestDispatcher dispatcher = null;
 		String base = "/jsp/";
-		String url = base + "/home.jsp";
+		String url = base+ "/home.jsp";
 		// System.out.println("Menu " + action);
 
-		HttpSession session = request.getSession(true);
+		//HttpSession session = request.getSession(true);
 
 		if (action != null) {
 
@@ -66,7 +66,12 @@ public class FrontController extends HttpServlet {
 			case "login":
 
 				url = "/LoginServlet";
-				return;
+				break;
+				
+			case "register":
+				url = "/RegisterServlet";
+				break;
+				
 
 			}
 
