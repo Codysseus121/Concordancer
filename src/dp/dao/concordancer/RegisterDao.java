@@ -7,9 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-import dp.concordancer.forms.UserForm;
-
-public class LoginDao implements GetUserDataAccessObject {
+public class RegisterDao implements RegisterDataAccessObject, GetUserDataAccessObject {
 
 	static {
 		try {
@@ -33,10 +31,11 @@ public class LoginDao implements GetUserDataAccessObject {
 		}
 	}
 
-	public UserForm getUser(String name, String password) {
-		UserForm user = new UserForm();
+	public boolean checkUserName(String username) {
+		
+		boolean available = false;
 		Connection conn = null;
-		String query = "SELECT * FROM users WHERE USER_NAME='" + name + "' AND PASSWORD='" + password + "';";
+		String query = "SELECT * FROM users WHERE USER_NAME='" + username + "';";
 		try {
 			conn = getConnection();
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -44,17 +43,15 @@ public class LoginDao implements GetUserDataAccessObject {
 			boolean uexists = result.next();
 
 			if (!uexists) {
-				user.setIsRegistered(false);
-
+				available = true;
 			} else {
 
-				user.setUserid(result.getInt("USER_ID"));
-				user.setUsername(result.getString("USER_NAME"));
-				user.setPassword(result.getString("PASSWORD"));
-				user.setIsRegistered(true);
+				available = false;
 			}
 
-		} catch (SQLException ex) {
+		}
+
+		catch (SQLException ex) {
 			ex.printStackTrace();
 		}
 
@@ -63,8 +60,26 @@ public class LoginDao implements GetUserDataAccessObject {
 
 		}
 
-		return user;
+		return available;
+	}
 
+	public void registerUser(String name, String password) {
+		Connection conn = null;
+
+		try {
+			String sql = "INSERT INTO users (USER_NAME, PASSWORD) VALUES (?, ?)";
+			conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, name);
+			statement.setString(2, password);
+			statement.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		finally {
+			closeConnection(conn);
+		}
 	}
 
 }
