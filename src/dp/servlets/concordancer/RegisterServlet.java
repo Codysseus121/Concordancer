@@ -15,6 +15,7 @@ import dp.dao.concordancer.LoginDao;
 import dp.dao.concordancer.*;
 import dp.model.concordancer.*;
 import dp.concordancer.forms.*;
+import dp.concordancer.interfaces.RegisterDataAccessObject;
 
 
 /**
@@ -49,7 +50,7 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		RequestDispatcher dispatcher = null;
-		RegisterDataAccessObject rdao = new RegisterDao();
+		RegisterDao rdao = new RegisterDao();
 		
 		try {
 			String username = request.getParameter("username");
@@ -76,3 +77,4 @@ public class RegisterServlet extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println("Exception" + e);
 		}}
+}

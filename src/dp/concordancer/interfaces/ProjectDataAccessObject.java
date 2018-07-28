@@ -1,4 +1,4 @@
-package dp.dao.concordancer;
+package dp.concordancer.interfaces;
 
 import java.util.List;
 

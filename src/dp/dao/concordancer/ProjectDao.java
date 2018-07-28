@@ -2,6 +2,8 @@ package dp.dao.concordancer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.model.concordancer.*;
 import java.sql.Connection;
 import java.sql.DriverManager;

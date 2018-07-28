@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import dp.model.concordancer.*;
 import dp.dao.concordancer.*;
 import dp.concordancer.forms.UserForm;
+import dp.concordancer.interfaces.GetUserDataAccessObject;
+import dp.concordancer.interfaces.ProjectDataAccessObject;
 
 /**
  * Servlet implementation class LoginServlet
@@ -54,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			User user = new User();
 			UserForm u = new UserForm();
-			LoginDataAccessObject logindao = new LoginDao();
+			GetUserDataAccessObject logindao = new LoginDao();
 			String name = request.getParameter("username");
 			String pass = request.getParameter("password");
 

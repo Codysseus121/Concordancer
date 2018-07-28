@@ -1,4 +1,4 @@
-package dp.dao.concordancer;
+package dp.concordancer.interfaces;
 import dp.concordancer.forms.UserForm;
 
 public interface GetUserDataAccessObject {

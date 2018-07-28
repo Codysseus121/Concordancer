@@ -1,36 +1,16 @@
 package dp.dao.concordancer;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import dp.concordancer.interfaces.*;
 
-public class RegisterDao implements RegisterDataAccessObject, GetUserDataAccessObject {
 
-	static {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException ex) {
-		}
-	}
+public class RegisterDao extends GetUserDao implements RegisterDataAccessObject, GetUserDataAccessObject {
 
-	private Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/concordances?autoReconnect=true&useSSL=FALSE&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-				"root", "");
-	}
-
-	private void closeConnection(Connection connection) {
-		if (connection == null)
-			return;
-		try {
-			connection.close();
-		} catch (SQLException ex) {
-		}
-	}
-
+	
 	public boolean checkUserName(String username) {
 		
 		boolean available = false;
