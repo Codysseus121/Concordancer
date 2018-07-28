@@ -51,13 +51,10 @@ public class FrontController extends HttpServlet {
 	protected void processrequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		// response.addHeader("Access-Control-Allow-Origin", "*");
 		RequestDispatcher dispatcher = null;
 		String base = "/jsp/";
 		String url = base+ "/home.jsp";
-		// System.out.println("Menu " + action);
-
-		//HttpSession session = request.getSession(true);
+				
 
 		if (action != null) {
 

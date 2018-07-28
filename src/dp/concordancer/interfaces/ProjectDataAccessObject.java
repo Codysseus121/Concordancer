@@ -9,5 +9,7 @@ public interface ProjectDataAccessObject {
 
 public List<Project> getProjects(User user);
 public void deleteProject(User u, int pid);
+public void createProject(User user, String projectname);
+public Project getProject(int id, User u);
 	
 }
