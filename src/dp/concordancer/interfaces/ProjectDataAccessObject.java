@@ -7,6 +7,7 @@ import dp.model.concordancer.User;
 
 public interface ProjectDataAccessObject {
 
-public List<Project> getProjects(User user);	
+public List<Project> getProjects(User user);
+public void deleteProject(User u, int pid);
 	
 }

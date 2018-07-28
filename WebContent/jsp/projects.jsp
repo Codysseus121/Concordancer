@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/projects.css">
   <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   
 
@@ -163,7 +164,7 @@
   </div>
 
 
-<script src="../js/uploadmodal.js"></script>
+<script src="../js/projects.js"></script>
 
 
 </body>

@@ -72,6 +72,13 @@ public class FrontController extends HttpServlet {
 				url = "/RegisterServlet";
 				break;
 				
+			case "projectdelete":
+				url = "/ProjectDeleteServlet";
+				break;
+				
+			case "useproject":
+				url = "/UseProjectServlet";
+				break;
 
 			}
 

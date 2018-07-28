@@ -64,7 +64,8 @@ $('#register').click(function() {
 		url : "RegisterServlet",
 		data : {
 			"username" : user,
-			"password" : pwd 
+			"password" : pwd,
+			
 		},
 		success : function(data) {
 			if (data == 'False') {

@@ -6,46 +6,14 @@ import java.util.List;
 import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.model.concordancer.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class ProjectDao implements ProjectDataAccessObject {
+public class ProjectDao extends GetConnection implements ProjectDataAccessObject {
 	
-	static
-	{
-		try
-		{
-			Class.forName("com.mysql.jdbc.Driver");
-		}
-		catch (ClassNotFoundException ex)
-		{
-		}
-	}
-
-	private Connection getConnection() throws SQLException
-	{
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/concordances?autoReconnect=true&useSSL=FALSE&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-				"root", "");
-	}
-
-	private void closeConnection(Connection connection)
-	{
-		if (connection == null)
-			return;
-		try
-		{
-			connection.close();
-		}
-		catch (SQLException ex)
-		{
-			ex.printStackTrace();
-		}
-		}
-	
-	
+		
 	public List<Project> getProjects(User user)
 	{
 		
@@ -98,5 +66,31 @@ public class ProjectDao implements ProjectDataAccessObject {
 			}
 			return projects;
 			}
+	
+	public void deleteProject(User u, int pid)
+	{
+		Connection conn=null;
+		int user_id=u.getUser_id();
+		String query = "DELETE FROM PROJECT WHERE PROJECT_ID='" + pid + "' AND USER_ID='" + user_id+ "';";
+		String fileq = "DELETE FROM FILES WHERE PROJECT_ID='" + pid + "';";
+		try
+		{
+		conn=getConnection();
+		PreparedStatement statement = conn.prepareStatement(query);
+		PreparedStatement statement2 = conn.prepareStatement(fileq);
+		statement.execute();
+		statement2.execute();
+	}
+		catch (SQLException ex)
+		{ex.printStackTrace();}
+
+		finally
+		{
+			closeConnection(conn);
+		}
+
 }
+	}
+
+
 
