@@ -1,6 +1,10 @@
 package dp.concordancer.interfaces;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.http.Part;
 
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
@@ -9,7 +13,8 @@ public interface ProjectDataAccessObject {
 
 public List<Project> getProjects(User user);
 public void deleteProject(User u, int pid);
-public void createProject(User user, String projectname);
+public int createProject(User user, String projectname);
 public Project getProject(int id, User u);
+public void addFiles(String filename, int projectid, String filetype, Part filecontent) throws SQLException, IOException;
 	
 }

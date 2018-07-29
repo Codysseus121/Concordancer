@@ -11,7 +11,7 @@ public class Project implements Serializable {
 	private String projectname;
 	private int project_id;
 	private int userid;
-	private List<File> files =  new ArrayList<File>();
+	private List<ProjectFile> files =  new ArrayList<ProjectFile>();
 	
 
 	public void setProjectname (String name)
@@ -44,12 +44,12 @@ public class Project implements Serializable {
 		return userid;
 	}
 
-	public void setFiles(List<File> f)
+	public void setFiles(List<ProjectFile> f)
 	{
 		this.files=f;
 	}
 
-	public List<File> getFiles()
+	public List<ProjectFile> getFiles()
 	{
 		return files;
 	}

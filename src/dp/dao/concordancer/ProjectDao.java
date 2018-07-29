@@ -3,12 +3,27 @@ package dp.dao.concordancer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Part;
+
 import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.model.concordancer.*;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.commons.io.IOUtils;
+import org.apache.fontbox.FontBoxFont;
+import org.apache.commons.text.StringEscapeUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Whitelist;
+
 
 public class ProjectDao extends GetConnection implements ProjectDataAccessObject {
 
@@ -16,7 +31,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 
 		Connection conn = null;
 		List<Project> projects = new ArrayList<Project>();
-		List<File> filelist = new ArrayList<File>();
+		List<ProjectFile> filelist = new ArrayList<ProjectFile>();
 		int user_id = user.getUser_id();
 
 		try {
@@ -39,7 +54,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 				PreparedStatement s = conn.prepareStatement(files);
 				ResultSet set = s.executeQuery();
 				while (set.next()) {
-					File f = new File();
+					ProjectFile f = new ProjectFile();
 					f.setFile_id(set.getInt("FILE_ID"));
 					f.setFile_name(set.getString("FILE_NAME"));
 					f.setProject_id(set.getInt("PROJECT_ID"));
@@ -83,7 +98,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 	public Project getProject(int id, User u) {
 		Connection conn = null;
 		Project project = new Project();
-		List<File> filelist = new ArrayList<File>();
+		List<ProjectFile> filelist = new ArrayList<ProjectFile>();
 		try {
 			conn = getConnection();
 			String sql = "SELECT * from project WHERE PROJECT_ID='" + id + "' AND USER_ID='" + u.getUser_id() + "'";
@@ -101,7 +116,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 
 			while (result2.next()) {
 
-				File f = new File();
+				ProjectFile f = new ProjectFile();
 				f.setFile_id(result2.getInt("FILE_ID"));
 				f.setFile_name(result2.getString("FILE_NAME"));
 				f.setProject_id(result2.getInt("PROJECT_ID"));
@@ -121,24 +136,125 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		return project;
 	}
 
-	public void createProject(User user, String projectname) {
+	public int createProject(User user, String projectname) {
 		Connection conn = null;
+		int projectid = 0;
 
 		try {
 			String sql = "INSERT INTO project(PROJECT_NAME, USER_ID) VALUES(?, ?);";
 			conn = getConnection();
-			PreparedStatement statement = conn.prepareStatement(sql);
+			PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, projectname);
 			statement.setInt(2, user.getUser_id());
 			statement.execute();
+			ResultSet rs = statement.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+				projectid = rs.getInt(1);
+			}
+
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
 
 		finally {
+
 			closeConnection(conn);
+
+		}
+		return projectid;
+	}
+
+	public void addFiles(String filename, int projectid, String filetype, Part filecontent)
+			throws SQLException, IOException {
+
+		InputStream instream=null;
+		
+		switch (filetype) {
+		case "txt":
+			instream = convertTxt(filecontent);
+			insertStream(filename, projectid, instream);
+			break;
+		case "pdf":
+			instream = convertPdf(filecontent);
+			insertStream(filename, projectid, instream);
+			break;
+		case "html":
+			instream = convertHtml(filecontent);
+			insertStream(filename, projectid, instream);
+			break;
+		}
+		instream.close();
+	}
+
+	public void insertStream(String filename, int projectid, InputStream stream) {
+
+		PreparedStatement statement = null;
+		Connection conn = null;
+
+		try {
+			conn = getConnection();
+			conn.setAutoCommit(false);
+			statement = conn.prepareStatement("insert into files (file_name, filecontent, project_id) values ( ?, ?)");
+			statement.setString(1, filename);
+			statement.setAsciiStream(2, stream);
+			statement.setInt(3, projectid);
+			statement.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			System.err.println("Error: " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
 		}
 
+	}
+
+	public InputStream convertTxt(Part filecontent) throws IOException
+	{
+		
+		return filecontent.getInputStream();
+		
+	}
+
+	public InputStream convertPdf(Part filecontent) throws IOException
+	{
+		
+		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");// necessary due to incompatibility
+		InputStream in = null;																				
+		PDDocument document = null;
+		InputStream stream = filecontent.getInputStream();
+		try {
+			document = PDDocument.load(stream);
+			PDFTextStripper pdfStripper = new PDFTextStripper();
+			String text = pdfStripper.getText(document);
+			in = IOUtils.toInputStream(text, "UTF-8");
+
+		} finally {
+
+			document.close();
+		}
+		return in;
+	}
+
+	public InputStream convertHtml(Part filecontent) throws IOException
+	{
+		InputStream stream = filecontent.getInputStream();
+		Document doc = Jsoup.parse(stream, "UTF-8", "");
+        String plaintxt = doc.toString();
+        String finaltext = Jsoup.parse(plaintxt).body().text();
+        InputStream in = IOUtils.toInputStream(finaltext, "UTF-8");
+        return in;
 	}
 
 }
