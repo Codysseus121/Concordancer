@@ -16,7 +16,7 @@ import java.io.IOException;
  * Servlet implementation class FrontController
  */
 @WebServlet(name = "/FrontControllerServlet", urlPatterns = "/concordancer")
-@MultipartConfig
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -3,6 +3,7 @@ package dp.servlets.concordancer;
 import java.io.IOException;
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,11 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.FilenameUtils;
+
 /**
  * Servlet implementation class UploadServlet
  */
 @WebServlet("/UploadServlet")
-@MultipartConfig
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -63,11 +66,13 @@ public class UploadServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         String uploadpath = "C:\\Users\\Mitsos\\TempUserFiles";
        Collection<Part> parts = request.getParts();
+       boolean validfname = false;
         for (Part part : parts) {
             if (part.getContentType() != null) {
                 // save file Part to disk
                 String fileName = getFilename(part);
-                if (fileName != null && !fileName.isEmpty()) {
+                validfname = validFile(fileName);
+                if (fileName != null && !fileName.isEmpty() && (validfname==true)) {
                     part.write(uploadpath + File.separator + fileName);
                     writer.print("<br/>Uploaded file name: " +
                             fileName);
@@ -82,6 +87,12 @@ public class UploadServlet extends HttpServlet {
             }
         }
     }
+
+	private boolean validFile(String fileName) {
+	    return Arrays.asList("txt", "pdf", "html")
+	        .contains(org.apache.commons.io.FilenameUtils.getExtension(fileName));
 	}
+	
+}
 
 
