@@ -108,7 +108,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form  method="post" id="newProject" enctype="multipart/form-data" action="/Concordancer/concordancer"  onsubmit="">
+        <form  method="post" id="newProject" enctype="multipart/form-data" action="/Concordancer/concordancer">
   <div class="form-group">
    <input type="text" class="form-control" id="projectname" name="projectname" placeholder="Project Name">
     <br>
