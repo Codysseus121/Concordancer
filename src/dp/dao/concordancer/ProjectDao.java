@@ -2,6 +2,7 @@ package dp.dao.concordancer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.Part;
 
@@ -169,26 +170,26 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 	public void addFiles(String filename, int projectid, String filetype, Part filecontent)
 			throws SQLException, IOException {
 
-		InputStream instream=null;
+		String instring="";
 		
 		switch (filetype) {
 		case "txt":
-			instream = convertTxt(filecontent);
-			insertStream(filename, projectid, instream);
+			instring = convertTxt(filecontent);
+			insertStream(filename, projectid, instring);
 			break;
 		case "pdf":
-			instream = convertPdf(filecontent);
-			insertStream(filename, projectid, instream);
+			instring = convertPdf(filecontent);
+			insertStream(filename, projectid, instring);
 			break;
 		case "html":
-			instream = convertHtml(filecontent);
-			insertStream(filename, projectid, instream);
+			instring = convertHtml(filecontent);
+			insertStream(filename, projectid, instring);
 			break;
 		}
-		instream.close();
+		
 	}
 
-	public void insertStream(String filename, int projectid, InputStream stream) {
+	public void insertStream(String filename, int projectid, String text) {
 
 		PreparedStatement statement = null;
 		Connection conn = null;
@@ -198,7 +199,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 			conn.setAutoCommit(false);
 			statement = conn.prepareStatement("insert into files (file_name, file_content, project_id) values ( ?, ?, ?)");
 			statement.setString(1, filename);
-			statement.setAsciiStream(2, stream);
+			statement.setString(2, text);
 			statement.setInt(3, projectid);
 			statement.executeUpdate();
 			conn.commit();
@@ -222,57 +223,59 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 
 	}
 
-	public InputStream convertTxt(Part filecontent) throws IOException
+	public String convertTxt(Part filecontent) throws IOException
 	{
-		
-		//BufferedReader bf = new BufferedReader(new InputStream(filecontent));
-		return filecontent.getInputStream();
+		//Credit for the conversion: stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
+		String result = new BufferedReader(new InputStreamReader(filecontent.getInputStream())).lines().collect(Collectors.joining("\n"));
+		result = result.replaceAll("\\s", " ");
+		return result;
 		
 	}
 
-	public InputStream convertPdf(Part filecontent) throws IOException
+	public String convertPdf(Part filecontent) throws IOException
 	{
 		
 		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");// necessary due to incompatibility
-		InputStream in = null;																				
+		String text = "";
 		PDDocument document = null;
 		InputStream stream = null;
 		try {
 			stream = filecontent.getInputStream();
 			document = PDDocument.load(stream);
 			PDFTextStripper pdfStripper = new PDFTextStripper();
-			String text = pdfStripper.getText(document);
-			in = IOUtils.toInputStream(text, "UTF-8");
+			text = pdfStripper.getText(document).replaceAll("\\s", " ");
+			//in = IOUtils.toInputStream(text, "UTF-8");
 
 		} finally {
 
 			document.close();
-			in.close();
+			//in.close();
 			stream.close();
 		}
-		return in;
+		return text;
 	}
 
-	public InputStream convertHtml(Part filecontent) throws IOException
+	public String convertHtml(Part filecontent) throws IOException
 	{
 		
 		InputStream stream = null;
-		InputStream in = null;
+		String finaltext="";
+		
 		try
 		{
 		stream = filecontent.getInputStream();		
 		Document doc = Jsoup.parse(stream, "UTF-8", "");
         String plaintxt = doc.toString();
-        String finaltext = Jsoup.parse(plaintxt).body().text();
-        in = IOUtils.toInputStream(finaltext, "UTF-8");
+        finaltext = Jsoup.parse(plaintxt).body().text().replaceAll("\\s", " ");
+        
 		}
 		catch (IOException ex) {ex.printStackTrace();}
 		finally
 		{
         stream.close();
-        in.close();
+        
         		}
-		return in;
+		return finaltext;
 	}
 
 }
