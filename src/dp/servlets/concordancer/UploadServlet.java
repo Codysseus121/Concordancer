@@ -78,23 +78,31 @@ public class UploadServlet extends HttpServlet {
 		ProjectDataAccessObject pdao = new ProjectDao();
 		// String uploadpath = "C:\\Users\\Mitsos\\TempUserFiles";
 		String projectname = request.getParameter("projectname");
+		int projectid = 0;
 		User user = (User) session.getAttribute("currentSessionUser");
 		Collection<Part> parts = request.getParts();
+		
+		//If collection not empty, create new project.
+		if (parts != null) {
+			projectid = pdao.createProject(user, projectname);
+		}
+
 		boolean validfname = false;
 		for (Part part : parts) {
 			if (part.getContentType() != null) {
-				// create project
+				
+
 				String fileName = getFilename(part);
 				String fextension = getFileExtension(fileName);
 				validfname = validFile(fileName);// server side validation of filename
 				if (fileName != null && !fileName.isEmpty() && (validfname == true)) {
 
 					try {
-						int projectid = pdao.createProject(user, projectname);
+
 						pdao.addFiles(fileName, projectid, fextension, part);
 						Project project = pdao.getProject(projectid, user);
 						session.setAttribute("currentproject", project);
-						System.out.println("Success!");
+						
 					} catch (SQLException ex) {
 						ex.printStackTrace();
 					}

@@ -83,8 +83,8 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 			conn = getConnection();
 			PreparedStatement statement = conn.prepareStatement(query);
 			PreparedStatement statement2 = conn.prepareStatement(fileq);
-			statement.execute();
 			statement2.execute();
+			statement.execute();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
@@ -233,8 +233,9 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");// necessary due to incompatibility
 		InputStream in = null;																				
 		PDDocument document = null;
-		InputStream stream = filecontent.getInputStream();
+		InputStream stream = null;
 		try {
+			stream = filecontent.getInputStream();
 			document = PDDocument.load(stream);
 			PDFTextStripper pdfStripper = new PDFTextStripper();
 			String text = pdfStripper.getText(document);
@@ -243,18 +244,32 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		} finally {
 
 			document.close();
+			in.close();
+			stream.close();
 		}
 		return in;
 	}
 
 	public InputStream convertHtml(Part filecontent) throws IOException
 	{
-		InputStream stream = filecontent.getInputStream();
+		
+		InputStream stream = null;
+		InputStream in = null;
+		try
+		{
+		stream = filecontent.getInputStream();		
 		Document doc = Jsoup.parse(stream, "UTF-8", "");
         String plaintxt = doc.toString();
         String finaltext = Jsoup.parse(plaintxt).body().text();
-        InputStream in = IOUtils.toInputStream(finaltext, "UTF-8");
-        return in;
+        in = IOUtils.toInputStream(finaltext, "UTF-8");
+		}
+		catch (IOException ex) {ex.printStackTrace();}
+		finally
+		{
+        stream.close();
+        in.close();
+        		}
+		return in;
 	}
 
 }
