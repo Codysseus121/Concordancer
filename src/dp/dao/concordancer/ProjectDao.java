@@ -8,8 +8,10 @@ import javax.servlet.http.Part;
 import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.model.concordancer.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -223,6 +225,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 	public InputStream convertTxt(Part filecontent) throws IOException
 	{
 		
+		//BufferedReader bf = new BufferedReader(new InputStream(filecontent));
 		return filecontent.getInputStream();
 		
 	}

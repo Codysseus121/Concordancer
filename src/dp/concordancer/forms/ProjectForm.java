@@ -3,14 +3,14 @@ package dp.concordancer.forms;
 import java.util.ArrayList;
 import java.util.List;
 
-import dp.model.concordancer.File;
+import dp.model.concordancer.ProjectFile;
 
 public class ProjectForm {
 
 	private String projectname;
 	private int project_id;
 	private int userid;
-	private List<File> files =  new ArrayList<File>();
+	private List<ProjectFile> files =  new ArrayList<ProjectFile>();
 	
 
 	public void setProjectname (String name)
@@ -43,12 +43,12 @@ public class ProjectForm {
 		return userid;
 	}
 
-	public void setFiles(List<File> f)
+	public void setFiles(List<ProjectFile> f)
 	{
 		this.files=f;
 	}
 
-	public List<File> getFiles()
+	public List<ProjectFile> getFiles()
 	{
 		return files;
 	}

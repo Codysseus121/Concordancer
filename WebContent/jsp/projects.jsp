@@ -143,7 +143,7 @@
 </div>
 <div id="ajaxGetUserServletResponse"></div>
 <div class="modal fade" id="deleteprojectmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
- <form method="post" action=""> <div class="modal-dialog modal-dialog-centered form-group" role="document">
+ <form method="post" action="" onsubmit="return false;"> <div class="modal-dialog modal-dialog-centered form-group" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle"></h5>
@@ -158,7 +158,7 @@
 
         <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cancel</button>
         <input type="hidden" id="parameter_pid" name="parameter_pid" value="">
-        <span id="Delete" class="btn btn-danger" data-dismiss="modal">Delete</span>
+        <button id="Delete" class="btn btn-danger" data-dismiss="modal">Delete</button>
 
         </div>
       </div>

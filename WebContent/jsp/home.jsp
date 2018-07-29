@@ -31,21 +31,21 @@
 		<div class="form">
 		<div><p id="messages"></p></div>
 
-			<form class="register-form" method="POST">
+			<form class="register-form" method="POST" onsubmit="return false;">
 				<input type="text" placeholder="username" id="registerusername" name="username" />
 				<input type="password" placeholder="password" id="registerpassword" name="password" />
 
-				<span class="btn btn-success" id="register">create</span>
+				<button class="btn btn-success" id="register">create</button>
 				<p class="message">
 					Already registered? <a href="#">Sign In</a>
 				</p>
 			</form>
 
-			<form class="login-form" method="POST">
+			<form class="login-form" method="POST" onsubmit="return false;">
 				<input type="text" placeholder="username" id="loginusername" name="username" />
 				<input type="password" placeholder="password" id= "loginpassword" name="password" />
 
-				<span class="btn btn-success" id="login">login</span>
+				<button class="btn btn-success" id="login">login</button>
 				<p class="message">
 					Not registered? <a href="#">Create an account</a>
 				</p>

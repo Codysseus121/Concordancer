@@ -31,6 +31,7 @@ $('#deleteprojectmodal').on('show.bs.modal', function (e) {
     			});
 
     		});
+    
 
     });
 
