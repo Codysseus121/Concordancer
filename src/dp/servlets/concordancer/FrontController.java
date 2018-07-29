@@ -16,7 +16,7 @@ import java.io.IOException;
  * Servlet implementation class FrontController
  */
 @WebServlet(name = "/FrontControllerServlet", urlPatterns = "/concordancer")
-@MultipartConfig(maxFileSize = 10485760L)
+@MultipartConfig
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class FrontController extends HttpServlet {
      */
     public FrontController() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -35,7 +35,7 @@ public class FrontController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		processrequest(request, response);
+		doPost(request, response);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class FrontController extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		String base = "/jsp/";
 		String url = base+ "/home.jsp";
-				
+		System.out.println(action);
 
 		if (action != null) {
 
@@ -75,6 +75,10 @@ public class FrontController extends HttpServlet {
 				
 			case "useproject":
 				url = "/UseProjectServlet";
+				break;
+				
+			case "newproject":
+				url = "/UploadServlet";
 				break;
 
 			}

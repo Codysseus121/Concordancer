@@ -46,7 +46,7 @@ $('.use').click(function (event)
 		data: { action: "useproject", project_id : project_id},
 		type: 'post',
 		success: function ()
-		{window.location.href="../jsp/concordances.jsp"},
+		{window.location.href="Concordances.jsp"},
 
         error: function(){
             console.log("Error");}

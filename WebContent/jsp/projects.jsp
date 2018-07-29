@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/projects.css">
   <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/jquery.validate.js"></script>
+  <script src="../js/additional-methods.js"></script>
   <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   
@@ -106,7 +108,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form  method="post" id="newProject" enctype="multipart/form-data">
+        <form  method="post" id="newProject" enctype="multipart/form-data" action="/Concordancer/concordancer"  onsubmit="">
   <div class="form-group">
    <input type="text" class="form-control" id="projectname" name="projectname" placeholder="Project Name">
     <br>
@@ -118,7 +120,7 @@
 
 
         <button type="button" class="btn btn-secondary close btn-sm" data-dismiss="modal">Cancel</button>
-        <button id="uploadbutton" name="action" value="newProject" class="btn btn-success">Submit</button>
+        <button type="submit" id="uploadbutton" name="action" value="newproject" class="btn btn-success">Submit</button>
 
 
       </div>
