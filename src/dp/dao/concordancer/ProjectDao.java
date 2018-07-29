@@ -194,7 +194,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		try {
 			conn = getConnection();
 			conn.setAutoCommit(false);
-			statement = conn.prepareStatement("insert into files (file_name, filecontent, project_id) values ( ?, ?)");
+			statement = conn.prepareStatement("insert into files (file_name, file_content, project_id) values ( ?, ?, ?)");
 			statement.setString(1, filename);
 			statement.setAsciiStream(2, stream);
 			statement.setInt(3, projectid);

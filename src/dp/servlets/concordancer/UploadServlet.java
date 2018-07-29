@@ -94,6 +94,7 @@ public class UploadServlet extends HttpServlet {
 						pdao.addFiles(fileName, projectid, fextension, part);
 						Project project = pdao.getProject(projectid, user);
 						session.setAttribute("currentproject", project);
+						System.out.println("Success!");
 					} catch (SQLException ex) {
 						ex.printStackTrace();
 					}
