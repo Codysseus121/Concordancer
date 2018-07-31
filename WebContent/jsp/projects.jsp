@@ -12,6 +12,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/projects.css">
   <script src="../js/jquery-3.3.1.min.js"></script>
   <script src="../js/jquery.validate.js"></script>
@@ -117,8 +118,6 @@
   </div>
 
       <div class="modal-footer">
-
-
         <button type="button" class="btn btn-secondary close btn-sm" data-dismiss="modal">Cancel</button>
         <button type="submit" id="uploadbutton" name="action" value="newproject" class="btn btn-success">Submit</button>
 
@@ -129,14 +128,6 @@
   </div>
 </div>
 
-<!-- Progress bar for file uploads -->
-
-<div id='progressBar'>
-    <div id='bar'>
-    </div>
-</div>
-<div id='debug'>
-</div>
 
 
 

@@ -278,4 +278,43 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		return finaltext;
 	}
 
+	public String getFile()
+	{
+		Connection conn = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+		String text = "";
+		
+		
+		try
+		{
+			conn = getConnection();
+			String sql = "SELECT file_content from files WHERE file_id=8;";
+			statement = conn.prepareStatement(sql);
+			set = statement.executeQuery();		
+			text = set.getString(1);			
+		}
+		
+		catch (SQLException ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			try {
+				set.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		return text;
+	}
+	
 }

@@ -46,9 +46,7 @@ $('.use').click(function (event)
 		url: '/Concordancer/concordancer',
 		data: { action: "useproject", project_id : project_id},
 		type: 'post',
-		success: function ()
-		{window.location.href="Concordances.jsp"},
-
+		
         error: function(){
             console.log("Error");}
 
@@ -87,6 +85,20 @@ $("#newProject" ).validate({
     	projectname:{required: "Please enter a name for your project"}
     },
     submitHandler: function(form) {
+    	
         form.submit();
     }
 }) });
+/*adapted from https://stackoverflow.com/questions/48240011/show-loading-using-jquery-in-bootstrap-4-with-data-loading-text*/ 
+
+$(document).ready(function() {
+	$('#uploadbutton').on('click', function() {
+	    var $this = $(this);
+	    var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> Submitting...';
+	    if ($(this).html() !== loadingText) {
+	      $this.data('original-text', $(this).html());
+	      $this.html(loadingText);	    }
+	    
+	  }) });
+	
+

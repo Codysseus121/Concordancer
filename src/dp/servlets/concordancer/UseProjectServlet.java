@@ -1,6 +1,8 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +52,7 @@ public class UseProjectServlet extends HttpServlet {
 		try
 		{
 			HttpSession session = request.getSession(true);
+			RequestDispatcher dispatcher = null;
 			User user = (User) session.getAttribute("currentSessionUser");
 			String project_id="";
 			project_id= request.getParameter(project_id);
@@ -58,6 +61,10 @@ public class UseProjectServlet extends HttpServlet {
 			Project p= new Project();
 			p = pdao.getProject(projectID, user);
 			session.setAttribute("currentProject", p);
+			dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
+			dispatcher.forward(request, response);
+			return;
+			
 			
 		}
 	 catch (Exception e) 

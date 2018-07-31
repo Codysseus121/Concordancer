@@ -1,11 +1,13 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
-import java.io.File;
-import java.io.PrintWriter;
+//import java.io.File;
+//import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collection;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -73,10 +75,9 @@ public class UploadServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		response.setContentType("text/html");
-		// PrintWriter writer = response.getWriter();
-		ProjectDataAccessObject pdao = new ProjectDao();
-		// String uploadpath = "C:\\Users\\Mitsos\\TempUserFiles";
+		RequestDispatcher dispatcher = null;
+		response.setContentType("text/html");		
+		ProjectDataAccessObject pdao = new ProjectDao();		
 		String projectname = request.getParameter("projectname");
 		int projectid = 0;
 		User user = (User) session.getAttribute("currentSessionUser");
@@ -103,6 +104,8 @@ public class UploadServlet extends HttpServlet {
 						Project project = pdao.getProject(projectid, user);
 						session.setAttribute("currentproject", project);
 						
+						
+						
 					} catch (SQLException ex) {
 						ex.printStackTrace();
 					}
@@ -110,10 +113,13 @@ public class UploadServlet extends HttpServlet {
 				}
 			}
 		}
+		dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
+		dispatcher.forward(request, response);
+		return;
 	}
 
 	private boolean validFile(String fileName) {
-		return Arrays.asList("txt", "pdf", "html").contains(org.apache.commons.io.FilenameUtils.getExtension(fileName));
+		return Arrays.asList("txt", "pdf", "html").contains(FilenameUtils.getExtension(fileName));
 	}
 
 	private String getFileExtension(String filename) {
