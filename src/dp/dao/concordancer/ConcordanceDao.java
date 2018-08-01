@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
@@ -21,7 +22,7 @@ public class ConcordanceDao extends GetConnection {
 		Connection conn = null;
 		ResultSet result = null;
 		PreparedStatement statement = null;
-		Map<String, Integer> index = new HashMap<String, Integer>();
+		Map<String, Integer> index = new TreeMap<String, Integer>();
 		List<String> words = new ArrayList<String>();
 		int project_id = project.getProject_id();
 		String text = "";
@@ -42,7 +43,7 @@ public class ConcordanceDao extends GetConnection {
 				while (scanner.hasNext())
 				{words.add(scanner.next().toLowerCase().replaceAll("[^a-zA-Z]", "").trim());}
 			}
-				Collections.sort(words);
+				//Collections.sort(words);
 				
 				for (String word : words) {
 					if (index.containsKey(word)) {

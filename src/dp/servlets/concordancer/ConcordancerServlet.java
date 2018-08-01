@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,7 +55,7 @@ public class ConcordancerServlet extends HttpServlet {
 			Project project = (Project) session.getAttribute("currentproject");
 			User user = (User) session.getAttribute("currentSessionUser");
 			ConcordanceDao cdao = new ConcordanceDao();
-			Map<String, Integer> index = new HashMap<String, Integer>();
+			Map<String, Integer> index = new TreeMap<String, Integer>();
 			index = cdao.getIndex(project, user);
 			session.setAttribute("index", index);
 			System.out.println("attribute set");
@@ -62,14 +63,5 @@ public class ConcordancerServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 			
-			//write to browser
-//			response.setContentType("text/html");
-//			PrintWriter out = response.getWriter();
-//			out.print("<br/> Working");
-//			for (Map.Entry<String, Integer> entry : index.entrySet())
-//			{	
-//	            System.out.print("<br/>" + entry.getKey() + ":" + entry.getValue());
-//			}
-			
-		}
+			}
 }
