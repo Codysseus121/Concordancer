@@ -14,11 +14,7 @@
   <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/projects.css">
-  <script src="../js/jquery-3.3.1.min.js"></script>
-  <script src="../js/jquery.validate.js"></script>
-  <script src="../js/additional-methods.js"></script>
-  <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  
   
 
 </head>
@@ -65,7 +61,7 @@
 
 
   <div class="card-body">
-  <button type="button" name="${Project.projectname}" id="${Project.project_id}" class="btn btn-primary btn-sm use">Use</button>
+  <button type="submit" name="${Project.projectname}" id="${Project.project_id}" class="btn btn-primary btn-sm use">Use</button>
 
    <a href="#" name="${Project.projectname}" id="${Project.project_id}" data-toggle="modal" data-target="#deleteprojectmodal">
     <button type="button" class="btn btn-danger btn-sm">Delete</button></a>
@@ -156,7 +152,11 @@
     </div>  </form>
   </div>
 
-
+<script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/jquery.validate.js"></script>
+  <script src="../js/additional-methods.js"></script>
+  <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="../js/projects.js"></script>
 
 

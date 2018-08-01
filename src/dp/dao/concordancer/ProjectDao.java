@@ -244,12 +244,11 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 			document = PDDocument.load(stream);
 			PDFTextStripper pdfStripper = new PDFTextStripper();
 			text = pdfStripper.getText(document).replaceAll("\\s", " ");
-			//in = IOUtils.toInputStream(text, "UTF-8");
+			
 
 		} finally {
 
-			document.close();
-			//in.close();
+			document.close();			
 			stream.close();
 		}
 		return text;
@@ -278,18 +277,19 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		return finaltext;
 	}
 
-	public String getFile()
+	public String getFiles(Project project, User user)
 	{
 		Connection conn = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 		String text = "";
+		int project_id = project.getProject_id();
 		
 		
 		try
 		{
-			conn = getConnection();
-			String sql = "SELECT file_content from files WHERE file_id=8;";
+			conn = getConnection();			 
+			String sql = "SELECT file_content from files F, project P, users U where U.user_id=P.user_id AND P.project_id=F.project_id AND F.project_id=" + project_id + ";";
 			statement = conn.prepareStatement(sql);
 			set = statement.executeQuery();		
 			text = set.getString(1);			

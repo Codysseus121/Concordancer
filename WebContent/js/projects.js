@@ -36,23 +36,28 @@ $('#deleteprojectmodal').on('show.bs.modal', function (e) {
     });
 
 /* function for Use button */
-$('.use').click(function (event)
-		{
-	let project_id = event.target.id;
+$(document).ready(function() {
+	$('.use').click(function (event)
 
-
+	{
+	
+	let projectno = event.target.id;
+	
+	
 	$.ajax({
 
 		url: '/Concordancer/concordancer',
-		data: { action: "useproject", project_id : project_id},
+		data: { action : "useproject", project_id: projectno},
 		type: 'post',
-		
+		success: function (){var url = "Concordances.jsp";
+				$(location).attr('href', url);},
         error: function(){
             console.log("Error");}
 
 	});
 
 		});
+	});
 
 /* Validate File Upload with help from 
  * https://stackoverflow.com/questions/47941158/jquery-validation-filesize-show-a-human-readable-value.

@@ -54,13 +54,15 @@ public class UseProjectServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			RequestDispatcher dispatcher = null;
 			User user = (User) session.getAttribute("currentSessionUser");
-			String project_id="";
-			project_id= request.getParameter(project_id);
-			int projectID = Integer.parseInt(project_id);
+			String projectpara="";			
+			projectpara= request.getParameter("project_id");
+			
+			int projectID = Integer.parseInt(projectpara);
+			
 			ProjectDataAccessObject pdao = new ProjectDao();
 			Project p= new Project();
 			p = pdao.getProject(projectID, user);
-			session.setAttribute("currentProject", p);
+			session.setAttribute("currentproject", p);
 			dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
 			dispatcher.forward(request, response);
 			return;
