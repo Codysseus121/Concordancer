@@ -61,7 +61,8 @@ $(document).ready(function() {
 
 /* Validate File Upload with help from 
  * https://stackoverflow.com/questions/47941158/jquery-validation-filesize-show-a-human-readable-value.
- * https://stackoverflow.com/questions/33096591/validate-file-extension-and-size-before-submitting-form */
+ * https://stackoverflow.com/questions/33096591/validate-file-extension-and-size-before-submitting-form
+ * https://stackoverflow.com/questions/49270080/jquery-validation-success-show-gif-loader */
 $(function(){
 	  $.validator.addMethod('filesize', function (value, element, param) {
 	      return this.optional(element) || (element.files[0].size <= param)
@@ -75,7 +76,7 @@ $("#newProject" ).validate({
         file:{
             required:true,
             accept:"application/pdf,text/plain,text/html",
-            filesize: 10000000  //max size 10MB
+            filesize: 12000000  //max size 12MB
         },
 		projectname: {
 			required:true,
@@ -83,20 +84,24 @@ $("#newProject" ).validate({
 					}
     },messages: {
         file:{
-            filesize:" File size must be less than 10 MB.",
+            filesize:" File size must be less than 12 MB.",
             accept:"Please upload .txt, .html or .pdf files only.",
             required:"Please upload file."
         },
     	projectname:{required: "Please enter a name for your project"}
     },
-    submitHandler: function(form) {
+    submitHandler: function() {
+    	$("#newprojectmodal").hide();    	
+    	$(".img-fluid").toggle();
     	
         form.submit();
     }
 }) });
-/*adapted from https://stackoverflow.com/questions/48240011/show-loading-using-jquery-in-bootstrap-4-with-data-loading-text*/ 
+/*adapted from https://stackoverflow.com/questions/48240011/show-loading-using-jquery-in-bootstrap-4-with-data-loading-text.
+ * Ignores validation warning 
 
 $(document).ready(function() {
+	
 	$('#uploadbutton').on('click', function() {
 	    var $this = $(this);
 	    var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> Submitting...';
@@ -104,6 +109,6 @@ $(document).ready(function() {
 	      $this.data('original-text', $(this).html());
 	      $this.html(loadingText);	    }
 	    
-	  }) });
+	  }) });*/
 	
 

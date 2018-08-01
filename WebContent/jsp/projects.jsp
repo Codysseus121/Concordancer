@@ -90,6 +90,12 @@
 </c:choose>
 </div></div>
 
+<!-- Loader  -->
+
+<div class="gif-loader" >
+<img src="../images/source.gif" class="img-fluid img-thumbnail" style="display:none;" id="loader" />
+</div>
+
 
 <!-- Bootstrap Modals -->
 
@@ -104,6 +110,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
+      
+      
       <div class="modal-body">
         <form  method="post" id="newProject" enctype="multipart/form-data" action="/Concordancer/concordancer">
   <div class="form-group">

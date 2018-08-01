@@ -1,67 +1,71 @@
-body
-{
-	padding-left:20px;
-	padding-right:20px;
+body {
+	padding-left: 20px;
+	padding-right: 20px;
 	background-color: #ffa64d;
-
 }
 
-@media (min-width:34em) {
-    .card-deck > .card
-    {
-        width: 29%;
-        flex-wrap: wrap;
-        flex: initial;
-        margin:10px;
-    }
+@media ( min-width :34em) {
+	.card-deck>.card {
+		width: 29%;
+		flex-wrap: wrap;
+		flex: initial;
+		margin: 10px;
+	}
 }
 
-.card
-{
-	background-color:  #9bcb80;
-
+.card {
+	background-color: #9bcb80;
 }
 
-h1
-{
-	color:#17240f;
+h1 {
+	color: #17240f;
 }
 
-.btn-primary
-{
+.btn-primary {
 	background-color: #f7a138;
 	border: #f7a138;
 }
 
-.card-link
-{
+.card-link {
 	color: #f7a138;
 }
 
-#progressBar
-{
-	height:20px;
-	border:2px solid green;
-	display:none;
+#progressBar {
+	height: 20px;
+	border: 2px solid green;
+	display: none;
 }
 
-#bar
-{
-	 height:100%;
-	 background:#33dd33;
-	 width:0%;
-	 display:none;
+#bar {
+	height: 100%;
+	background: #33dd33;
+	width: 0%;
+	display: none;
 }
 
-#debug
-{
-	height:100px;
-	border:2px solid green;
-	overflow:auto;
-	display:none;
+#debug {
+	height: 100px;
+	border: 2px solid green;
+	overflow: auto;
+	display: none;
 }
 
+#loader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -50px; 
+	margin-left : -100px; 
+	height : auto;
+	width: auto;
+	max-width: 100px;
+	max-height: 100px;
+	margin-left: -100px;
+	height: auto;
+	background-color: transparent;
+	border: none;
+}
 
-
-
-
+#loader {
+	
+}
