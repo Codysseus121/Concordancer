@@ -22,7 +22,8 @@
 	top: 0;
 	list-style: none; /*removes bullets from unordered list */
 	padding-top:10px;
-	padding-bottom: 10px;	
+	padding-bottom: 10px;
+	margin-right:0;	
 	
 }
 
@@ -48,8 +49,12 @@
 
 #table {
 	width: 100%; /* Full width */
-	padding-left: 100px;
-	padding-right:50px;
+	margin-left:100px;
+	margin-right:-100px;
+	
+	
+
+	
 	
 	
 	

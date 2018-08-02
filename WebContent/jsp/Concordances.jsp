@@ -64,7 +64,7 @@
 	<!-- The Concordances -->
 	<div class="container" id="table">
 	<div class="row">
-	<div id="table" class="w-100 p-3">
+	<div id="table"  class="w-100 p-3 ">
 		
 			<table class="table table-hover">
 
