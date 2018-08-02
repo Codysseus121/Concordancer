@@ -77,9 +77,17 @@
 
 
 
-#projectname, #otherprojects {
+#projectname, #otherprojects
+ {
     text-decoration: none;
     color:#ffd24c;
+}
+
+#buttonkwic, #buttoncol, #buttonlog
+{
+	background-color:#ffd24c;
+	border-color: #ffd24c;
+	color: #487231;
 }
 
 

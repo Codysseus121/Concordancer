@@ -31,15 +31,14 @@
 <ul id="topbar">
 	<li class="el"><a href="#" id="projectname">Project: ${sessionScope.currentproject.projectname}</a></li>
 	<li class="el right"><a href="#" id="otherprojects" >Other Projects</a></li></ul>
+	
 	<ul>
-	<li class="el right"><button class="btn btn-light" type="button" >Logout</button></li>
-	<li class="el right"><button class="btn btn-warning" type="button">collocates</button></li>
-	<li class="el right"><button class="btn btn-warning" type="button">kWIC</button></li>
-	<li class="el right">
-<form><input type="text" class="el right" placeholder="find" maxlength="50" size="30" aria-label="Find Keyword" aria-describedby="topbar">
-</form></li>								
-	
-	
+	<li class="el right"><button id="buttonlog" type="button" >Logout</button></li>	
+	<li class="el right"><button id="buttonkwic" type="button">Get both</button></li>	
+	<li class="el right"><input type="text" placeholder=" collocate" id="collocate"></li>
+	<li class="el right"><span><strong>+</strong></span></li>
+	<li class="el right"><button id="buttoncol" type="button">Get</button></li>
+	<li class="el right"> <input type="text" placeholder=" kwic only" class="kwic"></li>
 	
 </ul>
 			</nav>
@@ -99,7 +98,14 @@
 			</table>
 		</div></div></div>
 </div>
+<script>$(".inentry").hover(function () {
+    $(this).addClass("active");
+},
+function () {
+    $(this).removeClass("active");
+});
 
+</script>
 
 
 </body>
