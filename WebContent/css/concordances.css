@@ -9,15 +9,9 @@
 #mybar
 {
 	margin-bottom: 50px;
-	
-	
-}
-
-#toplist {
-	
 	position: fixed; /* creates a fixed nav bar at the top */
 	width: 100%;
-	display: inline;
+	display: inline-block;
 	background-color: #76b852;
 	top: 0;
 	list-style: none; /*removes bullets from unordered list */
@@ -25,7 +19,20 @@
 	padding-bottom: 10px;
 	margin-right:0;	
 	
+	
 }
+
+
+#topbar 
+{ 
+	float: left; 
+}
+
+#topbar li:first-child
+{ 
+	float: left; 
+}
+
 
 
 #frame {
@@ -38,6 +45,7 @@
 	bottom: 0;
 	padding-left: 5px;
 	text-align: center;
+	margin-top:18px;
 	
 }
 
@@ -51,6 +59,7 @@
 	width: 100%; /* Full width */
 	margin-left:100px;
 	margin-right:-100px;
+	margin-top:30px;
 	
 }
 
@@ -58,25 +67,19 @@
 
 .el
 {
-	display: inline-block; /*displays li elements horizontally. */
-  	margin-right: 50px; /*spacing between nav links */
-  	
-  	
+	display: inline; /*displays li elements horizontally. */
+  	margin-right: 20px; /*spacing between nav links */ 
+  	float:right;	
   	
 }
 
-.right
-{
-	float:right;
-	
-}
 
 
-a:link {
+
+
+#projectname, #otherprojects {
     text-decoration: none;
-    color:#FFD600;
+    color:#ffd24c;
 }
-.button
-{
-	color: #FFD600;
-}
+
+
