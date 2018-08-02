@@ -11,20 +11,19 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
    <link rel="stylesheet" type="text/css" href="css/login.css">
    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-   <link rel="stylesheet" href="Bootstrap-4/css/bootstrap.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Lora|Merriweather|Playfair+Display" rel="stylesheet">
+  
 
 
 
-<title>A2Z</title>
+<title>kiWic</title>
 </head>
 
 
 <body>
 	<!-- Adapted from: https://codepen.io/colorlib/pen/rxddKy, Copyright (c) 2018 by Aigars Silkalns -->
-	<h1>
-		A<sup>2</sup>Z
-	</h1>
-	<h1>Concordancer</h1>
+	<h1>kiWi concordancer</h1>
+	
 
 
 	<div class="login-page">

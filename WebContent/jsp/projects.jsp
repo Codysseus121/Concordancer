@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/projects.css">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Lora|Merriweather|Playfair+Display" rel="stylesheet">
   
   
 
@@ -21,8 +22,9 @@
 <body>
 
 <div id="container">
-<h1>${sessionScope.currentSessionUser.username}'s Projects</h1>
-<br>
+<div id="bar">
+<h3>${sessionScope.currentSessionUser.username}'s Projects</h3><br/>
+</div>
 <div class="container py-4">
 <div class="card-deck">
 

@@ -6,7 +6,7 @@
 		
 }
 
-#navbar
+#mybar
 {
 	margin-bottom: 50px;
 	
@@ -52,24 +52,31 @@
 	margin-left:100px;
 	margin-right:-100px;
 	
-	
-
-	
-	
-	
-	
 }
 
 
 
 .el
 {
-	display: inline; /*displays li elements horizontally. */
+	display: inline-block; /*displays li elements horizontally. */
   	margin-right: 50px; /*spacing between nav links */
+  	
+  	
   	
 }
 
 .right
 {
 	float:right;
+	
+}
+
+
+a:link {
+    text-decoration: none;
+    color:#FFD600;
+}
+.button
+{
+	color: #FFD600;
 }
