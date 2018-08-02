@@ -10,98 +10,92 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/concordances.css">
+<script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/jquery.validate.js"></script>
+  <script src="../js/additional-methods.js"></script>
+  <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
 
 <title>Concordances</title>
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div class="navbar-lg">
-
-
-
-
-
-			<nav class="navbar navbar-light  bg-light" style="background-color: #e3f2fd;">
-				
-				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active" href="#">Project:
-							${sessionScope.currentproject.projectname}</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+	
+		<div id="topbar">
 			
-				</ul>
 
-				<div class="form">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="find"
-							aria-label="Recipient's username" aria-describedby="basic-addon2">
-						<div class="input-group-append">
-							<button class="btn btn btn-info" type="button">kWIC</button>
-							<button class="btn btn btn-info" type="button">collocates</button>
-						</div>
-						<button type="button" class="btn btn-light">Logout</button>
-					</div>
+				<ul >
+					<li class=""><a href="#">Project:
+							${sessionScope.currentproject.projectname}</a></li>
+					<li><a href="#">Projects</a></li>
+<li><form><input type="text" placeholder="find" maxlength="50" size="30" aria-label="Find Keyword" aria-describedby="basic-addon2">
+</form></li>								
+<li><button class="btn btn btn-info" type="button">kWIC</button></li>
+							<li><button class="btn btn btn-info" type="button">collocates</button></li>
+						
+						<li><button type="button" class="btn btn-light">Logout</button>		</li>
+</ul>
+				
 
-				</div>
+			</div>
 
-			</nav>
-		</div>
 
 		<!-- The Index -->
-		<div class="row">
-			<div class="table-responsive col-md-2">
-				<table class="table table-striped">
 
-					<thead>
-						<tr>
-							<th scope="col">KWIC</th>
-							<th scope="col">Freq</th>
-						</tr>
-					</thead>
+<aside id="frame">
+<h3>Index</h3>
 
-					<tbody>
+		<ul class="list-group list-group-flush">
+		
+			
+			<c:forEach var="entry" items="${sessionScope.index}">
 
-						<c:forEach var="entry" items="${sessionScope.index}">
-							<tr>
-								<td><c:out value="${entry.key}" /></td>
-								<td><c:out value="${entry.value}" /></td>
-							</tr>
-						</c:forEach>
+				<li class="list-group-item d-flex justify-content-between align-items-center inentry"
+					id="indexline"><c:out value="${entry.key}" /> <span
+					class="badge badge-primary badge-pill"> <c:out
+							value="${entry.value}" /></span></li>
+					</c:forEach>
+		</ul>
 
-					</tbody>
-				</table>
-			</div>
-			<!-- The Concordances -->
+	</aside>
 
-			<div class="table-responsive col-lg-10 col-md-6">
-				<table class="table table-striped">
+	<!-- The Concordances -->
+	<div class="container" id="table">
+	<div class="row">
+	<div id="table" class="w-100 p-3">
+		<div class="table-responsive col-lg-12 col-md-6">
+			<table class="table table-hover">
 
-					<thead>
-						<tr>
-							<th scope="col">LC</th>
-							<th scope="col">KWIC</th>
-							<th scope="col">RC</th>
-							<th scope="col">FILE</th>
-						</tr>
-					</thead>
+				<thead  class="thead-light">
+					<tr>
+						<th scope="col">LC</th>
+						<th scope="col">KWIC</th>
+						<th scope="col">RC</th>
+						<th scope="col">FILE</th>
+					</tr>
+				</thead>
 
-					<tbody>
+				<tbody>
 
-
-						<tr>
+				<c:forEach var="entry" items="${sessionScope.index}">
+					<tr>
+						
+							<td class="tentry"><c:out value="${entry.key}" /></td>
+							<td>:</td>
+							<td><c:out value="${entry.value}" /></td>
 							<td>Conc</td>
-							<td>Conc</td>
-							<td>Conc</td>
-							<td>Conc</td>
-						</tr>
+						
+					</tr>
+					</c:forEach>
 
 
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+				</tbody>
+			</table>
+		</div></div></div></div>
+
+
+
 
 </body>
 </html>
