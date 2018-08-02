@@ -1,6 +1,5 @@
 body {
-	padding-left: 20px;
-	padding-right: 20px;
+	
 	background-color: #ffd24c;
 }
 
@@ -17,15 +16,24 @@ body {
 	background-color: #9bcb80;
 }
 
-h1 {
+h3 {
 	color: #17240f;
+	
 }
 
-#bar
+#con
 {
-	position:fixed;
+	padding-top:80px;
+	
 }
 
+#logout
+{
+	
+/*	position:fixed;
+	top:0;
+	float: right;*/
+	}
 
 .btn-primary {
 	background-color: #f7a138;
@@ -36,25 +44,6 @@ h1 {
 	color: #f7a138;
 }
 
-#progressBar {
-	height: 20px;
-	border: 2px solid green;
-	display: none;
-}
-
-#bar {
-	height: 100%;
-	background: #33dd33;
-	width: 0%;
-	display: none;
-}
-
-#debug {
-	height: 100px;
-	border: 2px solid green;
-	overflow: auto;
-	display: none;
-}
 
 #loader {
 	position: fixed;
@@ -71,4 +60,5 @@ h1 {
 	background-color: transparent;
 	border: none;
 }
+
 
