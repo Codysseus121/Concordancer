@@ -13,8 +13,9 @@
 <script src="../js/jquery-3.3.1.min.js"></script>
   <script src="../js/jquery.validate.js"></script>
   <script src="../js/additional-methods.js"></script>
-  <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+   <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
+  
+ 
 
 
 <title>Concordances</title>
@@ -24,35 +25,36 @@
 
 <div id="dwrapper">
 	
-		<div id="topbar">
-			
+		
+<div id="navbar">			
 
-<ul id="toplist" >
+<ul id="toplist">
 	<li class="el"><a href="#">Project: ${sessionScope.currentproject.projectname}</a></li>
 	<li class="el"><a href="#">Other Projects</a></li>
-	<li class="el"><form><input type="text" placeholder="find" maxlength="50" size="30" aria-label="Find Keyword" aria-describedby="basic-addon2">
+	<li class="el right">
+<form><input type="text" class="el right" placeholder="find" maxlength="50" size="30" aria-label="Find Keyword" aria-describedby="topbar">
 </form></li>								
-	<li class="el"><button class="btn btn btn-info" type="button">kWIC</button></li>
-	<li class="el"><button class="btn btn btn-info" type="button">collocates</button></li>
-	<li class="el"><button type="button" class="btn btn-light">Logout</button></li>
+	<li class="el right"><button class="btn btn btn-info" type="button">kWIC</button></li>
+	<li class="el right"><button class="btn btn btn-info" type="button">collocates</button></li>
+	<li class="el right"><button type="button" class="btn btn-light">Logout</button></li>
 </ul>
-			
-</div>
+			</div>
+
 
 
 		<!-- The Index -->
 
 <aside id="frame">
-<h3>Index</h3>
 
-		<ul class="list-group list-group-flush">
+
+		<ul class="list-group list-group-flush" id="indexlist">
 		
 			
 			<c:forEach var="entry" items="${sessionScope.index}">
 
 				<li class="list-group-item d-flex justify-content-between align-items-center inentry"
 					id="indexline"><c:out value="${entry.key}" /> <span
-					class="badge badge-primary badge-pill"> <c:out
+					class=""> <c:out
 							value="${entry.value}" /></span></li>
 					</c:forEach>
 		</ul>
@@ -63,7 +65,7 @@
 	<div class="container" id="table">
 	<div class="row">
 	<div id="table" class="w-100 p-3">
-		<div class="table-responsive col-lg-12 col-md-6">
+		
 			<table class="table table-hover">
 
 				<thead  class="thead-light">
@@ -91,7 +93,7 @@
 
 				</tbody>
 			</table>
-		</div></div></div></div>
+		</div></div></div>
 </div>
 
 
