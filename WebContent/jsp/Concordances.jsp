@@ -21,24 +21,23 @@
 </head>
 
 <body>
+
+<div id="dwrapper">
 	
 		<div id="topbar">
 			
 
-				<ul >
-					<li class=""><a href="#">Project:
-							${sessionScope.currentproject.projectname}</a></li>
-					<li><a href="#">Projects</a></li>
-<li><form><input type="text" placeholder="find" maxlength="50" size="30" aria-label="Find Keyword" aria-describedby="basic-addon2">
+<ul id="toplist" >
+	<li class="el"><a href="#">Project: ${sessionScope.currentproject.projectname}</a></li>
+	<li class="el"><a href="#">Other Projects</a></li>
+	<li class="el"><form><input type="text" placeholder="find" maxlength="50" size="30" aria-label="Find Keyword" aria-describedby="basic-addon2">
 </form></li>								
-<li><button class="btn btn btn-info" type="button">kWIC</button></li>
-							<li><button class="btn btn btn-info" type="button">collocates</button></li>
-						
-						<li><button type="button" class="btn btn-light">Logout</button>		</li>
+	<li class="el"><button class="btn btn btn-info" type="button">kWIC</button></li>
+	<li class="el"><button class="btn btn btn-info" type="button">collocates</button></li>
+	<li class="el"><button type="button" class="btn btn-light">Logout</button></li>
 </ul>
-				
-
-			</div>
+			
+</div>
 
 
 		<!-- The Index -->
@@ -93,7 +92,7 @@
 				</tbody>
 			</table>
 		</div></div></div></div>
-
+</div>
 
 
 
