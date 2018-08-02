@@ -11,11 +11,11 @@
 <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/concordances.css">
 <script src="../js/jquery-3.3.1.min.js"></script>
-  <script src="../js/jquery.validate.js"></script>
-  <script src="../js/additional-methods.js"></script>
-   <script src="../Bootstrap-4/js/bootstrap.min.js"></script>  
-  
- 
+<script src="../js/jquery.validate.js"></script>
+<script src="../js/additional-methods.js"></script>
+<script src="../Bootstrap-4/js/bootstrap.min.js"></script>
+
+
 
 
 <title>Concordances</title>
@@ -23,89 +23,90 @@
 
 <body>
 
-<div class="dwrapper">
-	
-		
-<nav id="mybar">			
+	<div class="dwrapper">
 
-<ul id="topbar">
-	<li class="el"><a href="#" id="projectname">Project: ${sessionScope.currentproject.projectname}</a></li>
-	<li class="el right"><a href="#" id="otherprojects" >Other Projects</a></li></ul>
-	
-	<ul>
-	<li class="el right"><button id="buttonlog" type="button" >Logout</button></li>	
-	<li class="el right"><button id="buttonkwic" type="button">Get both</button></li>	
-	<li class="el right"><input type="text" placeholder=" collocate" id="collocate"></li>
-	<li class="el right"><span><strong>+</strong></span></li>
-	<li class="el right"><button id="buttoncol" type="button">Get</button></li>
-	<li class="el right"> <input type="text" placeholder=" kwic only" class="kwic"></li>
-	
-</ul>
-			</nav>
+
+		<nav id="mybar">
+
+			<ul id="topbar">
+				<li class="el"><a href="#" id="projectname">Project:
+						${sessionScope.currentproject.projectname}</a></li>
+				<li class="el right"><a href="#" id="otherprojects">Other
+						Projects</a></li>
+			</ul>
+
+			<ul>
+				<li class="el right"><button id="buttonlog" type="button">Logout</button></li>
+				<li class="el right"><button id="buttonkwic" type="button">Get
+						both</button></li>
+				<li class="el right"><input type="text"
+					placeholder=" collocate" id="collocate"></li>
+				<li class="el right"><span><strong>+</strong></span></li>
+				<li class="el right"><button id="buttoncol" type="button">Get</button></li>
+				<li class="el right"><input type="text"
+					placeholder=" kwic only" class="kwic"></li>
+
+			</ul>
+		</nav>
 
 
 
 		<!-- The Index -->
 
-<aside id="frame">
+		<aside id="frame">
+			<ul class="list-group list-group-flush" id="indexlist">
 
-
-		<ul class="list-group list-group-flush" id="indexlist">
-		
-			
-			<c:forEach var="entry" items="${sessionScope.index}">
-
-				<li class="list-group-item d-flex justify-content-between align-items-center inentry"
-					id="indexline"><c:out value="${entry.key}" /> <span
-					class=""> <c:out
-							value="${entry.value}" /></span></li>
-					</c:forEach>
-		</ul>
-
-	</aside>
-
-	<!-- The Concordances -->
-	<div class="container" id="table">
-	<div class="row">
-	<div id="table"  class="w-100 p-3 ">
-		
-			<table class="table table-hover">
-
-				<thead  class="thead-light">
-					<tr>
-						<th scope="col">LC</th>
-						<th scope="col">KWIC</th>
-						<th scope="col">RC</th>
-						<th scope="col">FILE</th>
-					</tr>
-				</thead>
-
-				<tbody>
 
 				<c:forEach var="entry" items="${sessionScope.index}">
-					<tr>
-						
-							<td class="tentry"><c:out value="${entry.key}" /></td>
-							<td>:</td>
-							<td><c:out value="${entry.value}" /></td>
-							<td>Conc</td>
-						
-					</tr>
-					</c:forEach>
+
+			<li class="list-group-item d-flex justify-content-between align-items-center inentry" id="indexline"><a
+				href="../concordancer?action=kwic?param=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
+						<span class=""><c:out value="${entry.value}" /></span></li>
+
+				</c:forEach>
+				
+				
+			</ul>
+
+		</aside>
+
+		<!-- The Concordances -->
+		<div class="container" id="table">
+			<div class="row">
+				<div id="table" class="w-100 p-3 ">
+
+					<table class="table table-hover">
+
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">LC</th>
+								<th scope="col">KWIC</th>
+								<th scope="col">RC</th>
+								<th scope="col">FILE</th>
+							</tr>
+						</thead>
+
+						<tbody>
+
+							<c:forEach var="entry" items="${sessionScope.index}">
+								<tr>
+
+									<td class="tentry"><c:out value="${entry.key}" /></td>
+									<td>:</td>
+									<td><c:out value="${entry.value}" /></td>
+									<td>Conc</td>
+
+								</tr>
+							</c:forEach>
 
 
-				</tbody>
-			</table>
-		</div></div></div>
-</div>
-<script>$(".inentry").hover(function () {
-    $(this).addClass("active");
-},
-function () {
-    $(this).removeClass("active");
-});
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 
-</script>
 
 
 </body>
