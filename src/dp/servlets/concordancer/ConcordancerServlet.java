@@ -51,6 +51,7 @@ public class ConcordancerServlet extends HttpServlet {
 		{
 			
 			HttpSession session = request.getSession(true);
+			response.setContentType("text/html");	
 			RequestDispatcher dispatcher = null;
 			Project project = (Project) session.getAttribute("currentproject");
 			User user = (User) session.getAttribute("currentSessionUser");

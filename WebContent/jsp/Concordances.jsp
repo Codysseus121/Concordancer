@@ -8,12 +8,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/concordances.css">
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/jquery.validate.js"></script>
-<script src="../js/additional-methods.js"></script>
-<script src="../Bootstrap-4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/Bootstrap-4/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/concordances.css">
+<script src="<%=request.getContextPath()%>/js/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
+<script src="<%=request.getContextPath()%>/js/additional-methods.js"></script>
+<script src="<%=request.getContextPath()%>/Bootstrap-4/js/bootstrap.min.js"></script>
 
 
 
@@ -102,7 +102,7 @@
 		</div>
 	</div>
 
-<script src="../js/concordances.js"></script>
+<script src="<%=request.getContextPath()%>/js/concordances.js"></script>
 
 </body>
 </html>

@@ -97,18 +97,5 @@ $("#newProject" ).validate({
         form.submit();
     }
 }) });
-/*adapted from https://stackoverflow.com/questions/48240011/show-loading-using-jquery-in-bootstrap-4-with-data-loading-text.
- * Ignores validation warning 
 
-$(document).ready(function() {
-	
-	$('#uploadbutton').on('click', function() {
-	    var $this = $(this);
-	    var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> Submitting...';
-	    if ($(this).html() !== loadingText) {
-	      $this.data('original-text', $(this).html());
-	      $this.html(loadingText);	    }
-	    
-	  }) });*/
-	
 

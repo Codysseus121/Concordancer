@@ -16,8 +16,9 @@ $(document).ready(function() {
                 keyword: word
             },
             type: 'post',
-            success: function(data){
-            	$("#tablecon").load(window.location + " #tablecon");
+            success: function(response){
+            	location.reload();
+            	/*$("#tablecon").load(window.location + " #tablecon");*/
                 },
             error: function(e){
                 console.log(e);}
@@ -45,8 +46,9 @@ $(document).ready(function() {
                 keyword: word
             },
             type: 'post',
-            success: function(data){
-            	$("#tablecon").load(window.location + " #tablecon");
+            success: function(response){
+            	location.reload();
+            	/*$("#tablecon").load(window.location + " #tablecon");*/
                 },
             error: function(e){
                 console.log(e);}
