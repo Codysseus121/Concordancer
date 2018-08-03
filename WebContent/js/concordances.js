@@ -4,7 +4,8 @@ $(document).ready(function() {
     $(".kwic").click(function(event) {
      
     	
-    	var kwic = event.target.innerHTML;
+    	var word = event.target.innerHTML;
+    	
     	
     	
     	
@@ -16,7 +17,7 @@ $(document).ready(function() {
             data: {
 
                 action : "kwic",
-                "kwic": varaiable
+                keyword: word
             },
             type: 'post',
             success: function(response){

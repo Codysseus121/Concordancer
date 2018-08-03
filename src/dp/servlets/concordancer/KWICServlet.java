@@ -41,8 +41,8 @@ public class KWICServlet extends HttpServlet {
 	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession session = request.getSession(true);
-		String [] word = request.getParameterValues("action");
-		System.out.println(word[1]);
+		String word = request.getParameter("keyword");
+		System.out.println("KWIC SERVLET " + word);
 	}
 	
 

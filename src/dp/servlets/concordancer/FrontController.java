@@ -54,7 +54,7 @@ public class FrontController extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		String base = "/jsp/";
 		String url = base+ "/home.jsp";
-		System.out.println(action);
+		//System.out.println(action);
 
 		if (action != null) {
 
@@ -81,8 +81,11 @@ public class FrontController extends HttpServlet {
 				url = "/UploadServlet";
 				break;
 				
-			case "kiwic":
+			case "kwic":
 				url = "/KWICServlet";
+				String keyword = request.getParameter("action");
+				String action2 = request.getParameter("keyword");
+				System.out.println("KWIC FC " + keyword +" " + action2);
 				break;
 
 			}
