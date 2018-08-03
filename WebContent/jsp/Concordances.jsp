@@ -42,9 +42,8 @@
 				<li class="el right"><input type="text"
 					placeholder=" collocate" id="collocate"></li>
 				<li class="el right"><span><strong>+</strong></span></li>
-				<li class="el right"><button id="buttoncol" type="button">Get</button></li>
-				<li class="el right"><input type="text"
-					placeholder=" kwic only" class="kwic"></li>
+				<li class="el right"><button id="buttoncol" type="submit" onsubmit="">Get</button></li>
+				<li class="el right"><input type="text" placeholder=" kwic only" name="keywordbox" class="formkwic"></li>
 
 			</ul>
 		</nav>
