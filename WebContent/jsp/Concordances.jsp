@@ -3,6 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="dp.model.concordancer.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%response.setHeader("Cache-Control", "no-store");%>
+<%response.setDateHeader("Expires", 0);%>
 
 <!DOCTYPE html>
 <html>
@@ -88,11 +90,13 @@
 
 						<tbody>
 
-							<c:forEach var="entry" items="${sessionScope.concordances}">
+							<c:forEach var="entry" items="${sessionScope.concordances}" varStatus="myIndex">
 								<tr>
 
+								<td class="tentry" id="itemindex" style="display:none;"><c:out value="${myIndex.index}" /></td>
 									<td class="tentry"><c:out value="${entry.lcontext}" /></td>
-									<td class="tentry"><c:out value="${entry.keyword}" /></td>
+<td class="tentry morecontext"><a class="morecontext"  href="../concordancer?action=context&value=<c:out value='${entry.keyword}'/>">
+<c:out value="${entry.keyword}" /></a></td>
 									<td class="tentry"><c:out value="${entry.rcontext}" /></td>
 									<td class="tentry"><c:out value="${entry.filename}" /></td>
 									
@@ -108,6 +112,8 @@
 	</div>
 
 <script src="<%=request.getContextPath()%>/js/concordances.js"></script>
+<script src="<%=request.getContextPath()%>/js/concs_context.js"></script>
+
 
 </body>
 </html>

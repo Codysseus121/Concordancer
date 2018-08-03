@@ -103,7 +103,7 @@ public class ConcordanceDao extends GetConnection {
 		SuffixArrayX sa = new SuffixArrayX(text);
         
 
-        // find all occurrences of queries and give context
+        // find all occurrences of queries with context and add to arraylist
         
            
             for (int i = sa.rank(query); i < n; i++)
@@ -122,9 +122,18 @@ public class ConcordanceDao extends GetConnection {
                 k.setRcontext(text.substring(to1, to2));
                 k.setKeyword(query);
                 words.add(k);
-                //System.out.println(Arrays);
+                
             }
            return words;
+	}
+	
+	public String moreContext (String query, ProjectFile file, int context)
+	{
+		String morecontext="";
+		
+		
+		
+		return morecontext;
 	}
 
 }

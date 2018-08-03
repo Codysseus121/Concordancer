@@ -52,6 +52,8 @@ public class UseProjectServlet extends HttpServlet {
 		try
 		{
 			HttpSession session = request.getSession(true);
+			session.removeAttribute("currentproject"); 
+			session.removeAttribute("concordances"); 
 			RequestDispatcher dispatcher = null;
 			User user = (User) session.getAttribute("currentSessionUser");
 			String projectpara="";			
@@ -62,7 +64,7 @@ public class UseProjectServlet extends HttpServlet {
 			ProjectDataAccessObject pdao = new ProjectDao();
 			Project p= new Project();
 			p = pdao.getProject(projectID, user);
-			session.setAttribute("currentproject", p);
+			session.setAttribute("currentproject", p);			
 			dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
 			dispatcher.forward(request, response);
 			return;

@@ -1,7 +1,13 @@
 package dp.model.concordancer;
 
-public class Kwic {
+import java.io.Serializable;
 
+public class Kwic implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8439524116323436712L;
 	private String lcontext;
 	private String keyword;
 	private String rcontext;
