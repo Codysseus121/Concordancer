@@ -58,7 +58,6 @@ public class ConcordancerServlet extends HttpServlet {
 			Map<String, Integer> index = new TreeMap<String, Integer>();
 			index = cdao.getIndex(project, user);
 			session.setAttribute("index", index);
-			System.out.println("attribute set");
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/Concordances.jsp");
 			dispatcher.forward(request, response);
 			return;

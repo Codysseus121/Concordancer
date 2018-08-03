@@ -80,6 +80,10 @@ public class FrontController extends HttpServlet {
 			case "newproject":
 				url = "/UploadServlet";
 				break;
+				
+			case "kiwic":
+				url = "/KWICServlet";
+				break;
 
 			}
 

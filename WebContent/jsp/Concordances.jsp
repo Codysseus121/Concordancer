@@ -59,12 +59,12 @@
 
 				<c:forEach var="entry" items="${sessionScope.index}">
 
-			<li class="list-group-item d-flex justify-content-between align-items-center inentry" id="indexline"><a
-				href="../concordancer?action=kwic?param=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
+		<li class="list-group-item d-flex justify-content-between align-items-center inentry" id="indexline">
+		<a class="kwic"
+				href="../concordancer?action=kwic&value=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
 						<span class=""><c:out value="${entry.value}" /></span></li>
 
-				</c:forEach>
-				
+				</c:forEach>		
 				
 			</ul>
 
@@ -107,7 +107,7 @@
 		</div>
 	</div>
 
-
+<script src="../js/concordances.js"></script>
 
 </body>
 </html>
