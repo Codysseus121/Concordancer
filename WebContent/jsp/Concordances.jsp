@@ -74,27 +74,23 @@
 			<div class="row">
 				<div id="table" class="w-100 p-3 ">
 
-					<table class="table table-hover">
+					<table class="table table-hover" id="tablecon">
 
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">LC</th>
+								
 								<th scope="col">KWIC</th>
-								<th scope="col">RC</th>
 								<th scope="col">FILE</th>
 							</tr>
 						</thead>
 
 						<tbody>
 
-							<c:forEach var="entry" items="${sessionScope.index}">
+							<c:forEach var="entry" items="${sessionScope.concordances}">
 								<tr>
 
-									<td class="tentry"><c:out value="${entry.key}" /></td>
-									<td>:</td>
-									<td><c:out value="${entry.value}" /></td>
-									<td>Conc</td>
-
+									<td class="tentry"><c:out value="${entry}" /></td>
+									
 								</tr>
 							</c:forEach>
 

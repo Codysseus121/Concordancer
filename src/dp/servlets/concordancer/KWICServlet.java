@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.*;
+
+import dp.dao.concordancer.ConcordanceDao;
+import dp.model.concordancer.Project;
+import dp.model.concordancer.User;
 
 /**
  * Servlet implementation class KWICServlet
@@ -42,7 +47,12 @@ public class KWICServlet extends HttpServlet {
 	{
 		HttpSession session = request.getSession(true);
 		String word = request.getParameter("keyword");
-		System.out.println("KWIC SERVLET " + word);
+		User user = (User) session.getAttribute("currentSessionUser");
+		Project project = (Project) session.getAttribute("currentproject");
+		ConcordanceDao cdao = new ConcordanceDao();
+		List<String> conc = cdao.getConcordances(user, project, word);
+		session.setAttribute("concordances", conc);
+		
 	}
 	
 

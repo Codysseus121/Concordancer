@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import dp.model.concordancer.Project;
+import dp.model.concordancer.SuffixArrayX;
 import dp.model.concordancer.User;
 
 public class ConcordanceDao extends GetConnection {
@@ -72,5 +73,36 @@ public class ConcordanceDao extends GetConnection {
 		}
 		return index;
 	}
+	
+	public List<String> getConcordances (User u, Project p, String query)
+	{  		       
+		    	int context = 50;
+		    	List <String> c = new ArrayList<String>();
+		    	ProjectDao pdao = new ProjectDao(); 
+
+		        // read in text
+		        String text = pdao.getFiles(p, u);
+		        int n = text.length();
+
+		        // build suffix array
+		        SuffixArrayX sa = new SuffixArrayX(text);
+		        String kwic = "";
+
+		        // find all occurrences of queries and give context
+		        
+		           // String query = StdIn.readLine();
+		            for (int i = sa.rank(query); i < n; i++)
+		            {
+		                int from1 = sa.index(i);
+		                int to1   = Math.min(n, from1 + query.length());
+		                if (!query.equals(text.substring(from1, to1))) break;
+		                int from2 = Math.max(0, sa.index(i) - context);
+		                int to2   = Math.min(n, sa.index(i) + context + query.length());
+		                kwic = text.substring(from2, to2);
+		                c.add(kwic);
+		            }
+		            
+		        return c;
+		    } 
 
 }

@@ -291,7 +291,8 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 			conn = getConnection();			 
 			String sql = "SELECT file_content from files F, project P, users U where U.user_id=P.user_id AND P.project_id=F.project_id AND F.project_id=" + project_id + ";";
 			statement = conn.prepareStatement(sql);
-			set = statement.executeQuery();		
+			set = statement.executeQuery();
+			while (set.next())
 			text = set.getString(1);			
 		}
 		
