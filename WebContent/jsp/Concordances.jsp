@@ -79,8 +79,10 @@
 						<thead class="thead-light">
 							<tr>
 								
+								<th scope="col">Left context</th>
 								<th scope="col">KWIC</th>
-								<th scope="col">FILE</th>
+								<th scope="col">Right context</th>
+								<th scope="col">File</th>
 							</tr>
 						</thead>
 
@@ -89,7 +91,10 @@
 							<c:forEach var="entry" items="${sessionScope.concordances}">
 								<tr>
 
-									<td class="tentry"><c:out value="${entry}" /></td>
+									<td class="tentry"><c:out value="${entry.lcontext}" /></td>
+									<td class="tentry"><c:out value="${entry.keyword}" /></td>
+									<td class="tentry"><c:out value="${entry.rcontext}" /></td>
+									<td class="tentry"><c:out value="${entry.filename}" /></td>
 									
 								</tr>
 							</c:forEach>

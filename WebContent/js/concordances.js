@@ -15,7 +15,7 @@ $(document).ready(function() {
                 action : "kwic",
                 keyword: word
             },
-            type: 'post',
+            type: 'get',
             success: function(response){
             	location.reload();
             	/*$("#tablecon").load(window.location + " #tablecon");*/
@@ -45,7 +45,7 @@ $(document).ready(function() {
                 action : "kwic",
                 keyword: word
             },
-            type: 'post',
+            type: 'get',
             success: function(response){
             	location.reload();
             	/*$("#tablecon").load(window.location + " #tablecon");*/

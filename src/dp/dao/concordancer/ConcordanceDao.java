@@ -12,7 +12,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
+import dp.model.concordancer.ProjectFile;
 import dp.model.concordancer.SuffixArrayX;
 import dp.model.concordancer.User;
 
@@ -42,7 +44,7 @@ public class ConcordanceDao extends GetConnection {
 				text = result.getString(1);				
 				scanner = new Scanner(text).useDelimiter("[^a-zA-Z]*\\s+[^a-zA-Z]*");
 				while (scanner.hasNext())
-				{words.add(scanner.next().toLowerCase().replaceAll("[^a-zA-Z]", "").trim());}
+				{words.add(scanner.next().replaceAll("[^a-zA-Z]", " ").trim());}
 			}
 				//Collections.sort(words);
 				
@@ -57,9 +59,6 @@ public class ConcordanceDao extends GetConnection {
 					}
 				}
 				
-				
-				
-			
 		}
 
 		catch (SQLException ex) {
@@ -74,35 +73,58 @@ public class ConcordanceDao extends GetConnection {
 		return index;
 	}
 	
-	public List<String> getConcordances (User u, Project p, String query)
+	public List<Kwic> getConcordances (User u, Project p, String query)
 	{  		       
-		    	int context = 50;
-		    	List <String> c = new ArrayList<String>();
-		    	ProjectDao pdao = new ProjectDao(); 
-
-		        // read in text
-		        String text = pdao.getFiles(p, u);
-		        int n = text.length();
-
-		        // build suffix array
-		        SuffixArrayX sa = new SuffixArrayX(text);
-		        String kwic = "";
-
-		        // find all occurrences of queries and give context
+		    	int context = 55;
+		    	List <Kwic> c = new ArrayList<Kwic>();
+		    	List <Kwic> all = new ArrayList<Kwic>();
+		    	ProjectDao pdao = new ProjectDao();
+		    	
+		    	
+		        // read in text per file
+		        List<ProjectFile> files = pdao.getFiles(p, u);
 		        
-		           // String query = StdIn.readLine();
-		            for (int i = sa.rank(query); i < n; i++)
-		            {
-		                int from1 = sa.index(i);
-		                int to1   = Math.min(n, from1 + query.length());
-		                if (!query.equals(text.substring(from1, to1))) break;
-		                int from2 = Math.max(0, sa.index(i) - context);
-		                int to2   = Math.min(n, sa.index(i) + context + query.length());
-		                kwic = text.substring(from2, to2);
-		                c.add(kwic);
+		        for (ProjectFile file : files)
+		        {
+		          
+		           c = getKwic(file, query, context);       
+		           all.addAll(c);
 		            }
+		        
 		            
-		        return c;
+		        return all;
 		    } 
+	
+	private List<Kwic> getKwic(ProjectFile file, String query, int context)
+	{
+		String text = file.getFilecontent();
+		int n = file.getFilecontent().length();
+		List<Kwic> words = new ArrayList<Kwic>();
+		SuffixArrayX sa = new SuffixArrayX(text);
+        
+
+        // find all occurrences of queries and give context
+        
+           
+            for (int i = sa.rank(query); i < n; i++)
+            {
+            	Kwic k = new Kwic();
+                
+                int from1 = sa.index(i);
+                int to1   = Math.min(n, from1 + query.length());
+                if (!query.equals(text.substring(from1, to1))) break;
+                int from2 = Math.max(0, sa.index(i) - context);
+                int to2   = Math.min(n, sa.index(i) + context + query.length());
+               
+                k.setKeyword(query);
+                k.setFilename(file.getFile_name());
+                k.setLcontext(text.substring(from2, from1));
+                k.setRcontext(text.substring(to1, to2));
+                k.setKeyword(query);
+                words.add(k);
+                //System.out.println(Arrays);
+            }
+           return words;
+	}
 
 }

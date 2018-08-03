@@ -277,23 +277,58 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		return finaltext;
 	}
 
-	public String getFiles(Project project, User user)
+	public List<ProjectFile> getFiles(Project project, User user)
 	{
 		Connection conn = null;
 		PreparedStatement statement = null;
+	//	PreparedStatement statement2 = null;
 		ResultSet set = null;
-		String text = "";
+		//ResultSet contents = null;
+		
 		int project_id = project.getProject_id();
+		
+		List <ProjectFile> filelist = new ArrayList<ProjectFile>();//an arraylist with the filecontents per file
+		//Integer fileid = 0;
+		//List <Integer> ids = new ArrayList<Integer>();//an arraylist with the ids of each file.
 		
 		
 		try
 		{
+			//First get ids of all project files
 			conn = getConnection();			 
-			String sql = "SELECT file_content from files F, project P, users U where U.user_id=P.user_id AND P.project_id=F.project_id AND F.project_id=" + project_id + ";";
+			String sql = "SELECT file_id, file_name, file_content from files F, project P, users U where U.user_id=P.user_id AND P.project_id=F.project_id AND F.project_id=" + project_id + ";";
 			statement = conn.prepareStatement(sql);
 			set = statement.executeQuery();
-			while (set.next())
-			text = set.getString(1);			
+			while (set.next())//add files ids to arraylist
+			{				
+				ProjectFile f = new ProjectFile();
+				f.setFile_id(set.getInt("FILE_ID"));
+				f.setFile_name(set.getString("FILE_NAME"));
+				f.setFilecontent(set.getString("FILE_CONTENT"));
+				filelist.add(f);
+			
+			
+			}
+			
+			//Get content and name of each file
+//			String sql2 = "SELECT file_content, file_name from files F, project P where P.project_id=F.project_id AND F.file_id= (?);";
+//			
+//			for (Integer integer : ids)
+//			{
+//			
+//			statement2 = conn.prepareStatement(sql2);
+//			statement2.setInt(1, integer);
+//			contents = statement.executeQuery();
+//			
+//			while (contents.next())
+//			{
+//				//f.setFilecontent(contents.getString(1));
+//				String name = contents.getString(1);
+//				f.setFile_name(contents.getString(1));
+//				System.out.println(name);
+//			}
+					
+			
 		}
 		
 		catch (SQLException ex)
@@ -315,7 +350,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 				e.printStackTrace();
 			}
 		}
-		return text;
+		return filelist;
 	}
 	
 }
