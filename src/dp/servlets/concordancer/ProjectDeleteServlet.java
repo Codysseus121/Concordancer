@@ -1,6 +1,8 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.dao.concordancer.ProjectDao;
+import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
 
@@ -44,14 +47,20 @@ public class ProjectDeleteServlet extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(true);
 		response.setContentType("plain/text");
-		//response.addHeader("Access-Control-Allow-Origin", "*");
-
 		String pid = request.getParameter("parameter_pid");
 		int project_id = Integer.parseInt(pid);
-		User user = (User) session.getAttribute("currentSessionUser");
+		User user = (User) session.getAttribute("currentSessionUser");		
 		deleteProject(user, project_id);
+		
+		//refresh list of projects after deletion
+		
+		ProjectDataAccessObject pdao = new ProjectDao();
+		List<Project> projects = pdao.getProjects(user);
+		session.setAttribute("projects", projects);			
+		
 
 	}
 	public void deleteProject(User u, int pid)

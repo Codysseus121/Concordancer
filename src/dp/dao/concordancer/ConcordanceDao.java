@@ -154,9 +154,7 @@ public class ConcordanceDao extends GetConnection {
         {
         	morecontext=text;
         }
-    	
-		System.out.println(morecontext);
-		
+    			
 		return morecontext;
 	}
 

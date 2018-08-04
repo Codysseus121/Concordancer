@@ -11,7 +11,7 @@ $('#deleteprojectmodal').on('show.bs.modal', function (e) {
 
 
     $('#Delete').click (function ()
-    		{
+    		{ $(".img-fluid").toggle();
 
     			$.ajax({
                     url: '/Concordancer/concordancer',
@@ -24,7 +24,8 @@ $('#deleteprojectmodal').on('show.bs.modal', function (e) {
                     },
                     type: 'post',
                     success: function(response){
-                        project_div.remove();
+                    	$(".img-fluid").toggle();
+                    	project_div.remove();
                         },
                     error: function(e){
                         console.log(e);}
@@ -40,7 +41,7 @@ $(document).ready(function() {
 	$('.use').click(function (event)
 
 	{
-	
+		$(".img-fluid").toggle();
 	let projectno = event.target.id;
 	
 	
@@ -76,7 +77,7 @@ $("#newProject" ).validate({
         file:{
             required:true,
             accept:"application/pdf,text/plain,text/html",
-            filesize: 12000000  //max size 12MB
+            filesize: 10000000  //max size 10MB
         },
 		projectname: {
 			required:true,

@@ -27,16 +27,11 @@ $(document).ready(function() {
 
 $(".morecontext").click(function(event) {
 
-	alert("clicked");
+	
 	event.preventDefault();
 	var start = $('.index1').html();/*event.target.innerHTML;*/
 	var end = $('.index2').html();
 	var fname = $('.filename').html();
-	alert (start);
-	alert (end);
-	alert(fname);
-	
-		
 	
 	$.ajax({
 		url : '/Concordancer/concordancer',
