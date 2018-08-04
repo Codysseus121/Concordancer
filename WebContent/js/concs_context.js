@@ -25,15 +25,18 @@ $(document).ready(function() {
 	});
 });
 
-$(".morecontext").click(function(event) {
+$(document).ready(function() {
+$("#table").click(function(event) {
 
 	
 	event.preventDefault();
 	var start = $('.index1').html();/*event.target.innerHTML;*/
 	var end = $('.index2').html();
 	var fname = $('.filename').html();
+	var rcontext = $('.rcontext').html();
 	alert (start);
 	alert(end);
+	alert(rcontext);
 	
 	$.ajax({
 		url : '/Concordancer/concordancer',
@@ -49,12 +52,14 @@ $(".morecontext").click(function(event) {
 		success : function(response) {
 			$('#contextmodal').modal('show');
 			$('.modal-body').html(response);
+			//location.reload();
 		},
 		error : function(e) {
 			console.log(e);
 		}
 	});
 
+});
 });
 
 /** Logout function */

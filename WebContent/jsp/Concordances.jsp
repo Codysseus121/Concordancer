@@ -89,7 +89,7 @@
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody id="table">
 
 							<c:forEach var="entry" items="${sessionScope.concordances}" varStatus="myIndex">
 								<tr>
@@ -100,8 +100,8 @@
 <c:out value="${entry.keyword}" /></a></td>
 									<td class="tentry rcontext"><c:out value="${entry.rcontext}" /></td>
 									<td class="tentry filename"><c:out value="${entry.filename}" /></td>
-									<td class="tentry index1" style="display:none;"><c:out value="${entry.index1}" /></td>
-									<td class="tentry index2" style="display:none;"><c:out value="${entry.index2}" /></td>
+									<td class="tentry index1" ><c:out value="${entry.index1}" /></td>
+									<td class="tentry index2" ><c:out value="${entry.index2}" /></td>
 									
 								</tr>
 							</c:forEach>
