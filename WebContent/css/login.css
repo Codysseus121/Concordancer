@@ -5,32 +5,40 @@ body {
 	font-family: 'Merriweather', serif;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
 	color: #f7c222;
 	text-align: center;
 }
 
 h1 {
+	margin-bottom:0;
 	
-	
+}
+
+h4
+{
+	margin-top:0;
 }
 
 .login-page {
 	width: 360px;
 	padding: 8% 0 0;
 	margin: auto;
+	/*background-color: #76b852;*/
 }
 
 .form {
 	position: relative;
 	z-index: 1;
-	background: #FFFFFF;
+	background: #76b852;
+	opacity: 0.8;
 	max-width: 360px;
 	margin: 0 auto 100px;
 	padding: 45px;
 	text-align: center;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
 		rgba(0, 0, 0, 0.24);
+	border: opx solid  #f7c222;
 }
 
 .form input {
@@ -43,6 +51,7 @@ h1 {
 	padding: 15px;
 	box-sizing: border-box;
 	font-size: 14px;
+	border: 2px solid  #f7c222;
 }
 
 .form button {
@@ -66,12 +75,12 @@ h1 {
 
 .form .message {
 	margin: 15px 0 0;
-	color: #b3b3b3;
+	color:  #f7c222;
 	font-size: 12px;
 }
 
 .form .message a {
-	color: #4CAF50;
+	color: #edb81c;
 	text-decoration: none;
 }
 
@@ -121,15 +130,12 @@ h1 {
 
 body {
 	height: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background: #76b852;
-	background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-	background: -moz-linear-gradient(right, #76b852, #8DC26F);
-	background: -o-linear-gradient(right, #76b852, #8DC26F);
-	background: linear-gradient(to left, #76b852, #8DC26F);
-	font-family: "Roboto", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	background-image: url('../images/whale6.png');
+	background-repeat: no-repeat;	
+	background-color: #76b852;
+	background-position:15px 30px;
+	background-size: 1030px;
+	
+	
+	
 }

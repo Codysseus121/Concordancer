@@ -21,8 +21,9 @@
 
 
 <body>
-	<!-- Adapted from: https://codepen.io/colorlib/pen/rxddKy, Copyright (c) 2018 by Aigars Silkalns -->
-	<h1>kiWi concordancer</h1>
+	<!-- Code snippets adapted from: https://codepen.io/colorlib/pen/rxddKy, Copyright (c) 2018 by Aigars Silkalns -->
+	<h1>kiWi</h1>
+	<h4>Concordancer</h4>
 	
 
 

@@ -89,4 +89,9 @@
 	color: #487231;
 }
 
+.modal-header, .modal-footer
+{
+	background-color: #76b852;
+	color: #76b852;
+}
 

@@ -122,7 +122,7 @@
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header" style="background-color:#ffd24c;">
 					<h5 class="modal-title">Create new project</h5>
 
 
@@ -145,7 +145,7 @@
 
 						</div>
 
-						<div class="modal-footer">
+						<div class="modal-footer" >
 							<button type="button" class="btn btn-secondary close btn-sm"
 								data-dismiss="modal">Cancel</button>
 							<button type="submit" id="uploadbutton" name="action"
@@ -171,7 +171,7 @@
 			<div class="modal-dialog modal-dialog-centered form-group"
 				role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" style="background-color:#ffd24c;">
 						<h5 class="modal-title" id="exampleModalLongTitle"></h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -179,7 +179,7 @@
 						</button>
 					</div>
 					<div class="modal-body"></div>
-					<div class="modal-footer">
+					<div class="modal-footer" style="background-color:#ffd24c;">
 
 						<button type="button" class="btn btn-secondary close"
 							data-dismiss="modal">Cancel</button>

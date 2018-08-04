@@ -62,7 +62,7 @@
 
 		<li class="list-group-item d-flex justify-content-between align-items-center inentry" id="indexline">
 		<a class="kwic"
-				href="../concordancer?action=kwic&value=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
+				href="../Concordancer/concordancer?action=kwic&value=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
 						<span class=""><c:out value="${entry.value}" /></span></li>
 
 				</c:forEach>		
@@ -116,9 +116,9 @@
 	
 	<!-- Modal -->
 <div class="modal fade" id="contextmodal" tabindex="-1" role="dialog" aria-labelledby="contextmodal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color:#76b852;">
         <h5 class="modal-title" id="contextModalLongTitle">Larger context</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -127,7 +127,7 @@
       <div class="modal-body">
         ...
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="background-color:#76b852;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
       </div>
