@@ -33,19 +33,19 @@
 			<ul id="topbar">
 				<li class="el"><a href="#" id="projectname">Project:
 						${sessionScope.currentproject.projectname}</a></li>
-				<li class="el right"><a href="#" id="otherprojects">Other
+				<li class="el right" tabindex="1"><a href="#" id="otherprojects">Other
 						Projects</a></li>
 			</ul>
 
 			<ul>
-				<li class="el right" id="buttonlogout"><button  type="button">Logout</button></li>
-				<li class="el right" id="both"><button id="buttoncol" type="button">Get
+				<li class="el right" id="buttonlogout"><button tabindex="6" type="button">Logout</button></li>
+				<li class="el right" id="both"><button id="buttoncol" tabindex="5" type="button">Get
 						both</button></li>
 				<li class="el right"><input type="text"
-					placeholder=" collocate" name="collocate"></li>
+					placeholder=" collocate" tabindex="4" name="collocate"></li>
 				<li class="el right"><span><strong>+</strong></span></li>
-				<li class="el right"><button id="buttonkwic" type="submit" onsubmit="">Get</button></li>
-				<li class="el right"><input type="text" placeholder=" kwic only" name="keywordbox" class="formkwic"></li>
+				<li class="el right"><button id="buttonkwic" tabindex="3" type="submit" onsubmit="">Get</button></li>
+				<li class="el right"><input type="text" tabindex="2" placeholder=" kwic only" name="keywordbox" class="formkwic"></li>
 
 			</ul>
 		</nav>
