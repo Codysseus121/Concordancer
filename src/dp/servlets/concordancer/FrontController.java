@@ -85,7 +85,7 @@ public class FrontController extends HttpServlet {
 				url = "/KWICServlet";
 				String keyword = request.getParameter("action");
 				String action2 = request.getParameter("keyword");
-				//System.out.println("KWIC FC " + keyword +" " + action2);
+				System.out.println("KWIC Front Controller " + keyword +" " + action2);
 				break;
 				
 			case "context":

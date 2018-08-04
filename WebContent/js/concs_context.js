@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
 
 	let doc = document.getElementById("otherprojects");
 	doc.addEventListener("click", function() {
@@ -23,9 +23,8 @@ $(document).ready(function() {
 		});
 
 	});
-});
 
-$(document).ready(function() {
+
 	
 	$('#mytable').find('tr').click( function(){
 		let  fname = $(this).find('td:eq(4)').text();
@@ -59,11 +58,11 @@ $(document).ready(function() {
 		}
 	});
 	});
-});
+
 
 
 /** Logout function */
-$(document).ready(function() {
+
 
 let doc = document.getElementById("buttonlogout");
 doc.addEventListener("click", function() {
@@ -88,9 +87,9 @@ doc.addEventListener("click", function() {
 	});
 
 });
-});
 
-$(document).ready(function() {
+
+
 
 
 	let both = document.getElementById("both");
@@ -129,5 +128,5 @@ $(document).ready(function() {
 
 	});
 
- });
+
 

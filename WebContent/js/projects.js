@@ -37,7 +37,7 @@ $('#deleteprojectmodal').on('show.bs.modal', function (e) {
     });
 
 /* function for Use button */
-$(document).ready(function() {
+
 	$('.use').click(function (event)
 
 	{
@@ -58,8 +58,7 @@ $(document).ready(function() {
 	});
 
 		});
-	});
-
+	
 /* Validate File Upload with help from 
  * https://stackoverflow.com/questions/47941158/jquery-validation-filesize-show-a-human-readable-value.
  * https://stackoverflow.com/questions/33096591/validate-file-extension-and-size-before-submitting-form

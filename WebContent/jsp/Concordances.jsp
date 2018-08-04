@@ -54,7 +54,7 @@
 
 		<!-- The Index -->
 
-		<aside id="frame">
+		<div id="frame">
 			<ul class="list-group list-group-flush" id="indexlist">
 
 
@@ -62,14 +62,14 @@
 
 		<li class="list-group-item d-flex justify-content-between align-items-center inentry" id="indexline">
 		<a class="kwic"
-				href="../Concordancer/concordancer?action=kwic&value=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
+				href="<%=request.getContextPath()%>/concordancer?action=kwic&value=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
 						<span class=""><c:out value="${entry.value}" /></span></li>
 
 				</c:forEach>		
 				
 			</ul>
 
-		</aside>
+		</div>
 
 		<!-- The Concordances -->
 		
