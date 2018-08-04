@@ -32,6 +32,8 @@ $(".morecontext").click(function(event) {
 	var start = $('.index1').html();/*event.target.innerHTML;*/
 	var end = $('.index2').html();
 	var fname = $('.filename').html();
+	alert (start);
+	alert(end);
 	
 	$.ajax({
 		url : '/Concordancer/concordancer',
@@ -92,6 +94,12 @@ $(document).ready(function() {
     	
     	var word = $('input[name="keywordbox"]').val();
     	var collocate = $('input[name="collocate"]').val();
+    	if (word.length==0)
+    		{
+    		alert("Please enter a word");
+    		}
+    	else
+    		{
     	
     	
     	$.ajax({
@@ -112,9 +120,10 @@ $(document).ready(function() {
             error: function(e){
                 console.log(e);}
 		});
+    		}
 
 	});
-
+	
  });
 
 
