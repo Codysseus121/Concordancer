@@ -39,10 +39,10 @@
 
 			<ul>
 				<li class="el right" id="buttonlogout"><button  type="button">Logout</button></li>
-				<li class="el right"><button id="buttoncol" type="button">Get
+				<li class="el right" id="both"><button id="buttoncol" type="button">Get
 						both</button></li>
 				<li class="el right"><input type="text"
-					placeholder=" collocate" id="collocate"></li>
+					placeholder=" collocate" name="collocate"></li>
 				<li class="el right"><span><strong>+</strong></span></li>
 				<li class="el right"><button id="buttonkwic" type="submit" onsubmit="">Get</button></li>
 				<li class="el right"><input type="text" placeholder=" kwic only" name="keywordbox" class="formkwic"></li>

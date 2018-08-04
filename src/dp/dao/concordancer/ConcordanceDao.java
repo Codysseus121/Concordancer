@@ -158,5 +158,10 @@ public class ConcordanceDao extends GetConnection {
 		return morecontext;
 	}
 
-	
+	public List<Kwic> getCollocates()
+	{
+		List<Kwic> collocates = new ArrayList<Kwic>();
+		
+		return collocates;
+	}
 }

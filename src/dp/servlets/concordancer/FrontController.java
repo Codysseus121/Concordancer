@@ -100,6 +100,14 @@ public class FrontController extends HttpServlet {
 				//System.out.println("Front Controller" + phrase);
 				break;
 				
+			case "collocate":
+				url = "/CollocateServlet";
+				String keyword1 = request.getParameter("keyword");
+				String keyword2 = request.getParameter("keyword2");
+				//System.out.println("FrontController" + keyword1 + " " + keyword2);
+				
+				break;
+				
 				
 				
 			case "logout":

@@ -82,3 +82,40 @@ doc.addEventListener("click", function() {
 
 });
 });
+
+$(document).ready(function() {
+
+    
+	let both = document.getElementById("both");
+	both.addEventListener("click", function() {
+     
+    	
+    	var word = $('input[name="keywordbox"]').val();
+    	var collocate = $('input[name="collocate"]').val();
+    	
+    	
+    	$.ajax({
+            url: '/Concordancer/concordancer',
+
+
+            data: {
+
+                action : "collocate",
+                keyword: word,
+                keyword2: collocate
+            },
+            type: 'get',
+            success: function(response){
+            	location.reload();
+            	/*$("#tablecon").load(window.location + " #tablecon");*/
+                },
+            error: function(e){
+                console.log(e);}
+		});
+
+	});
+
+ });
+
+
+
