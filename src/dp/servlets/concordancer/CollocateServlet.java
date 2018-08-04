@@ -54,18 +54,18 @@ public class CollocateServlet extends HttpServlet {
 		Project project = (Project) session.getAttribute("currentproject");
 		ConcordanceDao cdao = new ConcordanceDao();
 		List<Kwic> conc = cdao.getConcordances(user, project, keyword1);
-		
+		List<Kwic> collocates = new ArrayList<Kwic>();
 		
 		for (Kwic word :conc)
 		{
 			String lcontext = word.getLcontext();
 			String rcontext = word.getRcontext();
-			if (!lcontext.contains(keyword2) || !rcontext.contains(keyword2))
-				conc.remove(word);
+			if (lcontext.contains(keyword2) || rcontext.contains(keyword2))
+				collocates.add(word);
 		}
 		
-		
-		session.setAttribute("concordances", conc);
+		session.removeAttribute("concordances");
+		session.setAttribute("concordances", collocates);
 				
 		
 	}

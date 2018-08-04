@@ -31,11 +31,8 @@ $(document).ready(function() {
 		let  fname = $(this).find('td:eq(4)').text();
 		  let start = $(this).find('td:eq(5)').text();
 		  let end = $(this).find('td:eq(6)').text();
-		  alert (start);
-		  alert (end);
-		  alert(fname);
+		 
 		  
-		
 	 
 	  event.preventDefault();
 	  
@@ -92,4 +89,45 @@ doc.addEventListener("click", function() {
 
 });
 });
+
+$(document).ready(function() {
+
+
+	let both = document.getElementById("both");
+	both.addEventListener("click", function() {
+
+
+    	var word = $('input[name="keywordbox"]').val();
+    	var collocate = $('input[name="collocate"]').val();
+    	if (word.length==0)
+    		{
+    		alert("Please enter a word");
+    		}
+    	else
+    		{
+
+
+    	$.ajax({
+            url: '/Concordancer/concordancer',
+
+
+            data: {
+
+                action : "collocate",
+                keyword: word,
+                keyword2: collocate
+            },
+            type: 'get',
+            success: function(response){
+            	location.reload();
+            	/*$("#tablecon").load(window.location + " #tablecon");*/
+                },
+            error: function(e){
+                console.log(e);}
+		});
+    		}
+
+	});
+
+ });
 

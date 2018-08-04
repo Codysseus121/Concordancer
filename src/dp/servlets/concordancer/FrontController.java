@@ -104,7 +104,7 @@ public class FrontController extends HttpServlet {
 				url = "/CollocateServlet";
 				String keyword1 = request.getParameter("keyword");
 				String keyword2 = request.getParameter("keyword2");
-				//System.out.println("FrontController" + keyword1 + " " + keyword2);
+				System.out.println("FrontController" + keyword1 + " " + keyword2);
 				
 				break;
 				
