@@ -39,12 +39,12 @@
 
 			<ul>
 				<li class="el right" id="buttonlogout"><button  type="button">Logout</button></li>
-				<li class="el right"><button id="buttoncol" type="button">Get
+				<li class="el right"><button id="buttonkwic" type="button">Get
 						both</button></li>
 				<li class="el right"><input type="text"
 					placeholder=" collocate" id="collocate"></li>
 				<li class="el right"><span><strong>+</strong></span></li>
-				<li class="el right"><button id="buttonkwic" type="submit" onsubmit="">Get</button></li>
+				<li class="el right"><button id="buttoncol" type="submit" onsubmit="">Get</button></li>
 				<li class="el right"><input type="text" placeholder=" kwic only" name="keywordbox" class="formkwic"></li>
 
 			</ul>
@@ -72,7 +72,6 @@
 		</aside>
 
 		<!-- The Concordances -->
-		
 		<div class="container" id="table">
 			<div class="row">
 				<div id="table" class="w-100 p-3 ">
@@ -81,7 +80,7 @@
 
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">No.</th>
+								
 								<th scope="col">Left context</th>
 								<th scope="col">KWIC</th>
 								<th scope="col">Right context</th>
@@ -94,14 +93,12 @@
 							<c:forEach var="entry" items="${sessionScope.concordances}" varStatus="myIndex">
 								<tr>
 
-								<td class="tentry" class="itemindex"><c:out value="${myIndex.index}" /></td>
-									<td class="tentry lcontext"><c:out value="${entry.lcontext}" /></td>
-<td class="tentry"><a class="morecontext" href="../concordancer?action=context&value=<c:out value='${entry.keyword}'/>">
+								<td class="tentry" id="itemindex" style="display:none;"><c:out value="${myIndex.index}" /></td>
+									<td class="tentry"><c:out value="${entry.lcontext}" /></td>
+<td class="tentry morecontext"><a class="morecontext"  href="../concordancer?action=context&value=<c:out value='${entry.keyword}'/>">
 <c:out value="${entry.keyword}" /></a></td>
-									<td class="tentry rcontext"><c:out value="${entry.rcontext}" /></td>
-									<td class="tentry filename"><c:out value="${entry.filename}" /></td>
-									<td class="tentry index1" style="display:none;"><c:out value="${entry.index1}" /></td>
-									<td class="tentry index2" style="display:none;"><c:out value="${entry.index2}" /></td>
+									<td class="tentry"><c:out value="${entry.rcontext}" /></td>
+									<td class="tentry"><c:out value="${entry.filename}" /></td>
 									
 								</tr>
 							</c:forEach>
@@ -113,28 +110,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Modal -->
-<div class="modal fade" id="contextmodal" tabindex="-1" role="dialog" aria-labelledby="contextmodal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="contextModalLongTitle">Larger context</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-	
 
 <script src="<%=request.getContextPath()%>/js/concordances.js"></script>
 <script src="<%=request.getContextPath()%>/js/concs_context.js"></script>

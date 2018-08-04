@@ -12,6 +12,9 @@ public class Kwic implements Serializable {
 	private String keyword;
 	private String rcontext;
 	private String filename;
+	private int index1;
+	private int index2;
+	
 	
 	public Kwic(String lcontext, String keyword, String rcontext, String filename)
 	{
@@ -19,6 +22,7 @@ public class Kwic implements Serializable {
 		this.keyword = keyword;
 		this.rcontext = rcontext;
 		this.filename = filename;
+		
 	}
 	
 	public Kwic()
@@ -64,7 +68,35 @@ public class Kwic implements Serializable {
 	public String getFilename()
 	{
 		return filename;
-		}
+	}
+	
+	public int getIndex1()
+	{
+		return index1;
+	}
+	
+	public void setIndex1(int index)
+	{
+		index1 = index;
+	}
+	
+	public int getIndex2()
+	{
+		return index2;
+	}
+	
+	public void setIndex2(int index)
+	{
+		index2 = index;
+	}
+	
+	
+	
+@Override
+	public String toString()
+	{
+		return lcontext + keyword + rcontext;
+	}
 	
 	
 }

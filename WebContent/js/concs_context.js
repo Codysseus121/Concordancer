@@ -1,57 +1,89 @@
 $(document).ready(function() {
 
-    
-	let doc=document.getElementById("otherprojects");
-	   doc.addEventListener("click", function()  {
-	   alert('clicked');
-	   
-	   $.ajax({
-           url: '/Concordancer/concordancer',
+	let doc = document.getElementById("otherprojects");
+	doc.addEventListener("click", function() {
+		
 
+		$.ajax({
+			url : '/Concordancer/concordancer',
 
-           data: {
+			data : {
 
-               action : "useproject",
-               
-           },
-           type: 'get',
-           success: function(response){
-        	   var url = "projects.jsp";
-				$(location).attr('href', url);   },
-           error: function(e){
-               console.log(e);}
-		});
+				action : "useproject",
 
-
-	   
-   });
-});
-   
-   $(".morecontext").click(function(event) {
-     
-    	alert("context");
-    	event.preventDefault();
-    	var word = event.target.innerHTML;  	
-    	
-    	$.ajax({
-            url: '/Concordancer/concordancer',
-
-
-            data: {
-
-                action : "context",
-                keyword: word
-            },
-            type: 'get',
-            success: function(response){
-            	location.reload();
-            	/*$("#tablecon").load(window.location + " #tablecon");*/
-                },
-            error: function(e){
-                console.log(e);}
+			},
+			type : 'get',
+			success : function(response) {
+				var url = "projects.jsp";
+				$(location).attr('href', url);
+			},
+			error : function(e) {
+				console.log(e);
+			}
 		});
 
 	});
+});
 
+$(".morecontext").click(function(event) {
 
+	alert("clicked");
+	event.preventDefault();
+	var start = $('.index1').html();/*event.target.innerHTML;*/
+	var end = $('.index2').html();
+	var fname = $('.filename').html();
+	alert (start);
+	alert (end);
+	alert(fname);
+	
+		
+	
+	$.ajax({
+		url : '/Concordancer/concordancer',
 
+		data : {
+
+			action : "context",
+			findex : start,
+			lindex: end,
+			filename: fname
+		},
+		type : 'post',
+		success : function(response) {
+			$('#contextmodal').modal('show');
+			$('.modal-body').html(response);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+
+});
+
+/** Logout function */
+$(document).ready(function() {
+
+let doc = document.getElementById("buttonlogout");
+doc.addEventListener("click", function() {
+	
+
+	$.ajax({
+		url : '/Concordancer/concordancer',
+
+		data : {
+
+			action : "logout",
+
+		},
+		type : 'get',
+		success : function(response) {
+			var url = "/Concordancer/concordancer";
+			$(location).attr('href', url);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+
+});
+});

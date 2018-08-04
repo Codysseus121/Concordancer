@@ -31,7 +31,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 
     
-    $("#buttoncol").click(function(event) {
+    $("#buttonkwic").click(function(event) {
      
     	
     	var word = $('input[name="keywordbox"]').val();

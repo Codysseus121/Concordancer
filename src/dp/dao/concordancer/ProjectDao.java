@@ -281,15 +281,11 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 	{
 		Connection conn = null;
 		PreparedStatement statement = null;
-	//	PreparedStatement statement2 = null;
 		ResultSet set = null;
-		//ResultSet contents = null;
-		
 		int project_id = project.getProject_id();
 		
 		List <ProjectFile> filelist = new ArrayList<ProjectFile>();//an arraylist with the filecontents per file
-		//Integer fileid = 0;
-		//List <Integer> ids = new ArrayList<Integer>();//an arraylist with the ids of each file.
+		
 		
 		
 		try
@@ -308,26 +304,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 				filelist.add(f);
 			
 			
-			}
-			
-			//Get content and name of each file
-//			String sql2 = "SELECT file_content, file_name from files F, project P where P.project_id=F.project_id AND F.file_id= (?);";
-//			
-//			for (Integer integer : ids)
-//			{
-//			
-//			statement2 = conn.prepareStatement(sql2);
-//			statement2.setInt(1, integer);
-//			contents = statement.executeQuery();
-//			
-//			while (contents.next())
-//			{
-//				//f.setFilecontent(contents.getString(1));
-//				String name = contents.getString(1);
-//				f.setFile_name(contents.getString(1));
-//				System.out.println(name);
-//			}
-					
+			}							
 			
 		}
 		
@@ -351,6 +328,51 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 			}
 		}
 		return filelist;
+	}
+	public String getFile (Project project, User user, String filename)
+	{
+		Connection conn = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+		int project_id = project.getProject_id();
+		String text = "";
+		
+		
+		try
+		{
+			
+			conn = getConnection();			 
+			String sql = "SELECT file_content from files F, project P, users U where U.user_id=P.user_id AND P.project_id=F.project_id AND P.project_id="+project_id+ " AND F.file_name='" + filename + "';";
+			statement = conn.prepareStatement(sql);
+			set = statement.executeQuery();
+			while (set.next())//add files ids to arraylist
+			{				
+				text = set.getString("FILE_CONTENT");			
+			
+			}							
+			
+		}
+		
+		catch (SQLException ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			try {
+				set.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		return text;
 	}
 	
 }

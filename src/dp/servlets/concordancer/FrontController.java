@@ -85,8 +85,26 @@ public class FrontController extends HttpServlet {
 				url = "/KWICServlet";
 				String keyword = request.getParameter("action");
 				String action2 = request.getParameter("keyword");
-				System.out.println("KWIC FC " + keyword +" " + action2);
+				//System.out.println("KWIC FC " + keyword +" " + action2);
 				break;
+				
+			case "context":
+				url = "/ContextServlet";
+				//String phrase = request.getParameter("context");
+				//String findex = request.getParameter("findex");
+				//String lindex = request.getParameter("lindex");
+				//int index1 = Integer.parseInt(findex);
+				//int index2 = Integer.parseInt(lindex);		
+				//String filename = request.getParameter("filename");
+				//System.out.println("FrontController" + filename + " " + index1 + " " +index2);
+				//System.out.println("Front Controller" + phrase);
+				break;
+				
+				
+				
+			case "logout":
+				 HttpSession session=request.getSession(true);  
+				session.invalidate();
 
 			}
 

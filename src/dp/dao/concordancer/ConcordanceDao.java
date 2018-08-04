@@ -121,19 +121,44 @@ public class ConcordanceDao extends GetConnection {
                 k.setLcontext(text.substring(from2, from1));
                 k.setRcontext(text.substring(to1, to2));
                 k.setKeyword(query);
+                k.setIndex1(from1);
+                k.setIndex2(to1);
                 words.add(k);
                 
             }
            return words;
 	}
 	
-	public String moreContext (String query, ProjectFile file, int context)
+	public String moreContext (int findex, int lindex, int context, User u, Project p, String filename)
 	{
-		String morecontext="";
 		
-		
+		//Get content of file
+    	ProjectDao pdao = new ProjectDao();
+    	String morecontext = "";
+    	String text = pdao.getFile(p, u, filename);
+        if (findex-context>=0 && lindex+context<=text.length())
+        {
+        	morecontext=text.substring(findex-context, lindex+context);		
+        }
+        
+        else if(findex-context<0 && lindex+context<=text.length())
+        {
+        	morecontext=text.substring(0, lindex+context);
+        }
+    	
+        else if (lindex+context>text.length() && findex-context>=0)
+        {
+        	morecontext = text.substring(findex-context, text.length());
+        }
+        else
+        {
+        	morecontext=text;
+        }
+    	
+		System.out.println(morecontext);
 		
 		return morecontext;
 	}
 
+	
 }

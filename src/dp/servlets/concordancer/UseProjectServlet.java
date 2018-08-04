@@ -49,31 +49,39 @@ public class UseProjectServlet extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try
-		{
-			HttpSession session = request.getSession(true);
-			session.removeAttribute("currentproject"); 
-			session.removeAttribute("concordances"); 
-			RequestDispatcher dispatcher = null;
-			User user = (User) session.getAttribute("currentSessionUser");
-			String projectpara="";			
-			projectpara= request.getParameter("project_id");
-			
-			int projectID = Integer.parseInt(projectpara);
-			
+		
+		HttpSession session = request.getSession(true);
+		session.removeAttribute("currentproject"); //clear previous session objects
+		session.removeAttribute("concordances"); 
+		RequestDispatcher dispatcher = null;
+		User user = (User) session.getAttribute("currentSessionUser");
+		
+		try //get project and load it to the session
+		{	
 			ProjectDataAccessObject pdao = new ProjectDao();
 			Project p= new Project();
+			
+			//get attributes
+			String projectpara="";			
+			projectpara= request.getParameter("project_id");
+			int projectID = Integer.parseInt(projectpara);
+			
+			//get project, set it as session attribute and forward.
+			
 			p = pdao.getProject(projectID, user);
-			session.setAttribute("currentproject", p);			
+			session.setAttribute("currentproject", p);
 			dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
 			dispatcher.forward(request, response);
 			return;
-			
+						
 			
 		}
+		
 	 catch (Exception e) 
 	{
 		System.out.println("Exception:" + e);
 	}
+		
+		
 }
 }
