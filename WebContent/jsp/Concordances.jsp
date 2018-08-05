@@ -61,8 +61,7 @@
 				<c:forEach var="entry" items="${sessionScope.index}">
 
 		<li class="list-group-item d-flex justify-content-between align-items-center inentry" id="indexline">
-		<a class="kwic"
-				href="<%=request.getContextPath()%>/concordancer?action=kwic&value=<c:out value='${entry.key}'/>"><c:out value="${entry.key}" /></a>
+		<a class="kwic" href="#"/> <c:out value="${entry.key}" /></a>
 						<span class=""><c:out value="${entry.value}" /></span></li>
 
 				</c:forEach>		
@@ -114,7 +113,7 @@
 		</div>
 	</div>
 	
-	<div class="gif-loader" >
+	<div class="gif-loader" style="display:none" >
 		<img src="../images/source.gif" class="img-fluid img-thumbnail" id="loader"/>
 	</div>
 	</div>

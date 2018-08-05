@@ -1,28 +1,3 @@
-/* http://jsfiddle.net/MrPolywhirl/cbLsc81f/
- * 
- */
-function onReady(callback) {
-    var intervalID = window.setInterval(checkReady, 1000);
-
-    function checkReady() {
-        if (document.getElementsByTagName('body')[0] !== undefined) {
-            window.clearInterval(intervalID);
-            callback.call(this);
-        }
-    }
-}
-
-function show(id, value) {
-    document.getElementById(id).style.display = value ? 'block' : 'none';
-}
-
-onReady(function () {
-    show('content', true);
-    show('loader', false);
-    
-});
-
-
 
 /* function to get keyword on click from index with event listeners. */
    
@@ -100,3 +75,29 @@ $(document).ready(function() {
 
 	});
 });
+
+/* http://jsfiddle.net/MrPolywhirl/cbLsc81f/
+	 * 
+	 
+	function onReady(callback) {
+	    var intervalID = window.setInterval(checkReady, 1000);
+
+	    function checkReady() {
+	        if (document.getElementsByTagName('body')[0] !== undefined) {
+	        	$(".loader").toggle();
+	        	 document.getElementsByClassName("kwic").onclick = function() { return false; } 
+	            window.clearInterval(intervalID);
+	            callback.call(this);
+	        }
+	    }
+	}
+
+	function show(id, value) {
+	    document.getElementById(id).style.display = value ? 'block' : 'none';
+	}
+
+	onReady(function () {
+	    $('#loader').hide();
+	    document.getElementsByClassName("kwic").onclick = function() { return true; } 
+	});*/
+
