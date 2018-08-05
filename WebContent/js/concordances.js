@@ -1,7 +1,9 @@
   /* function to get keyword on click from index with event listeners. */
-    $(".kwic").click(function(event) {
+   
+$(document).ready(function() {
+$(".kwic").click(function(event) {
      
-    	
+	 
     	event.preventDefault();
     	var word = event.target.innerHTML;
     	
@@ -18,6 +20,7 @@
             },
             type: 'get',
             success: function(data){
+            	
             	location.reload();
             	
                 },
@@ -26,15 +29,18 @@
 		});
 
 	});
+});
 
  
 
 
 /* function to get keyword on click from button and input form with event listeners. */
     
-    $("#buttonkwic").click(function(event) {
+$(document).ready(function() {
+	
+	$("#buttonkwic").click(function(event) {
+
      
-    	
     	var word = $('input[name="keywordbox"]').val();
     	
     	
@@ -48,14 +54,23 @@
                 keyword: word
             },
             type: 'get',
-            success: function(response){
-            	location.reload();
-            	/*$("#tablecon").load(window.location + " #tablecon");*/
+            success: function(data){
+            	
+            	if (data == "False")
+            		{
+            		
+            		
+            		$('#message').modal('show');
+            		                          		
+            		}
+            	
+            	else
+            		{location.reload();}
+            	
                 },
             error: function(e){
                 console.log(e);}
 		});
 
 	});
-
-
+});

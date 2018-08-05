@@ -52,7 +52,12 @@ public class KWICServlet extends HttpServlet {
 		Project project = (Project) session.getAttribute("currentproject");
 		ConcordanceDao cdao = new ConcordanceDao();
 		List<Kwic> conc = cdao.getConcordances(user, project, word);
-		session.setAttribute("concordances", conc);
+		if (conc.isEmpty())
+		{
+			response.getWriter().write("False");
+		}
+		else
+		{session.setAttribute("concordances", conc);}
 		
 	}
 	

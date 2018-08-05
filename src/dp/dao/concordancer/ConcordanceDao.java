@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.ProjectFile;
@@ -30,6 +31,7 @@ public class ConcordanceDao extends GetConnection {
 		int project_id = project.getProject_id();
 		String text = "";
 		Scanner scanner = null;
+		ProjectDataAccessObject pdao = new ProjectDao();
 
 		try {
 			conn = getConnection();
@@ -41,12 +43,13 @@ public class ConcordanceDao extends GetConnection {
 			while (result.next()) {
 
 				
-				text = result.getString(1);				
-				scanner = new Scanner(text).useDelimiter("[^a-zA-Z]*\\s+[^a-zA-Z]*");
+				text = result.getString(1);
+				text = pdao.processText(text);
+				scanner = new Scanner(text);
 				while (scanner.hasNext())
-				{words.add(scanner.next().replaceAll("[^a-zA-Z]", " ").trim());}
+				{words.add(scanner.next());}
 			}
-				//Collections.sort(words);
+				
 				
 				for (String word : words) {
 					if (index.containsKey(word)) {

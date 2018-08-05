@@ -64,6 +64,13 @@ public class CollocateServlet extends HttpServlet {
 				collocates.add(word);
 		}
 		
+		if (collocates.isEmpty())
+		{
+			response.getWriter().write("False");
+		}
+		
+		
+		
 		session.removeAttribute("concordances");
 		session.setAttribute("concordances", collocates);
 				

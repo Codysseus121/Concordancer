@@ -3,6 +3,7 @@ package dp.dao.concordancer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.Part;
@@ -228,10 +229,18 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 	{
 		//Credit for the conversion: stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
 		String result = new BufferedReader(new InputStreamReader(filecontent.getInputStream())).lines().collect(Collectors.joining("\n"));
-		result = result.replaceAll("\\s", " ");
+		
+		result = processText(result);       
 		return result;
 		
 	}
+	
+	public String processText(String text)
+	{
+		text = text.replaceAll("[^a-zA-Z0-9]"," ").trim();  
+		return text;
+	}
+	
 
 	public String convertPdf(Part filecontent) throws IOException
 	{
@@ -244,7 +253,8 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 			stream = filecontent.getInputStream();
 			document = PDDocument.load(stream);
 			PDFTextStripper pdfStripper = new PDFTextStripper();
-			text = pdfStripper.getText(document).replaceAll("\\s", " ");
+			text = pdfStripper.getText(document);
+			text = processText(text);
 			
 
 		} finally {
@@ -266,7 +276,8 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		stream = filecontent.getInputStream();		
 		Document doc = Jsoup.parse(stream, "UTF-8", "");
         String plaintxt = doc.toString();
-        finaltext = Jsoup.parse(plaintxt).body().text().replaceAll("\\s", " ");
+        finaltext = Jsoup.parse(plaintxt).body().text();
+        finaltext = processText(finaltext);
         
 		}
 		catch (IOException ex) {ex.printStackTrace();}

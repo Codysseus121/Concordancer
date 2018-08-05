@@ -90,7 +90,7 @@
 						</thead>
 
 						<tbody id="mytable">
-
+						
 							<c:forEach var="entry" items="${sessionScope.concordances}" varStatus="myIndex">
 								<tr>
 
@@ -134,10 +134,34 @@
     </div>
   </div>
 </div>
+
+
+<!-- No results -->
+
+<div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="contextmodal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:transparent;">
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        No results.
+      </div>
+      <div class="modal-footer" style="background-color:transparent;">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 	
 
 <script src="<%=request.getContextPath()%>/js/concordances.js"></script>
 <script src="<%=request.getContextPath()%>/js/concs_context.js"></script>
+
 
 
 </body>
