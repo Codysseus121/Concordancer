@@ -106,7 +106,7 @@ $(document).ready(function() {
  
       var word = $('input[name="keywordbox"]').val();
       var collocate = $('input[name="collocate"]').val();
-      if (word.length==0)
+      if (word.length==0 || collocate.length==0)
         {
         alert("Please enter a word");
         }

@@ -47,6 +47,8 @@ public class CollocateServlet extends HttpServlet {
 	}
 	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		
+		
 		HttpSession session = request.getSession(true);
 		String keyword1 = request.getParameter("keyword");
 		String keyword2 = request.getParameter("keyword2");
@@ -54,16 +56,19 @@ public class CollocateServlet extends HttpServlet {
 		Project project = (Project) session.getAttribute("currentproject");
 		ConcordanceDao cdao = new ConcordanceDao();
 		List<Kwic> conc = cdao.getConcordances(user, project, keyword1);
+		List<String> permutations = cdao.permute(keyword2);
 		List<Kwic> collocates = new ArrayList<Kwic>();
 		
 		for (Kwic word :conc)
 		{
 			String lcontext = word.getLcontext();
 			String rcontext = word.getRcontext();
-			if (lcontext.contains(keyword2) || rcontext.contains(keyword2))
+			for (String perm : permutations) 
+			{
+			if (lcontext.contains(perm) || rcontext.contains(perm))
 				collocates.add(word);
+			}
 		}
-		
 		if (collocates.isEmpty())
 		{
 			response.getWriter().write("False");
@@ -73,6 +78,7 @@ public class CollocateServlet extends HttpServlet {
 		
 		session.removeAttribute("concordances");
 		session.setAttribute("concordances", collocates);
+		
 				
 		
 	}

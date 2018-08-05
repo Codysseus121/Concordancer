@@ -104,33 +104,72 @@ public class ConcordanceDao extends GetConnection {
 		int n = file.getFilecontent().length();
 		List<Kwic> words = new ArrayList<Kwic>();
 		SuffixArrayX sa = new SuffixArrayX(text);
+		List<String> perms = permute(query);
         
 
         // find all occurrences of queries with context and add to arraylist
         
+		for (String permutation : perms) {
            
-            for (int i = sa.rank(query); i < n; i++)
+            for (int i = sa.rank(permutation); i < n; i++)
             {
             	Kwic k = new Kwic();
                 
                 int from1 = sa.index(i);
-                int to1   = Math.min(n, from1 + query.length());
-                if (!query.equals(text.substring(from1, to1))) break;
+                int to1   = Math.min(n, from1 + permutation.length());
+                if (!permutation.equals(text.substring(from1, to1))) break;
                 int from2 = Math.max(0, sa.index(i) - context);
                 int to2   = Math.min(n, sa.index(i) + context + query.length());
                
-                k.setKeyword(query);
+                k.setKeyword(permutation);
                 k.setFilename(file.getFile_name());
                 k.setLcontext(text.substring(from2, from1));
                 k.setRcontext(text.substring(to1, to2));
-                k.setKeyword(query);
                 k.setIndex1(from1);
                 k.setIndex2(to1);
                 words.add(k);
                 
             }
+		}
            return words;
 	}
+	/*
+	 * https://www.geeksforgeeks.org/permute-string-changing-case/
+	 */
+	
+	public List<String> permute(String input)
+    {
+        
+		List<String> permutations = new ArrayList<String>();
+		int n = input.length();
+         
+        // Number of permutations is 2^n
+        int max = 1 << n;
+         
+        // Converting string to lower case
+        input = input.toLowerCase();
+         
+        // Using all subsequences and permuting them
+        for(int i = 0;i < max; i++)
+        {
+            char combination[] = input.toCharArray();
+             
+            // If j-th bit is set, we convert it to upper case
+            for(int j = 0; j < n; j++)
+            {
+                if(((i >> j) &  1) == 1)
+                    combination[j] = (char) (combination[j]-32);
+            }
+             
+            
+            permutations.add(String.valueOf(combination));
+            
+        }
+        return permutations;
+    }
+	
+	
+	
 	
 	public String moreContext (int findex, int lindex, int context, User u, Project p, String filename)
 	{
