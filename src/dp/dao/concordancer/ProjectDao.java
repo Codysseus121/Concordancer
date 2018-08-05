@@ -237,7 +237,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 	
 	public String processText(String text)
 	{
-		text = text.replaceAll("[^a-zA-Z0-9]"," ").trim();  
+		text = text.replaceAll("[^a-zA-Z]"," ").trim();  
 		return text;
 	}
 	

@@ -25,7 +25,7 @@
 
 <body>
 
-	<div class="dwrapper">
+	<div class="dwrapper" id="page">
 
 
 		<nav id="mybar">
@@ -53,7 +53,7 @@
 
 
 		<!-- The Index -->
-
+<div id="content">
 		<div id="frame">
 			<ul class="list-group list-group-flush" id="indexlist">
 
@@ -114,6 +114,10 @@
 		</div>
 	</div>
 	
+	<div class="gif-loader" >
+		<img src="../images/source.gif" class="img-fluid img-thumbnail" id="loader"/>
+	</div>
+	</div>
 	<!-- Modal -->
 <div class="modal fade" id="contextmodal" tabindex="-1" role="dialog" aria-labelledby="contextmodal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
