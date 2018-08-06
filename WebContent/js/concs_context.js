@@ -64,7 +64,7 @@ $(document).ready(function() {
 	  });
 	  });
 	});
-	 /* */
+	 
 
 /** Logout function */
 $(document).ready(function() {
@@ -102,7 +102,7 @@ $(document).ready(function() {
  
   let both = document.getElementById("both");
   both.addEventListener("click", function() {
-	  getCollocates();});
+	  getCollocates();});});
   
  
  
@@ -110,20 +110,23 @@ $(document).ready(function() {
 $(document).ready(function() {
 	 
 	 
-	  let both = document.getElementById("both");
-	  both.addEventListener("keypress", function(e) {
+	  let two = document.getElementById("buttoncol");
+	  
+	  two.addEventListener("keypress", function(e) {
 		  var key = e.which || e.keyCode;
 		    if (key === 13)
-	 {  getCollocates ();}
+	 {  getCollocates();}
 	  }); });
 	 
 
 
-function getCollocates ()
+function getCollocates()
 {
 		    
 	      var word = $('input[name="keywordbox"]').val();
 	      var collocate = $('input[name="collocate"]').val();
+	      
+	     
 	      if (word.length==0 || collocate.length==0)
 	        {
 	        alert("Please enter a word");
@@ -157,15 +160,9 @@ function getCollocates ()
 	            	
 	                },
 	                error: function(e){
-	                    console.log(e);}       });
+	                    console.log(e);}       });}
+}
 	          
-	      }}
-
-
-
-
-	
-	  
-
-	
-
+	      
+	          
+	      

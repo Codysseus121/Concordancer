@@ -66,7 +66,7 @@
 						name="collocate"></li>
 					<li class="nav-item" id="both"><button
 							class="btn btn-warning my-2 my-sm-0" id="buttoncol" tabindex="5"
-							type="button">Get both</button></li>
+							type="submit" >Get both</button></li>
 
 					<li class="nav-item" id="buttonlogout"><button
 							class="btn btn-light" tabindex="6" type="button">Logout</button></li>
