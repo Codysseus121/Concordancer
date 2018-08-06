@@ -35,7 +35,7 @@
 
 
 
-	<nav class="navbar fixed-top navbar-expand-md" id="mybar">
+	<nav class="navbar sticky-top navbar-expand-sm" id="mybar">
 		<div class="container-fluid">
 			<div class="navbar-header">
 
@@ -114,7 +114,7 @@
 			<div class="row">
 				<div id="table1" class="w-100 p-3 ">
 
-					<table class="table table-hover table-responsive-md" id="tablecon">
+					<table class="table table-hover table-responsive-sm" id="tablecon">
 
 						<thead class="thead-light">
 							<tr>
