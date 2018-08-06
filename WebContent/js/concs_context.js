@@ -18,6 +18,7 @@ $(document).ready(function() {
       success : function(response) {
         var url = "projects.jsp";
         $(location).attr('href', url);
+        
       },
       error : function(e) {
         console.log(e);
@@ -31,7 +32,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 	  
-	  $('#mytable').find('tr').click( function(){
+	$('#mytable').on("click", "tr", function(){
 	    let  fname = $(this).find('td:eq(4)').text();
 	      let start = $(this).find('td:eq(5)').text();
 	      let end = $(this).find('td:eq(6)').text();
@@ -64,7 +65,8 @@ $(document).ready(function() {
 	  });
 	  });
 	});
-	 
+
+
 
 /** Logout function */
 $(document).ready(function() {
@@ -98,71 +100,50 @@ doc.addEventListener("click", function() {
  * 
  */
 $(document).ready(function() {
- 
- 
-  let both = document.getElementById("both");
-  both.addEventListener("click", function() {
-	  getCollocates();});});
-  
- 
- 
-     
-$(document).ready(function() {
 	 
 	 
-	  let two = document.getElementById("buttoncol");
-	  
-	  two.addEventListener("keypress", function(e) {
-		  var key = e.which || e.keyCode;
-		    if (key === 13)
-	 {  getCollocates();}
-	  }); });
+	  let both = document.getElementById("both");
+	  both.addEventListener("click", function() {
 	 
-
-
-function getCollocates()
-{
-		    
+	 
 	      var word = $('input[name="keywordbox"]').val();
 	      var collocate = $('input[name="collocate"]').val();
-	      
-	     
 	      if (word.length==0 || collocate.length==0)
 	        {
 	        alert("Please enter a word");
 	        }
 	      else
 	      {
-	    	  
-	    	  
+	        
+	        
 	          $.ajax({
 	                url: '/Concordancer/concordancer',
 	     
-	     
-	                data: {
-	     
-	                    action : "collocate",
-	                    keyword: word,
-	                    keyword2: collocate
-	                },
-	                type: 'get',
-	                success: function(data){
-	                	if (data == "False")
-	            		{
-	            		
-	            		
-	            		$('#message').modal('show');
-	            		                          		
-	            		}
-	            	
-	            	else
-	            		{location.reload();}
-	            	
-	                },
-	                error: function(e){
-	                    console.log(e);}       });}
+data: {
+
+    action : "collocate",
+    keyword: word,
+    keyword2: collocate
+},
+type: 'get',
+success: function(data){
+  if (data == "False")
+{
+
+
+$('#message').modal('show');
+                              
 }
-	          
-	      
-	          
-	      
+
+else
+{location.reload();}
+
+},
+error: function(e){
+    console.log(e);}
+});
+}
+
+});
+
+});

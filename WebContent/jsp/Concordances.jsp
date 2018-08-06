@@ -14,6 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/Bootstrap-4/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -34,7 +35,7 @@
 
 
 
-	<nav class="navbar sticky-top navbar-expand-md form-inline" id="mybar">
+	<nav class="navbar fixed-top navbar-expand-md" id="mybar">
 		<div class="container-fluid">
 			<div class="navbar-header">
 
@@ -51,9 +52,11 @@
 
 
 
+<form class="form-inline" onsubmit="return false;">
 
-			<form class="form-inline">
+			
 				<ul class="nav navbar-nav navbar-right">
+				
 					<li class="nav-item"><input type="text" tabindex="2"
 						placeholder=" kwic only" name="keywordbox"
 						class="form-control mr-sm-2 formkwic"></li>
@@ -61,12 +64,12 @@
 							class="btn btn-warning my-2 my-sm-0" id="buttonkwic" tabindex="4"
 							type="submit">Get</button></li>
 					<li class="nav-item"><span><strong>+</strong></span></li>
-					<li class="nav-item"><input type="text"
+					<li class="nav-item" id="col2"><input type="text" id="collocateform"
 						class="form-control mr-sm-2" placeholder=" collocate" tabindex="3"
 						name="collocate"></li>
 					<li class="nav-item" id="both"><button
 							class="btn btn-warning my-2 my-sm-0" id="buttoncol" tabindex="5"
-							type="submit" >Get both</button></li>
+							type="button" >Get both</button></li>
 
 					<li class="nav-item" id="buttonlogout"><button
 							class="btn btn-light" tabindex="6" type="button">Logout</button></li>
@@ -84,7 +87,7 @@
 
 
 	<!-- The Index -->
-	<div id="content">
+	<aside id="content">
 		<div id="frame" class="hidden-md-up">
 			<ul class="list-group list-group-flush" id="indexlist">
 
@@ -100,14 +103,16 @@
 				</c:forEach>
 
 			</ul>
-
-		</div>
+</div>
+		</aside>
 
 		<!-- The Concordances -->
 
+<div id="eventdel">
+<div id="head">
 		<div class="container" id="table">
 			<div class="row">
-				<div id="table" class="w-100 p-3 ">
+				<div id="table1" class="w-100 p-3 ">
 
 					<table class="table table-hover table-responsive-md" id="tablecon">
 
@@ -139,7 +144,7 @@
 											value="${entry.filename}" /></td>
 									<td class="tentry index1" style="display: none"><c:out
 											value="${entry.index1}" /></td>
-									<td class="tentry index2" style="display: none"><c:out
+									<td class="tentry index2" style="display: none "><c:out
 											value="${entry.index2}" /></td>
 
 								</tr>
@@ -148,14 +153,14 @@
 
 						</tbody>
 					</table>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</div></div>
+	
 
-	<div class="gif-loader" style="display: none">
-		<img src="../images/source.gif" class="img-fluid img-thumbnail"
-			id="loader" />
+	<div class="gif-loader" id="loader" style="display: none">
+		<img src="../images/source.gif" class="img-fluid img-thumbnail"/>
 	</div>
 
 	<!-- Modal -->

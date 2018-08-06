@@ -4,7 +4,7 @@
 $(document).ready(function() {
 $(".kwic").click(function(event) {
      
-	 $('#loader').show();
+	
     	event.preventDefault();
     	var word = event.target.innerHTML;
     	
@@ -22,7 +22,7 @@ $(".kwic").click(function(event) {
             type: 'get',
             success: function(data){
             	
-            	location.reload();
+            	$('#head').load("/Concordancer/jsp/Concordances.jsp" +  ' #head');
             	
                 },
             error: function(e){
@@ -41,7 +41,7 @@ $(document).ready(function() {
 	
 	$("#buttonkwic").click(function(event) {
 
-		 $('#loader').show();
+		
     	var word = $('input[name="keywordbox"]').val();
     	
     	
@@ -63,12 +63,13 @@ $(document).ready(function() {
             		
             		
             		$('#message').modal('show');
+            		
             		                          		
             		}
             	
             	else
             		{
-            		 $('#loader').hide();
+            	
             		 location.reload();}
             	
                 },
@@ -78,29 +79,4 @@ $(document).ready(function() {
 
 	});
 });
-
-/* http://jsfiddle.net/MrPolywhirl/cbLsc81f/
-	 * 
-	 
-	function onReady(callback) {
-	    var intervalID = window.setInterval(checkReady, 1000);
-
-	    function checkReady() {
-	        if (document.getElementsByTagName('body')[0] !== undefined) {
-	        	$(".loader").toggle();
-	        	 document.getElementsByClassName("kwic").onclick = function() { return false; } 
-	            window.clearInterval(intervalID);
-	            callback.call(this);
-	        }
-	    }
-	}
-
-	function show(id, value) {
-	    document.getElementById(id).style.display = value ? 'block' : 'none';
-	}
-
-	onReady(function () {
-	   
-	    document.getElementsByClassName("kwic").onclick = function() { return true; } 
-	});*/
 
