@@ -63,20 +63,23 @@
 					<li class="nav-item"><button
 							class="btn btn-warning my-2 my-sm-0" id="buttonkwic" tabindex="4"
 							type="submit">Get</button></li>
-					<li class="nav-item"><span><strong>+</strong></span></li>
+					</ul>
+			</form>
+			<form class="form-inline" onsubmit="return false;">
+			<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item" id="col2"><input type="text" id="collocateform"
 						class="form-control mr-sm-2" placeholder=" collocate" tabindex="3"
 						name="collocate"></li>
 					<li class="nav-item" id="both"><button
 							class="btn btn-warning my-2 my-sm-0" id="buttoncol" tabindex="5"
-							type="button" >Get both</button></li>
-
+							type="submit" >Get both</button></li></ul></form>
+<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item" id="buttonlogout"><button
 							class="btn btn-light" tabindex="6" type="button">Logout</button></li>
 
 
 				</ul>
-			</form>
+			
 		</div>
 	</nav>
 
