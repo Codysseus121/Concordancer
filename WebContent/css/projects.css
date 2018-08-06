@@ -9,7 +9,10 @@ body {
 		flex-wrap: wrap;
 		flex: initial;
 		margin: 10px;
+		
 	}
+		
+	
 }
 
 .card {
@@ -27,13 +30,6 @@ h3 {
 	
 }
 
-#logout
-{
-	
-/*	position:fixed;
-	top:0;
-	float: right;*/
-	}
 
 .btn-primary {
 	background-color: #f7a138;

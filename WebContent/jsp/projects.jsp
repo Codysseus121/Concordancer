@@ -22,15 +22,19 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-xl">
-		<div class="container">
+	
+		
 
-			<nav class=".navbar-nav fixed-top" style="background-color: #9bcb80; width: 100%; padding-top: 10px; padding-bottom: 5px; padding-left: 20px;">
+			<nav class="navbar navbar-nav fixed-top navbar-expand-md" style="background-color: #9bcb80; ">
+			<div class="container">
 				<h3>${sessionScope.currentSessionUser.username}'s projects</h3>
+				 <ul class="nav navbar-nav navbar-right">
 				
+			<li class="nav-item"><button class="btn btn-light" tabindex="6" type="button">Logout</button></li>
+				</ul></div>
 			</nav>
-		</div>
-	</nav>
+		
+
 	<div class="container" id="con">
 		<div class="card-deck">
 

@@ -5,22 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import dp.concordancer.interfaces.ConcordanceDataAccessObject;
 import dp.concordancer.interfaces.ProjectDataAccessObject;
-import dp.model.concordancer.Kwic;
-import dp.model.concordancer.Project;
-import dp.model.concordancer.ProjectFile;
-import dp.model.concordancer.SuffixArrayX;
-import dp.model.concordancer.User;
+import dp.model.concordancer.*;
 
-public class ConcordanceDao extends GetConnection {
 
+/* Class ConcordanceDao: a class providing methods to access the DB and generate
+ * concordances, collocates and more context for kwic lines. Extends superclass
+ * GetConnection and implements interface ConcordanceDataAccessObject.
+ * @author: D.P.
+ * @Date:August 2018
+ * 
+ * 
+ */
+
+public class ConcordanceDao extends GetConnection implements ConcordanceDataAccessObject {
+
+/*
+ * 	
+ */
+	
 	public Map<String, Integer> getIndex(Project project, User user) {
 
 		Connection conn = null;
@@ -98,7 +107,7 @@ public class ConcordanceDao extends GetConnection {
 		        return all;
 		    } 
 	
-	private List<Kwic> getKwic(ProjectFile file, String query, int context)
+	public List<Kwic> getKwic(ProjectFile file, String query, int context)
 	{
 		String text = file.getFilecontent();
 		int n = file.getFilecontent().length();

@@ -3,19 +3,26 @@
 <%@ page import="java.util.*"%>
 <%@ page import="dp.model.concordancer.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%response.setHeader("Cache-Control", "no-store");%>
-<%response.setDateHeader("Expires", 0);%>
+<%
+	response.setHeader("Cache-Control", "no-store");
+%>
+<%
+	response.setDateHeader("Expires", 0);
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/Bootstrap-4/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/concordances.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/Bootstrap-4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/concordances.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
 <script src="<%=request.getContextPath()%>/js/additional-methods.js"></script>
-<script src="<%=request.getContextPath()%>/Bootstrap-4/js/bootstrap.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/Bootstrap-4/js/bootstrap.min.js"></script>
 
 
 
@@ -25,58 +32,84 @@
 
 <body>
 
-	<div class="dwrapper" id="page">
 
 
-		<nav id="mybar">
+	<nav class="navbar sticky-top navbar-expand-md form-inline" id="mybar">
+		<div class="container-fluid">
+			<div class="navbar-header">
 
-			<ul id="topbar">
-				<li class="el"><a href="#" id="projectname">Project:
-						${sessionScope.currentproject.projectname}</a></li>
-				<li class="el right" tabindex="1"><a href="#" id="otherprojects">Other
-						Projects</a></li>
-			</ul>
+				<ul class="nav navbar-nav">
 
-			<ul>
-				<li class="el right" id="buttonlogout"><button tabindex="6" type="button">Logout</button></li>
-				<li class="el right" id="both"><button id="buttoncol" tabindex="5" type="button">Get
-						both</button></li>
-				<li class="el right"><input type="text"
-					placeholder=" collocate" tabindex="4" name="collocate"></li>
-				<li class="el right"><span><strong>+</strong></span></li>
-				<li class="el right"><button id="buttonkwic" tabindex="3" type="submit" onsubmit="">Get</button></li>
-				<li class="el right"><input type="text" tabindex="2" placeholder=" kwic only" name="keywordbox" class="formkwic"></li>
+					<li class="nav-item"><span class="navbar-brand"
+						id="projectname">Project:
+							${sessionScope.currentproject.projectname}</span></li>
+					<li class="nav-item" tabindex="1"><a class="nav-link" href="#"
+						id="otherprojects">Other Projects</a></li>
+				</ul>
 
-			</ul>
-		</nav>
+			</div>
 
 
 
-		<!-- The Index -->
-<div id="content">
-		<div id="frame">
+
+			<form class="form-inline">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="nav-item"><input type="text" tabindex="2"
+						placeholder=" kwic only" name="keywordbox"
+						class="form-control mr-sm-2 formkwic"></li>
+					<li class="nav-item"><button
+							class="btn btn-warning my-2 my-sm-0" id="buttonkwic" tabindex="4"
+							type="submit">Get</button></li>
+					<li class="nav-item"><span><strong>+</strong></span></li>
+					<li class="nav-item"><input type="text"
+						class="form-control mr-sm-2" placeholder=" collocate" tabindex="3"
+						name="collocate"></li>
+					<li class="nav-item" id="both"><button
+							class="btn btn-warning my-2 my-sm-0" id="buttoncol" tabindex="5"
+							type="button">Get both</button></li>
+
+					<li class="nav-item" id="buttonlogout"><button
+							class="btn btn-light" tabindex="6" type="button">Logout</button></li>
+
+
+				</ul>
+			</form>
+		</div>
+	</nav>
+
+
+
+
+
+
+
+	<!-- The Index -->
+	<div id="content">
+		<div id="frame" class="hidden-md-up">
 			<ul class="list-group list-group-flush" id="indexlist">
 
 
 				<c:forEach var="entry" items="${sessionScope.index}">
 
-		<li class="list-group-item d-flex justify-content-between align-items-center inentry" id="indexline">
-		<a class="kwic" href="#"/> <c:out value="${entry.key}" /></a>
-						<span class=""><c:out value="${entry.value}" /></span></li>
+					<li
+						class="list-group-item d-flex justify-content-between align-items-center inentry"
+						id="indexline"><a class="kwic" href="#"> <c:out
+								value="${entry.key}" /></a> <span class=""><c:out
+								value="${entry.value}" /></span></li>
 
-				</c:forEach>		
-				
+				</c:forEach>
+
 			</ul>
 
 		</div>
 
 		<!-- The Concordances -->
-		
+
 		<div class="container" id="table">
 			<div class="row">
 				<div id="table" class="w-100 p-3 ">
 
-					<table class="table table-hover" id="tablecon">
+					<table class="table table-hover table-responsive-md" id="tablecon">
 
 						<thead class="thead-light">
 							<tr>
@@ -89,19 +122,26 @@
 						</thead>
 
 						<tbody id="mytable">
-						
-							<c:forEach var="entry" items="${sessionScope.concordances}" varStatus="myIndex">
+
+							<c:forEach var="entry" items="${sessionScope.concordances}"
+								varStatus="myIndex">
 								<tr>
 
-								<td class="tentry" class="itemindex"><c:out value="${myIndex.index}" /></td>
-									<td class="tentry lcontext"><c:out value="${entry.lcontext}" /></td>
-<td class="tentry"><a class="morecontext" href="../concordancer?action=context&value=<c:out value='${entry.keyword}'/>">
-<c:out value="${entry.keyword}" /></a></td>
-									<td class="tentry rcontext"><c:out value="${entry.rcontext}" /></td>
-									<td class="tentry filename"><c:out value="${entry.filename}" /></td>
-									<td class="tentry index1" style="display:none"><c:out value="${entry.index1}" /></td>
-									<td class="tentry index2" style="display:none"><c:out value="${entry.index2}" /></td>
-									
+									<td class="tentry" class="itemindex"><c:out
+											value="${myIndex.index}" /></td>
+									<td class="tentry lcontext"><c:out
+											value="${entry.lcontext}" /></td>
+									<td class="tentry"><a class="morecontext" href="#"><c:out
+												value="${entry.keyword}" /></a></td>
+									<td class="tentry rcontext"><c:out
+											value="${entry.rcontext}" /></td>
+									<td class="tentry filename"><c:out
+											value="${entry.filename}" /></td>
+									<td class="tentry index1" style="display: none"><c:out
+											value="${entry.index1}" /></td>
+									<td class="tentry index2" style="display: none"><c:out
+											value="${entry.index2}" /></td>
+
 								</tr>
 							</c:forEach>
 
@@ -112,58 +152,62 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="gif-loader" style="display:none" >
-		<img src="../images/source.gif" class="img-fluid img-thumbnail" id="loader"/>
+
+	<div class="gif-loader" style="display: none">
+		<img src="../images/source.gif" class="img-fluid img-thumbnail"
+			id="loader" />
 	</div>
-	</div>
+
 	<!-- Modal -->
-<div class="modal fade" id="contextmodal" tabindex="-1" role="dialog" aria-labelledby="contextmodal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color:#76b852;">
-        <h5 class="modal-title" id="contextModalLongTitle">Larger context</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer" style="background-color:#76b852;">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal fade" id="contextmodal" tabindex="-1" role="dialog"
+		aria-labelledby="contextmodal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #76b852;">
+					<h5 class="modal-title" id="contextModalLongTitle">Larger
+						context</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">...</div>
+				<div class="modal-footer" style="background-color: #76b852;">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-<!-- No results -->
+	<!-- No results -->
 
-<div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="contextmodal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color:transparent;">
-        
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        No results.
-      </div>
-      <div class="modal-footer" style="background-color:transparent;">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-	
+	<div class="modal fade" id="message" tabindex="-1" role="dialog"
+		aria-labelledby="contextmodal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: transparent;">
 
-<script src="<%=request.getContextPath()%>/js/concordances.js"></script>
-<script src="<%=request.getContextPath()%>/js/concs_context.js"></script>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">No results.</div>
+				<div class="modal-footer" style="background-color: transparent;">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="<%=request.getContextPath()%>/js/concordances.js"></script>
+	<script src="<%=request.getContextPath()%>/js/concs_context.js"></script>
 
 
 

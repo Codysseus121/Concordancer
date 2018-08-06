@@ -99,3 +99,39 @@ $("#newProject" ).validate({
 }) });
 
 
+/*
+ * Logout function
+ */
+
+/** Logout function */
+$(document).ready(function() {
+
+
+$('#logout').click( function() {
+	
+  
+ 
+  $.ajax({
+    url : '/Concordancer/concordancer',
+ 
+    data : {
+ 
+      action : "logout",
+ 
+    },
+    type : 'get',
+    success : function(response) {
+      var url = "/Concordancer/concordancer";
+      $(location).attr('href', url);
+    },
+    error : function(e) {
+      console.log(e);
+    }
+  });
+ 
+});
+});
+ 
+
+
+

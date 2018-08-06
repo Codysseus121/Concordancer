@@ -4,7 +4,7 @@
 $(document).ready(function() {
 $(".kwic").click(function(event) {
      
-	 
+	 $('#loader').show();
     	event.preventDefault();
     	var word = event.target.innerHTML;
     	
@@ -41,8 +41,9 @@ $(document).ready(function() {
 	
 	$("#buttonkwic").click(function(event) {
 
-     
+		 $('#loader').show();
     	var word = $('input[name="keywordbox"]').val();
+    	
     	
     	
     	$.ajax({
@@ -66,7 +67,9 @@ $(document).ready(function() {
             		}
             	
             	else
-            		{location.reload();}
+            		{
+            		 $('#loader').hide();
+            		 location.reload();}
             	
                 },
             error: function(e){
@@ -97,7 +100,7 @@ $(document).ready(function() {
 	}
 
 	onReady(function () {
-	    $('#loader').hide();
+	   
 	    document.getElementsByClassName("kwic").onclick = function() { return true; } 
 	});*/
 

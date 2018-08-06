@@ -55,11 +55,10 @@ public class ContextServlet extends HttpServlet {
 		int index1 = Integer.parseInt(findex);
 		int index2 = Integer.parseInt(lindex);		
 		String filename = request.getParameter("filename");
-		System.out.println("ContextServlet " + filename + " " + index1 + " " +index2);
 		ConcordanceDao cdao = new ConcordanceDao();
 		
 		String contextreq = cdao.moreContext(index1, index2, clength, user, project, filename);
-		//System.out.println(contextreq);
+		
 		response.setContentType("text/html;charset=UTF-8");//sends response back to client to be handled by Ajax
         response.getWriter().write(contextreq);
 		

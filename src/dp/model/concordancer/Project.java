@@ -11,7 +11,7 @@ public class Project implements Serializable {
 	private String projectname;
 	private int project_id;
 	private int userid;
-	private List<ProjectFile> files =  new ArrayList<ProjectFile>();
+	private List<ProjectFile> files =  new ArrayList<ProjectFile>();//change
 	
 
 	public void setProjectname (String name)
