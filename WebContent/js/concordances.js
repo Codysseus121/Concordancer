@@ -58,7 +58,7 @@ $(document).ready(function() {
             type: 'get',
             success: function(data){
             	
-            	if (data == "False")
+            	if (data === "False")
             		{
             		
             		
@@ -70,7 +70,8 @@ $(document).ready(function() {
             	else
             		{
             	
-            		 location.reload();}
+            		$('#head').load("/Concordancer/jsp/Concordances.jsp" +  ' #head');
+            		 }
             	
                 },
             error: function(e){

@@ -156,7 +156,9 @@
 					</div>
 				</div>
 			</div>
-		</div></div>
+		</div>
+		</div>
+		<!-- Loader -->
 	
 
 	<div class="gif-loader" id="loader" style="display: none">
@@ -176,7 +178,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">...</div>
+				<div class="modal-body" id="contextmodalbody">...</div>
 				<div class="modal-footer" style="background-color: #76b852;">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
