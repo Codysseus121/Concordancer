@@ -141,7 +141,7 @@
 												value="${myIndex.index}" /></td>
 										<td class="tentry lcontext"><c:out
 												value="${entry.lcontext}" /></td>
-										<td class="tentry"><a class="morecontext" href="#"><c:out
+										<td class="tentry"><a class="morecontext key" href="#"><c:out
 													value="${entry.keyword}" /></a></td>
 										<td class="tentry rcontext"><c:out
 												value="${entry.rcontext}" /></td>
@@ -185,30 +185,6 @@
 				</div>
 				<div class="modal-body" id="contextmodalbody">...</div>
 				<div class="modal-footer" style="background-color: #76b852;">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- No results -->
-
-	<div class="modal fade" id="message" tabindex="-1" role="dialog"
-		aria-labelledby="contextmodal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color: transparent;">
-
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">No results.</div>
-				<div class="modal-footer" style="background-color: transparent;">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 

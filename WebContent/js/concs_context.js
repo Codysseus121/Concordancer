@@ -119,7 +119,9 @@ $(document).ready(function() {
 						
 						
 						
-						$('#message').modal('show');
+						var trow= $("#tablecon").find('tr');
+	            		$(trow).remove();
+	            		$('#mytable').html("No results").css("text-align", "center");   
 
 					}
 

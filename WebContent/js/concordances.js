@@ -61,8 +61,17 @@ $(document).ready(function() {
             	if (data === "False")
             		{
             		
+            		var trow= $("#tablecon").find('tr');
+            		$(trow).remove();
+            		$('#mytable').html("No results").css("text-align", "center");
             		
-            		$('#message').modal('show');
+            		/*$(trow).find('.itemindex').html("");
+            		$(trow).find('.lcontext').html("");
+            		$(trow).find('.key').html("");
+            		$(trow).find('.rcontext').html("");
+            		$(trow).find('.filename').html("");
+            		$(trow).find('.key').html("No results");*/
+            		/*$('#message').modal('show');*/
             		
             		                          		
             		}
