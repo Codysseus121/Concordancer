@@ -1,4 +1,5 @@
-/* Event listener to redirect to projects page*/
+var oneword;
+/* Event listener to redirect to projects page */
 
 $(document).ready(function() {
 
@@ -93,8 +94,10 @@ $(document).ready(function() {
  * Function to get collocates
  * 
  */
-$(document).ready(function() {
 
+
+$(document).ready(function() {
+	
 	let both = document.getElementById("both");
 	both.addEventListener("click", function() {
 
@@ -106,6 +109,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				url : '/Concordancer/concordancer',
+				
 
 				data : {
 
@@ -127,6 +131,8 @@ $(document).ready(function() {
 
 					else {
 						$('#head').load("/Concordancer/jsp/Concordances.jsp" +  ' #head');
+						oneword=collocate;
+						
 					}
 
 				},
@@ -135,7 +141,26 @@ $(document).ready(function() {
 				}
 			});
 		}
-
+		
+		
+		
+	});
 	});
 
-});
+
+
+$( document ).ajaxComplete(function() {
+
+
+	 $ctx = $(".table #mytable tr td");
+	    $ctx.unmark({
+	      done: function() {
+	        $ctx.mark(oneword,  {
+	            "element": "span",
+	            "className": "highlight" });
+	      }
+	    }); 
+   });
+   
+   
+ 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dp.dao.concordancer.ConcordanceDao;
+import dp.model.concordancer.Collocate;
 import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
@@ -77,10 +78,12 @@ public class CollocateServlet extends HttpServlet {
 		
 		
 		session.removeAttribute("concordances");
-		session.setAttribute("concordances", collocates);
-		
+		session.setAttribute("concordances", collocates);		
 				
 		
 	}
-
+	
+	
+			
+		
 }

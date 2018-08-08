@@ -17,7 +17,7 @@
 
 
 
-<title>bag of Wordsc</title>
+<title>bag of Words</title>
 </head>
 
 

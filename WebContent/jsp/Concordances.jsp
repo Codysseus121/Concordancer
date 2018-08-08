@@ -135,15 +135,15 @@
 
 								<c:forEach var="entry" items="${sessionScope.concordances}"
 									varStatus="myIndex">
-									<tr>
+									<tr class="trows">
 
 										<td class="tentry" class="itemindex"><c:out
 												value="${myIndex.index}" /></td>
-										<td class="tentry lcontext"><c:out
+										<td class="tentry lcontext contextus"><c:out
 												value="${entry.lcontext}" /></td>
 										<td class="tentry"><a class="morecontext key" href="#"><c:out
 													value="${entry.keyword}" /></a></td>
-										<td class="tentry rcontext"><c:out
+										<td class="tentry rcontext contextus"><c:out
 												value="${entry.rcontext}" /></td>
 										<td class="tentry filename"><c:out
 												value="${entry.filename}" /></td>
@@ -196,6 +196,8 @@
 
 	<script src="<%=request.getContextPath()%>/js/concordances.js"></script>
 	<script src="<%=request.getContextPath()%>/js/concs_context.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.mark.min.js"></script>
+		
 
 
 
