@@ -195,7 +195,6 @@
 
 
 	<script src="<%=request.getContextPath()%>/js/concordances.js"></script>
-	<script src="<%=request.getContextPath()%>/js/concs_context.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.mark.min.js"></script>
 		
 
