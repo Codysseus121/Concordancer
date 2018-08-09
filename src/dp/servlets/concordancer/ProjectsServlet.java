@@ -58,6 +58,7 @@ public class ProjectsServlet extends HttpServlet {
 			ProjectDataAccessObject pdao = new ProjectDao();
 			List <Project> projects = pdao.getProjects(user);	
 			session.setAttribute("projects", projects);
+			session.removeAttribute("concordances");
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/projects.jsp");
 			dispatcher.forward(request, response);
 			return;
