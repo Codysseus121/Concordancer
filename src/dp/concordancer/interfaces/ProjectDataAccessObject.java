@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.http.Part;
-
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 

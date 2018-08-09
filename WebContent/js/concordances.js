@@ -12,12 +12,12 @@ $(document).ready(function() {
 
 			data : {
 
-				action : "useproject",
+				action : "allprojects",
 
 			},
-			type : 'get',
+			type : 'post',
 			success : function(response) {
-				var url = "projects.jsp";
+				var url = "/Concordancer/jsp/projects.jsp";
 				$(location).attr('href', url);
 
 			},
