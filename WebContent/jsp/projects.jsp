@@ -30,7 +30,7 @@
 				<h3>${sessionScope.currentSessionUser.username}'s projects</h3>
 				 <ul class="nav navbar-nav navbar-right">
 				
-			<li class="nav-item"><button class="btn btn-light" tabindex="6" type="button">Logout</button></li>
+			<li class="nav-item"><button class="btn btn-light" tabindex="6" id="logout" type="button">Logout</button></li>
 				</ul></div>
 			</nav>
 		
