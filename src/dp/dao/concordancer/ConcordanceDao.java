@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import dp.concordancer.interfaces.ConcordanceDataAccessObject;
-import dp.concordancer.interfaces.ProjectDataAccessObject;
+import dp.concordancer.interfaces.FileDataAccessObject;
 import dp.model.concordancer.*;
 
 
@@ -40,7 +40,7 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 		int project_id = project.getProject_id();
 		String text = "";
 		Scanner scanner = null;
-		ProjectDataAccessObject pdao = new ProjectDao();
+		FileDataAccessObject fdao = new FileDao();
 
 		try {
 			conn = getConnection();
@@ -53,7 +53,7 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 
 				
 				text = result.getString(1);
-				text = pdao.processText(text);
+				text = fdao.processText(text);
 				scanner = new Scanner(text);
 				while (scanner.hasNext())
 				{words.add(scanner.next());}
@@ -90,11 +90,11 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 		    	int context = 55;
 		    	List <Kwic> c = new ArrayList<Kwic>();
 		    	List <Kwic> all = new ArrayList<Kwic>();
-		    	ProjectDao pdao = new ProjectDao();
+		    	FileDataAccessObject fdao = new FileDao();
 		    	
 		    	
 		        // read in text per file
-		        List<ProjectFile> files = pdao.getFiles(p, u);
+		        List<ProjectFile> files = fdao.getFiles(p, u);
 		        
 		        for (ProjectFile file : files)
 		        {
@@ -184,9 +184,9 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 	{
 		
 		//Get content of file
-    	ProjectDao pdao = new ProjectDao();
+    	FileDataAccessObject fdao = new FileDao();
     	String morecontext = "";
-    	String text = pdao.getFile(p, u, filename);
+    	String text = fdao.getFile(p, u, filename);
         if (findex-context>=0 && lindex+context<=text.length())
         {
         	morecontext=text.substring(findex-context, lindex+context);		

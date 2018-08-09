@@ -15,61 +15,71 @@ import dp.dao.concordancer.ProjectDao;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
-
 /**
  * Servlet implementation class ProjectDeleteServlet
  */
 @WebServlet("/ProjectDeleteServlet")
 public class ProjectDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProjectDeleteServlet() {
-        super();
-        
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest (request, response);
+	public ProjectDeleteServlet() {
+		super();
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest (request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processRequest(request, response);
 	}
-	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processRequest(request, response);
+	}
+
+	/*
+	 * Method processRequest to process all incoming requests for project deletion.
+	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession(true);
 		response.setContentType("plain/text");
-		String pid = request.getParameter("parameter_pid");
-		int project_id = Integer.parseInt(pid);
-		User user = (User) session.getAttribute("currentSessionUser");		
-		deleteProject(user, project_id);
-		
-		//refresh list of projects after deletion
-		
+		String pid = request.getParameter("parameter_pid");// get the project's key parameter from the client
+		int project_id = Integer.parseInt(pid);// convert it into int.
+		User user = (User) session.getAttribute("currentSessionUser");// get the session user.
+		deleteProject(user, project_id);// delete project from the database
+
+		// refresh list of projects after deletion
+
 		ProjectDataAccessObject pdao = new ProjectDao();
 		List<Project> projects = pdao.getProjects(user);
-		session.setAttribute("projects", projects);			
-		
+		session.setAttribute("projects", projects);
 
 	}
-	public void deleteProject(User u, int pid)
-	{
+	/*
+	 * private method deleteProject() to delete a project from the persistence
+	 * layer.
+	 * 
+	 * @User: the user
+	 * 
+	 * @int id: the key of the project
+	 */
+
+	private void deleteProject(User u, int pid) {
 		ProjectDataAccessObject pdao = new ProjectDao();
 		pdao.deleteProject(u, pid);
 
-
 	}
-	}
-
-
+}

@@ -16,54 +16,56 @@ import dp.concordancer.forms.*;
 import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.concordancer.interfaces.RegisterDataAccessObject;
 
-
 /**
  * Servlet implementation class RegisterServlet
  */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterServlet() {
-        super();
-        
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public RegisterServlet() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processRequest(request, response);
 	}
+/*
+ * Method processRequest to process all incoming requests for User registration.
+ */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-	
+
 		RegisterDataAccessObject rdao = new RegisterDao();
 		User user = new User();
-		
+
 		try {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-					
-
 
 			if (rdao.checkUserName(username) == false) {
-				 response.setContentType("text/html;charset=UTF-8");//sends response back to client to be handled by Ajax
-			     response.getWriter().write("False");
-					}
-			else
-				{
+				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
+																	// Ajax
+				response.getWriter().write("False");
+			} else {
 				rdao.registerUser(username, password);
 				UserForm u = rdao.getUser(username, password);
 				user.setUserid(u.getUser_id());
@@ -72,22 +74,29 @@ public class RegisterServlet extends HttpServlet {
 				user.setIsRegistered(u.getIsRegistered());
 				List<Project> projects = getProjects(user);
 				HttpSession session = request.getSession(true);
-				session.setAttribute("currentSessionUser", user);
-				session.setAttribute("projects",projects);
-				response.setContentType("text/html;charset=UTF-8");//sends response back to client to be handled by Ajax
-			    response.getWriter().write("True");
-				}
-			
+				session.setAttribute("currentSessionUser", user);// sets this User object as session attribute
+				session.setAttribute("projects", projects);// set this user's list of projects as session attribute
+				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
+																	// Ajax
+				response.getWriter().write("True");
+			}
+
 		} catch (Exception e) {
 			System.out.println("Exception" + e);
-		}}
+		}
+	}
+
+	/*
+	 * private getProjects method to get a user's list of projects.
+	 * 
+	 * @param: User
+	 */
 	private List<Project> getProjects(User user)
 
 	{
 		ProjectDataAccessObject pdao = new ProjectDao();
 		List<Project> projects = pdao.getProjects(user);
-														
-		
+
 		return projects;
 	}
 }

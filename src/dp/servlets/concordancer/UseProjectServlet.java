@@ -40,48 +40,51 @@ public class UseProjectServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		processRequest(request, response);
 	}
 
+	/*
+	 * method processRequest to handle all incoming requests to set a specific
+	 * project as session attribute.
+	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession(true);
-		session.removeAttribute("currentproject"); //clear previous session objects
-		session.removeAttribute("concordances"); 
+		session.removeAttribute("currentproject"); // clear previous session objects
+		session.removeAttribute("concordances");
 		RequestDispatcher dispatcher = null;
 		User user = (User) session.getAttribute("currentSessionUser");
-		
-		try //get project and load it to the session
-		{	
+
+		try // get project and add it to the session
+		{
 			ProjectDataAccessObject pdao = new ProjectDao();
-			Project p= new Project();
-			
-			//get attributes
-			String projectpara="";			
-			projectpara= request.getParameter("project_id");
+			Project p = new Project();
+
+			// get attributes
+			String projectpara = "";
+			projectpara = request.getParameter("project_id");
 			int projectID = Integer.parseInt(projectpara);
-			
-			//get project, set it as session attribute and forward.
-			
+
+			// get project, set it as session attribute and forward.
+
 			p = pdao.getProject(projectID, user);
 			session.setAttribute("currentproject", p);
 			dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
 			dispatcher.forward(request, response);
 			return;
-						
-			
+
 		}
-		
-	 catch (Exception e) 
-	{
-		System.out.println("Exception:" + e);
+
+		catch (Exception e) {
+			System.out.println("Exception:" + e);
+		}
+
 	}
-		
-		
-}
 }

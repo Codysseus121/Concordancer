@@ -8,8 +8,16 @@ import java.sql.SQLException;
 import dp.concordancer.forms.UserForm;
 import dp.concordancer.interfaces.GetUserDataAccessObject;
 
+
+
 public abstract class GetUserDao extends GetConnection implements GetUserDataAccessObject {
-	
+
+	/*
+	 * Method getUser() to get User details from the persistence layer and return a UserForm object.
+	 * The UserForm object will be used by the servlet to create the User object for the session.
+	 * @param String name: the username
+	 * @param String password: the password
+	 */
 	
 	public UserForm getUser(String name, String password) {
 		UserForm user = new UserForm();

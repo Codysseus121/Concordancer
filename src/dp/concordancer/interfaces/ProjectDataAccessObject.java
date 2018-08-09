@@ -15,7 +15,6 @@ public List<Project> getProjects(User user);
 public void deleteProject(User u, int pid);
 public int createProject(User user, String projectname);
 public Project getProject(int id, User u);
-public void addFiles(String filename, int projectid, String filetype, Part filecontent) throws SQLException, IOException;
-public String processText(String string);
+
 	
 }
