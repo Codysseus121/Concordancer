@@ -62,24 +62,23 @@ public class LoginServlet extends HttpServlet {
 
 			response.setContentType("text/html");
 			HttpSession session = request.getSession(true);
-			System.out.println(session.getId());
 			String name = request.getParameter("username");// get parameters from request
 			String pass = request.getParameter("password");
-			
+
 			User user = getUser(name, pass);
-			System.out.println(name +" " + pass);
 
 			if (user != null) {
 				session.setAttribute("currentSessionUser", user); // and set it as attribute for this session to be
 																	// handled by JSP
 				List<Project> projects = getProjects(user); // Get this user's projects & set the List as attribute
 				session.setAttribute("projects", projects);
-				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by																	// Ajax on the client side
+				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by //
+																	// Ajax on the client side
 				response.getWriter().write("True");
 			}
 
 			else {
-				System.out.println("User not found");
+
 				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().write("False");
 
@@ -109,17 +108,19 @@ public class LoginServlet extends HttpServlet {
 		User user = new User();
 		UserForm u = new UserForm(); // not serializable user object to check parameters for validity.
 		u = logindao.getUser(username, password);// call getUser method of LoginDao to find if user is registered.
-		System.out.println(username +" method " + password);
 
 		if (u.getIsRegistered() == true) { // Create User object
 
 			user.setUserid(u.getUser_id());
-			System.out.println(u.getUser_id());
 			user.setUsername(u.getUsername());
 			user.setPassword(u.getPassword());
 			user.setIsRegistered(u.getIsRegistered());
 			return user;
 
+		}
+
+		else {
+			user = null;
 		}
 		return user;
 

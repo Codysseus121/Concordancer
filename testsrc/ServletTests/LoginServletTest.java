@@ -14,14 +14,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.io.*;
 import javax.servlet.http.*;
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
 
-import dp.concordancer.forms.UserForm;
-import dp.dao.concordancer.LoginDao;
-import dp.model.concordancer.*;
 import dp.servlets.concordancer.LoginServlet;
 
 /**
@@ -53,5 +49,29 @@ public class LoginServletTest extends Mockito {
 		assertTrue(stringWriter.toString().contains("True"));
 	}
 
+		@Test
+		public void testFalseLogin() throws Exception {
+			
+			HttpServletRequest request = mock(HttpServletRequest.class);
+			HttpServletResponse response = mock(HttpServletResponse.class);
+			HttpSession session = mock(HttpSession.class);	
+
+			when(request.getParameter("username")).thenReturn("me"); //Test an existing login & return true
+			when(request.getParameter("password")).thenReturn("no");
+			when(request.getSession(true)).thenReturn(session);
+
+			StringWriter stringWriter2 = new StringWriter();
+			PrintWriter writer = new PrintWriter(stringWriter2);
+			when(response.getWriter()).thenReturn(writer);
+
+			new LoginServlet().processRequest(request, response);
+			
+
+			verify(request, atLeast(1)).getParameter("username"); //from https://stackoverflow.com/questions/5434419/how-to-test-my-servlet-using-junit
+			writer.flush(); // it may not have been flushed yet...
+			assertTrue(stringWriter2.toString().contains("False"));
+
+			
 		
+	}
 }
