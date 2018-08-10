@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 	/*
 	 * Method processRequest to process all incoming login requests
 	 */
-	public void processRequest(HttpServletRequest request, HttpServletResponse response)
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 

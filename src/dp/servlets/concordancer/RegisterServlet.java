@@ -48,9 +48,10 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		processRequest(request, response);
 	}
-/*
- * Method processRequest to process all incoming requests for User registration.
- */
+
+	/*
+	 * Method processRequest to process all incoming requests for User registration.
+	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

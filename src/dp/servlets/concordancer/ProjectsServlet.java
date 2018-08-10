@@ -45,28 +45,30 @@ public class ProjectsServlet extends HttpServlet {
 		processRequest(request, response);
 	}
 	
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
 		
+		
 		RequestDispatcher dispatcher = null;
+		
 		User user = (User) session.getAttribute("currentSessionUser");
-
+		
 		try // get project and add it to the session
 		{
 			ProjectDataAccessObject pdao = new ProjectDao();
 			List <Project> projects = pdao.getProjects(user);	
 			session.setAttribute("projects", projects);
 			session.removeAttribute("concordances");
-			dispatcher = getServletContext().getRequestDispatcher("/jsp/projects.jsp");
+			dispatcher = request.getServletContext().getRequestDispatcher("/jsp/projects.jsp");
 			dispatcher.forward(request, response);
 			return;
 
 		}
 
 		catch (Exception e) {
-			System.out.println("Exception:" + e);
+			e.printStackTrace();
 		}
 
 	}

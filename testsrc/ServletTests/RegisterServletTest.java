@@ -1,39 +1,28 @@
 package ServletTests;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 import java.io.*;
 import javax.servlet.http.*;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 
-import dp.servlets.concordancer.LoginServlet;
+import dp.servlets.concordancer.*;
 
 /**
- * Servlet implementation class LoginServletTest
+ * Servlet implementation class RegisterServletTest
  */
-@WebServlet("/LoginServletTest")
-public class LoginServletTest extends Mockito {
-
+@WebServlet("/RegisterServletTest")
+public class RegisterServletTest extends Mockito {
+	
 	@Test
-	public void testCorrectLogin() throws Exception {
+	public void testCorrectRegistration() throws Exception {
 		
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);	
 
-		when(request.getParameter("username")).thenReturn("test"); //Test an existing login & return true
+		when(request.getParameter("username")).thenReturn("me"); //Test an existing login & return true
 		when(request.getParameter("password")).thenReturn("test");
 		when(request.getSession(true)).thenReturn(session);
 
@@ -41,7 +30,7 @@ public class LoginServletTest extends Mockito {
 		PrintWriter writer = new PrintWriter(stringWriter);
 		when(response.getWriter()).thenReturn(writer);
 
-		new LoginServlet().processRequest(request, response);
+		new RegisterServlet().processRequest(request, response);
 		
 
 		verify(request, atLeast(1)).getParameter("username"); //from https://stackoverflow.com/questions/5434419/how-to-test-my-servlet-using-junit
@@ -50,21 +39,21 @@ public class LoginServletTest extends Mockito {
 	}
 
 		@Test
-		public void testFalseLogin() throws Exception {
+		public void testFalseRegistration() throws Exception {
 			
 			HttpServletRequest request = mock(HttpServletRequest.class);
 			HttpServletResponse response = mock(HttpServletResponse.class);
 			HttpSession session = mock(HttpSession.class);	
 
-			when(request.getParameter("username")).thenReturn("me"); //Test an existing login & return true
-			when(request.getParameter("password")).thenReturn("no");
+			when(request.getParameter("username")).thenReturn("test"); //Test an existing login & return true
+			when(request.getParameter("password")).thenReturn("test");
 			when(request.getSession(true)).thenReturn(session);
 
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter writer = new PrintWriter(stringWriter);
 			when(response.getWriter()).thenReturn(writer);
 
-			new LoginServlet().processRequest(request, response);
+			new RegisterServlet().processRequest(request, response);
 			
 
 			verify(request, atLeast(1)).getParameter("username"); //from https://stackoverflow.com/questions/5434419/how-to-test-my-servlet-using-junit
@@ -74,4 +63,5 @@ public class LoginServletTest extends Mockito {
 			
 		
 	}
+
 }
