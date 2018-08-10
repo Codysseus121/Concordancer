@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.io.output.*;
+
 
 import javax.servlet.http.Part;
 
@@ -90,8 +90,6 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
 		//https://docs.oracle.com/javase/tutorial/i18n/text/stream.html
 		StringBuffer buffer = new StringBuffer();
 		InputStreamReader isr = new InputStreamReader(filecontent.getInputStream());
-		String charset = isr.getEncoding();
-		System.out.println(charset);
 		Reader in = new BufferedReader(isr);
         int ch;
         while ((ch = in.read()) > -1)
@@ -100,16 +98,15 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
         }
         in.close();
         String result = buffer.toString();
-        System.out.println(result);
-		result = processText(result);
-		System.out.println(result);
+        //result = processText(result);
 		return result;
 		
 	}
 	
 	public String processText(String text)
 	{
-		text = text.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()]"," ").trim();  
+		text = text.replaceAll("[\\p{Space}\\p{Punct}]"," ").trim();//[.,\\/#!$%\\^&\\*;:{}=\\-_`~()]
+		text = text.replaceAll("\\s{2,}", " ");
 		return text;
 	}
 	
@@ -126,7 +123,7 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
 			document = PDDocument.load(stream);
 			PDFTextStripper pdfStripper = new PDFTextStripper();
 			text = pdfStripper.getText(document);
-			text = processText(text);
+			//text = processText(text);
 			
 
 		} finally {
@@ -149,7 +146,7 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
 		Document doc = Jsoup.parse(stream, "UTF-8", "");
         String plaintxt = doc.toString();
         finaltext = Jsoup.parse(plaintxt).body().text();
-        finaltext = processText(finaltext);
+       // finaltext = processText(finaltext);
         
 		}
 		catch (IOException ex) {ex.printStackTrace();}

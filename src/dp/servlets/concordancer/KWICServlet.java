@@ -48,6 +48,7 @@ public class KWICServlet extends HttpServlet {
 	{
 		HttpSession session = request.getSession(true);
 		String word = request.getParameter("keyword");
+		word=word.trim();
 		User user = (User) session.getAttribute("currentSessionUser");
 		Project project = (Project) session.getAttribute("currentproject");
 		ConcordanceDao cdao = new ConcordanceDao();

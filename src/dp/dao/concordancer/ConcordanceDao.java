@@ -1,5 +1,6 @@
 package dp.dao.concordancer;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,6 +41,7 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 		int project_id = project.getProject_id();
 		String text = "";
 		Scanner scanner = null;
+		
 		FileDao fdao = new FileDao();
 
 		try {
@@ -56,8 +58,10 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 				text = fdao.processText(text);
 				scanner = new Scanner(text);
 				while (scanner.hasNext())
-				{words.add(scanner.next());}
-			}
+				{	
+					String word = scanner.next().trim();
+					words.add(word);}
+				}
 				
 				
 				for (String word : words) {
