@@ -40,7 +40,7 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 		int project_id = project.getProject_id();
 		String text = "";
 		Scanner scanner = null;
-		FileDataAccessObject fdao = new FileDao();
+		FileDao fdao = new FileDao();
 
 		try {
 			conn = getConnection();

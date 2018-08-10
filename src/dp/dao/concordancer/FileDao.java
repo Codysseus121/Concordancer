@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import org.apache.commons.io.output.*;
 
 import javax.servlet.http.Part;
 
@@ -48,19 +49,21 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
 		
 	}
 
-	public void insertStream(String filename, int projectid, String text) {
+	private void insertStream(String filename, int projectid, String text) {
 
 		PreparedStatement statement = null;
 		Connection conn = null;
 
 		try {
 			conn = getConnection();
-			conn.setAutoCommit(false);
+			conn.setAutoCommit(false);			
 			statement = conn.prepareStatement("insert into files (file_name, file_content, project_id) values ( ?, ?, ?)");
 			statement.setString(1, filename);
 			statement.setString(2, text);
-			statement.setInt(3, projectid);
-			statement.executeUpdate();
+			statement.setInt(3, projectid);			
+			statement.executeQuery("SET NAMES 'UTF8'");
+		    statement.executeQuery("SET CHARACTER SET 'UTF8'");
+		    statement.executeUpdate();
 			conn.commit();
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
@@ -82,24 +85,36 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
 
 	}
 
-	public String convertTxt(Part filecontent) throws IOException
+	private String convertTxt(Part filecontent) throws IOException
 	{
-		//Credit for the conversion: stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
-		String result = new BufferedReader(new InputStreamReader(filecontent.getInputStream())).lines().collect(Collectors.joining("\n"));
-		
-		result = processText(result);       
+		//https://docs.oracle.com/javase/tutorial/i18n/text/stream.html
+		StringBuffer buffer = new StringBuffer();
+		InputStreamReader isr = new InputStreamReader(filecontent.getInputStream());
+		String charset = isr.getEncoding();
+		System.out.println(charset);
+		Reader in = new BufferedReader(isr);
+        int ch;
+        while ((ch = in.read()) > -1)
+        {
+            buffer.append((char)ch);
+        }
+        in.close();
+        String result = buffer.toString();
+        System.out.println(result);
+		result = processText(result);
+		System.out.println(result);
 		return result;
 		
 	}
 	
 	public String processText(String text)
 	{
-		text = text.replaceAll("[^a-zA-Z]"," ").trim();  
+		text = text.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()]"," ").trim();  
 		return text;
 	}
 	
 
-	public String convertPdf(Part filecontent) throws IOException
+	private String convertPdf(Part filecontent) throws IOException
 	{
 		
 		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");// necessary due to incompatibility
@@ -122,7 +137,7 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
 		return text;
 	}
 
-	public String convertHtml(Part filecontent) throws IOException
+	private String convertHtml(Part filecontent) throws IOException
 	{
 		
 		InputStream stream = null;
