@@ -1,6 +1,10 @@
 package dp.servlets.concordancer;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 //import java.io.File;
 //import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,6 +22,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import dp.concordancer.interfaces.FileDataAccessObject;
 import dp.concordancer.interfaces.ProjectDataAccessObject;
@@ -27,12 +35,12 @@ import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
 /**
- * Servlet implementation class UploadServlet.
- * A servlet that handles requests and responses for the creation of a new project
- * by a registered User and the uploading of the files requested.
+ * Servlet implementation class UploadServlet. A servlet that handles requests
+ * and responses for the creation of a new project by a registered User and the
+ * uploading of the files requested.
  */
 @WebServlet("/UploadServlet")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)//the maximum limit of the files that can be uploaded
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10) // the maximum limit of the files that can be uploaded
 
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -55,9 +63,11 @@ public class UploadServlet extends HttpServlet {
 	}
 
 	/**
-	 * Code adapted from: Servlets & JSP: a tutorial, by Budi Kurniawan
-	 * Method getFilename() to get the filename of the request for file upload.
-	 * @param part: the file to be uploaded.
+	 * Code adapted from: Servlets & JSP: a tutorial, by Budi Kurniawan Method
+	 * getFilename() to get the filename of the request for file upload.
+	 * 
+	 * @param part:
+	 *            the file to be uploaded.
 	 * @return the filename as String object.
 	 */
 	private String getFilename(Part part) {
@@ -77,19 +87,20 @@ public class UploadServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		//First set the context and get necessary parameters for the creation of the new project.
+
+		// First set the context and get necessary parameters for the creation of the
+		// new project.
 		HttpSession session = request.getSession(true);
 		RequestDispatcher dispatcher = null;
-		response.setContentType("text/html");		
+		response.setContentType("text/html");
 		ProjectDataAccessObject pdao = new ProjectDao();
 		FileDataAccessObject fdao = new FileDao();
 		String projectname = request.getParameter("projectname");
 		int projectid = 0;
 		User user = (User) session.getAttribute("currentSessionUser");
-		Collection<Part> parts = request.getParts();//get all Part objects sent
-		
-		//If collection not empty, create new project.
+		Collection<Part> parts = request.getParts();// get all Part objects sent
+
+		// If collection not empty, create new project.
 		if (parts != null) {
 			projectid = pdao.createProject(user, projectname);
 		}
@@ -97,21 +108,33 @@ public class UploadServlet extends HttpServlet {
 		boolean validfname = false;
 		for (Part part : parts) {
 			if (part.getContentType() != null) {
-				
 
-				String fileName = getFilename(part);//get the filename of the part from the request
-				String fextension = getFileExtension(fileName);//get the extension of the filename
+				String fileName = getFilename(part);// get the filename of the part from the request
+				String fextension = getFileExtension(fileName);// get the extension of the filename
 				validfname = validFile(fileName);// validate filename extension and if valid add file.
 				if (fileName != null && !fileName.isEmpty() && (validfname == true)) {
 
 					try {
 
-						fdao.addFiles(fileName, projectid, fextension, part);//call method addFiles() of FileDao
-						Project project = pdao.getProject(projectid, user);//get project and set it as attribute
+						String instring = "";
+
+						switch (fextension) {
+						case "txt":
+							instring = convertTxt(part);
+							break;
+
+						case "pdf":
+							instring = convertPdf(part);
+							break;
+
+						case "html":
+							instring = convertHtml(part);
+							break;
+						}
+						fdao.addFiles(fileName, projectid, instring);// call method addFiles() of FileDao
+						Project project = pdao.getProject(projectid, user);// get project and set it as attribute
 						session.setAttribute("currentproject", project);
-						
-						
-						
+
 					} catch (SQLException ex) {
 						ex.printStackTrace();
 					}
@@ -123,19 +146,26 @@ public class UploadServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 		return;
 	}
-	
-/*Method validFile() to check filename extensions. Server-side validation. Method To be extended with MIME-type checking.
- * Uses Apache Commons FileNameUtils Library.
- * @boolean: true if the the filename String parameter contains one of the accepted file extensions.
- * 
- */
+
+	/*
+	 * Method validFile() to check filename extensions. Server-side validation.
+	 * Method To be extended with MIME-type checking. Uses Apache Commons
+	 * FileNameUtils Library.
+	 * 
+	 * @boolean: true if the the filename String parameter contains one of the
+	 * accepted file extensions.
+	 * 
+	 */
 	private boolean validFile(String fileName) {
 		return Arrays.asList("txt", "pdf", "html").contains(FilenameUtils.getExtension(fileName));
 	}
-/*
- * Method getFileExtension to get a String representation of the filename's extension.
- * @return: String.
- */
+
+	/*
+	 * Method getFileExtension to get a String representation of the filename's
+	 * extension.
+	 * 
+	 * @return: String.
+	 */
 	private String getFileExtension(String filename) {
 		String extension = "";
 		if (filename.endsWith("txt"))
@@ -145,6 +175,64 @@ public class UploadServlet extends HttpServlet {
 		else
 			extension = "html";
 		return extension;
+	}
+
+	private String convertTxt(Part filecontent) throws IOException {
+		// Source: https://docs.oracle.com/javase/tutorial/i18n/text/stream.html
+		StringBuffer buffer = new StringBuffer();
+		InputStreamReader isr = new InputStreamReader(filecontent.getInputStream());
+		Reader in = new BufferedReader(isr);
+		int ch;
+		while ((ch = in.read()) > -1) {
+			buffer.append((char) ch);
+		}
+		in.close();
+		String result = buffer.toString();
+
+		return result;
+
+	}
+
+	private String convertPdf(Part filecontent) throws IOException {
+
+		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");// necessary due to
+																						// incompatibility
+		String text = "";
+		PDDocument document = null;
+		InputStream stream = null;
+		try {
+			stream = filecontent.getInputStream();
+			document = PDDocument.load(stream);
+			PDFTextStripper pdfStripper = new PDFTextStripper();
+			text = pdfStripper.getText(document);
+
+		} finally {
+
+			document.close();
+			stream.close();
+		}
+		return text;
+	}
+
+	private String convertHtml(Part filecontent) throws IOException {
+
+		InputStream stream = null;
+		String finaltext = "";
+
+		try {
+			stream = filecontent.getInputStream();
+			Document doc = Jsoup.parse(stream, "UTF-8", "");
+			String plaintxt = doc.toString();
+			finaltext = Jsoup.parse(plaintxt).body().text();
+			// finaltext = processText(finaltext);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			stream.close();
+
+		}
+		return finaltext;
 	}
 
 }

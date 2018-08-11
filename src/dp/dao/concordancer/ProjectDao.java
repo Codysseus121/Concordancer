@@ -64,36 +64,8 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		}
 		return projects;
 	}
-/*
- * (non-Javadoc)
- * @see dp.concordancer.interfaces.ProjectDataAccessObject#deleteProject(dp.model.concordancer.User, int)
- * 
- * Method deleteProject to delete a project from a User's records
- * @param User : the user object
- * @int pid : the project's key on the database
- * 
- */
-	public void deleteProject(User u, int pid) {
-		Connection conn = null;
-		int user_id = u.getUser_id();
-		String query = "DELETE FROM PROJECT WHERE PROJECT_ID='" + pid + "' AND USER_ID='" + user_id + "';";
-		String fileq = "DELETE FROM FILES WHERE PROJECT_ID='" + pid + "';";
-		try {
-			conn = getConnection();
-			PreparedStatement statement = conn.prepareStatement(query);
-			PreparedStatement statement2 = conn.prepareStatement(fileq);
-			statement2.execute();
-			statement.execute();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-
-		finally {
-			closeConnection(conn);
-		}
-
-	}
-
+	
+	
 	public Project getProject(int id, User u) {
 		Connection conn = null;
 		Project project = new Project();
@@ -135,7 +107,40 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		return project;
 	}
 
-	public int createProject(User user, String projectname) {
+
+	
+	
+/*
+ * (non-Javadoc)
+ * @see dp.concordancer.interfaces.ProjectDataAccessObject#deleteProject(dp.model.concordancer.User, int)
+ * 
+ * Method deleteProject to delete a project from a User's records
+ * @param User : the user object
+ * @int pid : the project's key on the database
+ * 
+ */
+	public void deleteProject(User u, int pid) {
+		Connection conn = null;
+		int user_id = u.getUser_id();
+		String query = "DELETE FROM PROJECT WHERE PROJECT_ID='" + pid + "' AND USER_ID='" + user_id + "';";
+		String fileq = "DELETE FROM FILES WHERE PROJECT_ID='" + pid + "';";
+		try {
+			conn = getConnection();
+			PreparedStatement statement = conn.prepareStatement(query);
+			PreparedStatement statement2 = conn.prepareStatement(fileq);
+			statement2.execute();
+			statement.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		finally {
+			closeConnection(conn);
+		}
+
+	}
+
+		public int createProject(User user, String projectname) {
 		Connection conn = null;
 		int projectid = 0;
 

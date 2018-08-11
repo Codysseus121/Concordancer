@@ -100,7 +100,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Exception" + e);
+			e.printStackTrace();
 		}
 	}
 

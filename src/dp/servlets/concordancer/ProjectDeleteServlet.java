@@ -17,7 +17,9 @@ import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
 /**
- * Servlet implementation class ProjectDeleteServlet
+ * Servlet implementation class ProjectDeleteServlet:
+ * handles requests for deletion of Project objects
+ * from a User's record and the persistence layer.
  */
 @WebServlet("/ProjectDeleteServlet")
 public class ProjectDeleteServlet extends HttpServlet {

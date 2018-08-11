@@ -17,7 +17,9 @@ import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
 /**
- * Servlet implementation class ProjectsServlet
+ * Servlet implementation class ProjectsServlet:
+ * a servlet to handle requests for uploading a User's projects
+ * to the projects.jsp page.
  */
 @WebServlet("/ProjectsServlet")
 public class ProjectsServlet extends HttpServlet {
