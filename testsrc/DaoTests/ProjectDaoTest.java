@@ -40,17 +40,7 @@ public class ProjectDaoTest extends Mockito
 		List<Project> projects = mock(ArrayList.class);
 		when(pdao.getProjects(user)).thenReturn(projects);
 		
-		//now test call hierarcy of native dao method
-
-		
-		
-		
-		
-		//public List<Project> getProjects(User user)
-		//public void deleteProject(User u, int pid) {
-		//public Project getProject(int id, User u) {
-		//public int createProject(User user, String projectname)
-		
+				
 		
 	}
 

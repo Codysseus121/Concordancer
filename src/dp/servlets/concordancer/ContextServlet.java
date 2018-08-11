@@ -45,8 +45,9 @@ public class ContextServlet extends HttpServlet {
 	
 	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		try
+		{
 		HttpSession session = request.getSession(true);
-	
 		Project project = (Project) session.getAttribute("currentproject");		
 		User user = (User) session.getAttribute("currentSessionUser");
 		int clength = 200;
@@ -61,7 +62,11 @@ public class ContextServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");//sends response back to client to be handled by Ajax
         response.getWriter().write(contextreq);
-		
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 	}
 

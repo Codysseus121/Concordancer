@@ -20,35 +20,39 @@ import dp.model.concordancer.*;
 @WebServlet("/ConcordancerServlet")
 public class ConcordancerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ConcordancerServlet() {
-        super();
-        
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ConcordancerServlet() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
-	
-		protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-		{
-			
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+
 			HttpSession session = request.getSession(true);
-			response.setContentType("text/html");	
+			response.setContentType("text/html");
 			RequestDispatcher dispatcher = null;
 			Project project = (Project) session.getAttribute("currentproject");
 			User user = (User) session.getAttribute("currentSessionUser");
@@ -59,6 +63,9 @@ public class ConcordancerServlet extends HttpServlet {
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/Concordances.jsp");
 			dispatcher.forward(request, response);
 			return;
-			
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }

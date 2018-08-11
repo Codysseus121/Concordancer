@@ -20,47 +20,54 @@ import dp.model.concordancer.User;
 @WebServlet("/KWICServlet")
 public class KWICServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public KWICServlet() {
-        super();
-        
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public KWICServlet() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
-	
-	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		HttpSession session = request.getSession(true);
-		String word = request.getParameter("keyword");
-		word=word.trim();
-		User user = (User) session.getAttribute("currentSessionUser");
-		Project project = (Project) session.getAttribute("currentproject");
-		ConcordanceDao cdao = new ConcordanceDao();
-		List<Kwic> conc = cdao.getConcordances(user, project, word);
-		if (conc.isEmpty())
-		{
-			response.getWriter().write("False");
-		}
-		else
-		{session.setAttribute("concordances", conc);}
-		
-	}
-	
 
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+
+			HttpSession session = request.getSession(true);
+			String word = request.getParameter("keyword");
+			word = word.trim();
+			User user = (User) session.getAttribute("currentSessionUser");
+			Project project = (Project) session.getAttribute("currentproject");
+			ConcordanceDao cdao = new ConcordanceDao();
+			List<Kwic> conc = cdao.getConcordances(user, project, word);
+			if (conc.isEmpty()) {
+				response.getWriter().write("False");
+			} else {
+				session.setAttribute("concordances", conc);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }
