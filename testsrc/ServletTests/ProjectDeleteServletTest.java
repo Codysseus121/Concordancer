@@ -55,7 +55,7 @@ public class ProjectDeleteServletTest extends Mockito {
 		
 		new UseProjectServlet().processRequest(request, response);
 		
-		writer.flush(); // it may not have been flushed yet...
+		writer.flush(); 
 		assertTrue(stringWriter.toString().contains("True"));
 		
 		

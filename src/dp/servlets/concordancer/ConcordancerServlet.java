@@ -47,7 +47,7 @@ public class ConcordancerServlet extends HttpServlet {
 		processRequest(request, response);
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 
@@ -57,7 +57,7 @@ public class ConcordancerServlet extends HttpServlet {
 			Project project = (Project) session.getAttribute("currentproject");
 			User user = (User) session.getAttribute("currentSessionUser");
 			
-			if (user != null && project !=null)
+			if (user != null && project !=null) //check params for validity
 			{
 			
 			ConcordanceDao cdao = new ConcordanceDao();

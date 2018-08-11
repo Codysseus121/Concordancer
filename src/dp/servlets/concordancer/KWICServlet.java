@@ -48,24 +48,45 @@ public class KWICServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 
 			HttpSession session = request.getSession(true);
 			String word = request.getParameter("keyword");
 			word = word.trim();
+			
+			
+			if (word.length() == 0) //check validity
+			
+			{
+				response.getWriter().write("False");
+				
+			}
+			
+			else
+			{
+			
 			User user = (User) session.getAttribute("currentSessionUser");
 			Project project = (Project) session.getAttribute("currentproject");
 			ConcordanceDao cdao = new ConcordanceDao();
 			List<Kwic> conc = cdao.getConcordances(user, project, word);
-			if (conc.isEmpty()) {
-				response.getWriter().write("False");
-			} else {
-				session.setAttribute("concordances", conc);
+			System.out.println(conc.isEmpty());
+			
+			if (conc.isEmpty()) 
+				{response.getWriter().write("False");}
+			
+			
+			else 
+			{session.setAttribute("concordances", conc);
+			response.getWriter().write("True");}
+			
+			
 			}
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 

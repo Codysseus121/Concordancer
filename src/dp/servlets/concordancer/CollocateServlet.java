@@ -50,13 +50,22 @@ public class CollocateServlet extends HttpServlet {
 		processRequest(request, response);
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		try {
 			HttpSession session = request.getSession(true);
 			String keyword1 = request.getParameter("keyword");
 			String keyword2 = request.getParameter("keyword2");
+			
+			if (keyword1.length() ==0 || keyword2.length() ==0)
+			{
+				response.getWriter().write("False");
+			}
+			
+			else
+			{
+			
 			User user = (User) session.getAttribute("currentSessionUser");
 			Project project = (Project) session.getAttribute("currentproject");
 			ConcordanceDao cdao = new ConcordanceDao();
@@ -78,7 +87,10 @@ public class CollocateServlet extends HttpServlet {
 
 			session.removeAttribute("concordances");
 			session.setAttribute("concordances", collocates);
+			response.getWriter().write("True");
+			
 
+		}
 		}
 
 		catch (Exception e) {
