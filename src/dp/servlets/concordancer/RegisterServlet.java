@@ -61,12 +61,24 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			System.out.println(username + " " + password);
 
-			if (rdao.checkUserName(username) == false) {
-				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
-																	// Ajax
+			if (username.length() == 0  || password.length() == 0) 
+			{
+				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by Ajax
 				response.getWriter().write("False");
-			} else {
+				
+			} 
+			
+			
+			else if (rdao.checkUserName(username) == false)
+			{
+				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by Ajax
+				response.getWriter().write("False");
+			}
+			
+			else 
+			{
 				rdao.registerUser(username, password);
 				UserForm u = rdao.getUser(username, password);
 				user.setUserid(u.getUser_id());

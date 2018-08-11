@@ -60,7 +60,9 @@ public class ProjectDeleteServlet extends HttpServlet {
 
 		try {
 
-			if (pid.length() > 0) {
+			if (pid.length() > 0) //check param for validity
+			
+			{ 
 
 				int project_id = Integer.parseInt(pid);// convert it into int.
 				User user = (User) session.getAttribute("currentSessionUser");// get the session user.

@@ -56,6 +56,10 @@ public class ConcordancerServlet extends HttpServlet {
 			RequestDispatcher dispatcher = null;
 			Project project = (Project) session.getAttribute("currentproject");
 			User user = (User) session.getAttribute("currentSessionUser");
+			
+			if (user != null && project !=null)
+			{
+			
 			ConcordanceDao cdao = new ConcordanceDao();
 			Map<String, Integer> index = new TreeMap<String, Integer>();
 			index = cdao.getIndex(project, user);
@@ -63,8 +67,17 @@ public class ConcordancerServlet extends HttpServlet {
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/Concordances.jsp");
 			dispatcher.forward(request, response);
 			return;
-		} catch (Exception e) {
-			e.printStackTrace();
+			}
+			
+			else
+			{
+				response.getWriter().write("False");
+			}
+		} 
+		
+		catch (Exception e)
+		{
+		e.printStackTrace();
 		}
 
 	}

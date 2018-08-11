@@ -16,7 +16,7 @@ import dp.servlets.concordancer.*;
 public class RegisterServletTest extends Mockito {
 	
 	@Test
-	public void testCorrectRegistration() throws Exception {
+	public void testEmptyParams() throws Exception {
 		
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
@@ -35,7 +35,7 @@ public class RegisterServletTest extends Mockito {
 
 		verify(request, atLeast(1)).getParameter("username"); //from https://stackoverflow.com/questions/5434419/how-to-test-my-servlet-using-junit
 		writer.flush(); 
-		assertTrue(stringWriter.toString().contains("True"));
+		assertTrue(stringWriter.toString().contains("False"));
 	}
 
 		@Test
