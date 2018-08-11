@@ -1,6 +1,7 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,40 +58,38 @@ public class CollocateServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			String keyword1 = request.getParameter("keyword");
 			String keyword2 = request.getParameter("keyword2");
-			
-			if (keyword1.length() ==0 || keyword2.length() ==0)
-			{
-				response.getWriter().write("False");
-			}
-			
-			else
-			{
-			
-			User user = (User) session.getAttribute("currentSessionUser");
-			Project project = (Project) session.getAttribute("currentproject");
-			ConcordanceDao cdao = new ConcordanceDao();
-			List<Kwic> conc = cdao.getConcordances(user, project, keyword1);
-			List<String> permutations = cdao.permute(keyword2);
-			List<Kwic> collocates = new ArrayList<Kwic>();
+			PrintWriter writer = response.getWriter();
 
-			for (Kwic word : conc) {
-				String lcontext = word.getLcontext();
-				String rcontext = word.getRcontext();
-				for (String perm : permutations) {
-					if (lcontext.contains(perm) || rcontext.contains(perm))
-						collocates.add(word);
+			if (keyword1.length() != 0 || keyword2.length() != 0) {
+
+				User user = (User) session.getAttribute("currentSessionUser");
+				Project project = (Project) session.getAttribute("currentproject");
+				ConcordanceDao cdao = new ConcordanceDao();
+				List<Kwic> conc = cdao.getConcordances(user, project, keyword1);
+				List<String> permutations = cdao.permute(keyword2);
+				List<Kwic> collocates = new ArrayList<Kwic>();
+
+				for (Kwic word : conc) {
+					String lcontext = word.getLcontext();
+					String rcontext = word.getRcontext();
+					for (String perm : permutations) {
+						if (lcontext.contains(perm) || rcontext.contains(perm))
+							collocates.add(word);
+					}
 				}
-			}
-			if (collocates.isEmpty()) {
-				response.getWriter().write("False");
-			}
+				if (collocates.isEmpty()) {
 
-			session.removeAttribute("concordances");
-			session.setAttribute("concordances", collocates);
-			response.getWriter().write("True");
-			
+					writer.flush();
+					writer.write("False");
+					System.out.println("Empty coll list");
+				} else {
+					session.removeAttribute("concordances");
+					session.setAttribute("concordances", collocates);
+					writer.flush();
+					writer.write("True");
+				}
 
-		}
+			}
 		}
 
 		catch (Exception e) {

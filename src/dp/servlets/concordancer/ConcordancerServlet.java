@@ -1,6 +1,7 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.servlet.RequestDispatcher;
@@ -71,7 +72,9 @@ public class ConcordancerServlet extends HttpServlet {
 			
 			else
 			{
-				response.getWriter().write("False");
+				PrintWriter writer = response.getWriter();
+				writer.flush();
+				writer.write("False");
 			}
 		} 
 		

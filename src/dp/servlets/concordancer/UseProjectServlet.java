@@ -1,6 +1,7 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -59,6 +60,7 @@ public class UseProjectServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
+		PrintWriter writer = response.getWriter();
 		session.removeAttribute("currentproject"); // clear previous session objects
 		session.removeAttribute("concordances");
 		RequestDispatcher dispatcher = null;
@@ -87,7 +89,8 @@ public class UseProjectServlet extends HttpServlet {
 			{
 			session.setAttribute("currentproject", p);			
 			response.setContentType("text/html;charset=UTF-8");
-			response.getWriter().write("True");
+			writer.flush();
+			writer.write("True");
 			dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
 			dispatcher.forward(request, response);
 			return;
@@ -97,7 +100,8 @@ public class UseProjectServlet extends HttpServlet {
 			else
 				
 			{
-				response.getWriter().write("False");
+				writer.flush();
+				writer.write("False");
 			}
 		}
 

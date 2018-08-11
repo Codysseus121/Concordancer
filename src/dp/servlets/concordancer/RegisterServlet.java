@@ -1,6 +1,7 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -56,6 +57,7 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		RegisterDataAccessObject rdao = new RegisterDao();
+		PrintWriter writer = response.getWriter();
 		User user = new User();
 
 		try {
@@ -66,7 +68,8 @@ public class RegisterServlet extends HttpServlet {
 			if (username.length() == 0  || password.length() == 0) 
 			{
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by Ajax
-				response.getWriter().write("False");
+				writer.flush();
+				writer.write("False");
 				
 			} 
 			
@@ -74,7 +77,8 @@ public class RegisterServlet extends HttpServlet {
 			else if (rdao.checkUserName(username) == false)
 			{
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by Ajax
-				response.getWriter().write("False");
+				writer.flush();
+				writer.write("False");
 			}
 			
 			else 
@@ -91,7 +95,8 @@ public class RegisterServlet extends HttpServlet {
 				session.setAttribute("projects", projects);// set this user's list of projects as session attribute
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
 																	// Ajax
-				response.getWriter().write("True");
+				writer.flush();
+				writer.write("True");
 			}
 
 		} catch (Exception e) {

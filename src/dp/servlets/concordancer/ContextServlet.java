@@ -1,6 +1,8 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,16 +45,27 @@ public class ContextServlet extends HttpServlet {
 		processRequest(request, response);
 	}
 	
-	protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	public void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		try
 		{
 		HttpSession session = request.getSession(true);
+		PrintWriter writer = response.getWriter();
 		Project project = (Project) session.getAttribute("currentproject");		
 		User user = (User) session.getAttribute("currentSessionUser");
 		int clength = 200;
 		String findex = request.getParameter("findex");
 		String lindex = request.getParameter("lindex");
+		
+		if (findex.length()==0 || lindex.length()==0)
+		{
+			writer.flush();
+			writer.write("False");
+		}
+		
+		else
+		{
+		
 		int index1 = Integer.parseInt(findex);
 		int index2 = Integer.parseInt(lindex);		
 		String filename = request.getParameter("filename");
@@ -61,7 +74,9 @@ public class ContextServlet extends HttpServlet {
 		String contextreq = cdao.moreContext(index1, index2, clength, user, project, filename);
 		
 		response.setContentType("text/html;charset=UTF-8");//sends response back to client to be handled by Ajax
-        response.getWriter().write(contextreq);
+        writer.flush();
+		writer.write(contextreq);
+		}
 		}
 		catch (Exception e)
 		{

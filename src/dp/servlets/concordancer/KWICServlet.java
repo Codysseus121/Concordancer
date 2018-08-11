@@ -1,6 +1,8 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +55,7 @@ public class KWICServlet extends HttpServlet {
 		try {
 
 			HttpSession session = request.getSession(true);
+			PrintWriter writer = response.getWriter();
 			String word = request.getParameter("keyword");
 			word = word.trim();
 			
@@ -60,7 +63,8 @@ public class KWICServlet extends HttpServlet {
 			if (word.length() == 0) //check validity
 			
 			{
-				response.getWriter().write("False");
+				writer.flush();
+				writer.write("False");
 				
 			}
 			
@@ -71,15 +75,17 @@ public class KWICServlet extends HttpServlet {
 			Project project = (Project) session.getAttribute("currentproject");
 			ConcordanceDao cdao = new ConcordanceDao();
 			List<Kwic> conc = cdao.getConcordances(user, project, word);
-			System.out.println(conc.isEmpty());
+			
 			
 			if (conc.isEmpty()) 
-				{response.getWriter().write("False");}
+				{writer.flush();
+				writer.write("False");}
 			
 			
 			else 
 			{session.setAttribute("concordances", conc);
-			response.getWriter().write("True");}
+			writer.flush();
+			writer.write("True");}
 			
 			
 			}
