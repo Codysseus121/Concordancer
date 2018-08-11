@@ -57,15 +57,27 @@ public class ProjectDeleteServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		response.setContentType("plain/text");
 		String pid = request.getParameter("parameter_pid");// get the project's key parameter from the client
-		int project_id = Integer.parseInt(pid);// convert it into int.
-		User user = (User) session.getAttribute("currentSessionUser");// get the session user.
-		deleteProject(user, project_id);// delete project from the database
 
-		// refresh list of projects after deletion
+		try {
 
-		ProjectDataAccessObject pdao = new ProjectDao();
-		List<Project> projects = pdao.getProjects(user);
-		session.setAttribute("projects", projects);
+			if (pid.length() > 0) {
+
+				int project_id = Integer.parseInt(pid);// convert it into int.
+				User user = (User) session.getAttribute("currentSessionUser");// get the session user.
+				deleteProject(user, project_id);// delete project from the database
+
+				// refresh list of projects after deletion
+
+				ProjectDataAccessObject pdao = new ProjectDao();
+				List<Project> projects = pdao.getProjects(user);
+				session.setAttribute("projects", projects);
+				response.getWriter().write("True");
+			} else {
+				response.getWriter().write("False");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 	/*

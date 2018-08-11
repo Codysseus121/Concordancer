@@ -83,7 +83,7 @@ public class ConcordanceDao extends GetConnection implements ConcordanceDataAcce
 
 		finally {
 			closeConnection(conn);
-			scanner.close();
+			
 
 		}
 		return index;

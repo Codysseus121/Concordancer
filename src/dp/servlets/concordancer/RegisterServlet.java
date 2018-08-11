@@ -52,7 +52,7 @@ public class RegisterServlet extends HttpServlet {
 	/*
 	 * Method processRequest to process all incoming requests for User registration.
 	 */
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		RegisterDataAccessObject rdao = new RegisterDao();

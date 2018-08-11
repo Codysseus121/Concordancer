@@ -105,8 +105,9 @@ public class FileDao extends GetConnection implements FileDataAccessObject{
 	
 	public String processText(String text)
 	{
-		text = text.replaceAll("[\\p{Space}\\p{Punct}]"," ").trim();//[.,\\/#!$%\\^&\\*;:{}=\\-_`~()]
+		text = text.replaceAll("[\\p{Space}\\p{Punct}]"," ").trim();
 		text = text.replaceAll("\\s{2,}", " ");
+		text = text.replaceAll("[0-9]", " ");
 		return text;
 	}
 	

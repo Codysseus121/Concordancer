@@ -3,6 +3,7 @@ package dp.servlets.concordancer;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,8 @@ public class UseProjectServlet extends HttpServlet {
 		super();
 
 	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -53,7 +55,7 @@ public class UseProjectServlet extends HttpServlet {
 	 * method processRequest to handle all incoming requests to set a specific
 	 * project as session attribute.
 	 */
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
@@ -65,25 +67,42 @@ public class UseProjectServlet extends HttpServlet {
 		try // get project and add it to the session
 		{
 			ProjectDataAccessObject pdao = new ProjectDao();
-			Project p = new Project();
+			Project p = null;
+			Integer projectID = null;
 
 			// get attributes
 			String projectpara = "";
 			projectpara = request.getParameter("project_id");
-			int projectID = Integer.parseInt(projectpara);
+			
+			if (projectpara.length()>0) //check param for validity
+			{
+				projectID = Integer.parseInt(projectpara);
 
 			// get project, set it as session attribute and forward.
 
 			p = pdao.getProject(projectID, user);
-			session.setAttribute("currentproject", p);
+		
+			
+			if (p != null)
+			{
+			session.setAttribute("currentproject", p);			
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write("True");
 			dispatcher = getServletContext().getRequestDispatcher("/ConcordancerServlet");
 			dispatcher.forward(request, response);
 			return;
-
+			}
+			}
+			
+			else
+				
+			{
+				response.getWriter().write("False");
+			}
 		}
 
 		catch (Exception e) {
-			System.out.println("Exception:" + e);
+			e.printStackTrace();;
 		}
 
 	}
