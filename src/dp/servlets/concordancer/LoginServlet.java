@@ -64,6 +64,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			String name = request.getParameter("username");// get parameters from request
 			String pass = request.getParameter("password");
+			System.out.println(name + " " +pass);
 
 			User user = getUser(name, pass);
 
@@ -104,6 +105,13 @@ public class LoginServlet extends HttpServlet {
 
 	public User getUser(String username, String password) {
 
+		if (username.length()==0 || password.length()==0)
+		{
+			return null;
+		}
+		else
+		{
+		
 		GetUserDataAccessObject logindao = new LoginDao();
 		User user = new User();
 		UserForm u = new UserForm(); // not serializable user object to check parameters for validity.
@@ -122,7 +130,9 @@ public class LoginServlet extends HttpServlet {
 		else {
 			user = null;
 		}
+		
 		return user;
+		}
 
 	}
 

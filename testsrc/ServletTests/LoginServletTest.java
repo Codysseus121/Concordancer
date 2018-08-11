@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
 
+import dp.model.concordancer.User;
 import dp.servlets.concordancer.LoginServlet;
 
 /**
@@ -29,6 +30,7 @@ public class LoginServletTest extends Mockito {
 	@Test
 	public void testCorrectLogin() throws Exception {
 		
+
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);	
@@ -56,8 +58,8 @@ public class LoginServletTest extends Mockito {
 			HttpServletResponse response = mock(HttpServletResponse.class);
 			HttpSession session = mock(HttpSession.class);	
 
-			when(request.getParameter("username")).thenReturn("me"); //Test an existing login & return true
-			when(request.getParameter("password")).thenReturn("no");
+			when(request.getParameter("username")).thenReturn(anyString()); //Test an existing login & return true
+			when(request.getParameter("password")).thenReturn(anyString());
 			when(request.getSession(true)).thenReturn(session);
 
 			StringWriter stringWriter = new StringWriter();
@@ -70,8 +72,5 @@ public class LoginServletTest extends Mockito {
 			verify(request, atLeast(1)).getParameter("username"); //from https://stackoverflow.com/questions/5434419/how-to-test-my-servlet-using-junit
 			writer.flush(); // it may not have been flushed yet...
 			assertTrue(stringWriter.toString().contains("False"));
-
-			
-		
-	}
-}
+		}
+		}

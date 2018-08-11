@@ -22,8 +22,8 @@ public class RegisterServletTest extends Mockito {
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);	
 
-		when(request.getParameter("username")).thenReturn("me"); //Test an existing login & return true
-		when(request.getParameter("password")).thenReturn("test");
+		when(request.getParameter("username")).thenReturn(""); //Test an existing login & return true
+		when(request.getParameter("password")).thenReturn("");
 		when(request.getSession(true)).thenReturn(session);
 
 		StringWriter stringWriter = new StringWriter();
@@ -34,7 +34,7 @@ public class RegisterServletTest extends Mockito {
 		
 
 		verify(request, atLeast(1)).getParameter("username"); //from https://stackoverflow.com/questions/5434419/how-to-test-my-servlet-using-junit
-		writer.flush(); // it may not have been flushed yet...
+		writer.flush(); 
 		assertTrue(stringWriter.toString().contains("True"));
 	}
 
@@ -57,7 +57,7 @@ public class RegisterServletTest extends Mockito {
 			
 
 			verify(request, atLeast(1)).getParameter("username"); //from https://stackoverflow.com/questions/5434419/how-to-test-my-servlet-using-junit
-			writer.flush(); // it may not have been flushed yet...
+			writer.flush();
 			assertTrue(stringWriter.toString().contains("False"));
 
 			
