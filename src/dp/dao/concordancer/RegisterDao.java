@@ -7,10 +7,17 @@ import java.sql.SQLException;
 
 import dp.concordancer.interfaces.*;
 
+/*class RegisterDao for registering new users
+ * with the database.
+ * 
+ */
 
-public class RegisterDao extends GetUserDao implements RegisterDataAccessObject, GetUserDataAccessObject {
+public class RegisterDao extends GetUserDao implements RegisterDataAccessObject {
 
-	
+/*
+ * (non-Javadoc)
+ * @see dp.concordancer.interfaces.RegisterDataAccessObject#checkUserName(java.lang.String)
+ */
 	public boolean checkUserName(String username) {
 		
 		boolean available = false;
@@ -42,7 +49,10 @@ public class RegisterDao extends GetUserDao implements RegisterDataAccessObject,
 
 		return available;
 	}
-
+/*
+ * (non-Javadoc)
+ * @see dp.concordancer.interfaces.RegisterDataAccessObject#registerUser(java.lang.String, java.lang.String)
+ */
 	public void registerUser(String name, String password) {
 		Connection conn = null;
 

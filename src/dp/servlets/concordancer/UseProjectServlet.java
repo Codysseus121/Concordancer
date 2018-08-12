@@ -18,6 +18,7 @@ import dp.model.concordancer.User;
 
 /**
  * Servlet implementation class UseProjectServlet
+ * to handle requests for a User to use a specific Project.
  */
 @WebServlet("/UseProjectServlet")
 public class UseProjectServlet extends HttpServlet {

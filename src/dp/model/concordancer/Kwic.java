@@ -1,5 +1,11 @@
 package dp.model.concordancer;
 
+/*
+ * class Kwic: a class for generating keywords in context,
+ * implementing standard mutator and accessor methods for all
+ * class fields.
+ */
+
 import java.io.Serializable;
 
 public class Kwic implements Serializable {

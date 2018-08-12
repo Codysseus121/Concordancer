@@ -1,5 +1,7 @@
 package dp.concordancer.forms;
-
+/*
+ * class userForm for validating User objects.
+ */
 public class UserForm {
 
 	private  String username;

@@ -2,6 +2,13 @@ package dp.model.concordancer;
 
 import java.io.Serializable;
 
+/* Class ProjectFile to handle file objects 
+ * for a Project object, implementing standard
+ * accessor and mutator methods for all fields
+ * of the class.
+ * 
+ */
+
 public class ProjectFile implements Serializable {
 
 	private static final long serialVersionUID = 8614571457975965833L;

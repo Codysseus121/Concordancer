@@ -23,6 +23,7 @@ import dp.model.concordancer.User;
 
 /**
  * Servlet implementation class CollocateServlet
+ * to handle requests for collocates.
  */
 @WebServlet("/CollocateServlet")
 public class CollocateServlet extends HttpServlet {
@@ -72,7 +73,7 @@ public class CollocateServlet extends HttpServlet {
 				List<String> permutations = permute(keyword2);
 				List<Kwic> collocates = new ArrayList<Kwic>();
 
-				for (Kwic word : conc) {
+				for (Kwic word : conc) { //check for collocates
 					String lcontext = word.getLcontext();
 					String rcontext = word.getRcontext();
 					for (String perm : permutations) {
@@ -80,12 +81,12 @@ public class CollocateServlet extends HttpServlet {
 							collocates.add(word);
 					}
 				}
-				if (collocates.isEmpty()) {
+				if (collocates.isEmpty()) { //no collocates found.
 
 					writer.flush();
 					writer.write("False");
 
-				} else {
+				} else { //if found add to session to be used by the Concordances.jsp page.
 					session.removeAttribute("concordances");
 					session.setAttribute("concordances", collocates);
 					writer.flush();
@@ -100,8 +101,13 @@ public class CollocateServlet extends HttpServlet {
 		}
 
 	}
-
-	public List<Kwic> getConcordances(User u, Project p, String query) {
+/*
+ * Private method getConcordances to generate a list of the kwic lines for a query.
+ * @param User user: the user sending the request.
+ * @param Project project: the project to be processed.
+ * @param String query: the pattern to be matched.
+ */
+	private List<Kwic> getConcordances(User u, Project p, String query) {
 
 		int context = 55;// 55 characters on either side. Can be refactored according to user
 							// requirements.

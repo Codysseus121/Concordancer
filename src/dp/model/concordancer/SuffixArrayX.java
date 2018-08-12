@@ -1,5 +1,9 @@
 package dp.model.concordancer;
-
+/*
+ * The implementation of the class SuffixArrayX is by
+ * Copyright © 2000–2018 Robert Sedgewick and Kevin Wayne. All rights reserved.
+ * https://algs4.cs.princeton.edu/63suffix/SuffixArrayX.java.html
+ */
 public class SuffixArrayX {
 	
 	 private static final int CUTOFF =  5;   // cutoff to insertion sort (any value between 0 and 12)

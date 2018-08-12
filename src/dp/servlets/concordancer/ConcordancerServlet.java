@@ -20,6 +20,9 @@ import dp.model.concordancer.*;
 
 /**
  * Servlet implementation class ConcordancerServlet
+ * to handle requests for the concordances.jsp page.
+ * Produces an index/frequency list of the project's content
+ * and forwards to the Concordances.jsp page.
  */
 @WebServlet("/ConcordancerServlet")
 public class ConcordancerServlet extends HttpServlet {
@@ -83,7 +86,10 @@ public class ConcordancerServlet extends HttpServlet {
 		}
 
 	}
-
+/*
+ * private method generateIndex() to generate the alphabetical index
+ * of all the files in a project.
+ */
 	private TreeMap<String, Integer> generateIndex(Project project, User user) {
 
 		// Get all Files for this Project.
@@ -122,7 +128,10 @@ public class ConcordancerServlet extends HttpServlet {
 
 		return index;
 	}
-
+/*
+ * private method processText() to pre-process the text
+ * for tokenization. Removes punctuation and numbers.
+ */
 	private String processText(String text) {
 		text = text.replaceAll("[\\p{Space}\\p{Punct}]", " ").trim();
 		text = text.replaceAll("\\s{2,}", " ");

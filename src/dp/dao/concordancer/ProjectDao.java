@@ -11,12 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/*
+ * class ProjectDao for database operations on Project objects.
+ */
 
 
 public class ProjectDao extends GetConnection implements ProjectDataAccessObject {
 
 
-	
+/*
+ * 	(non-Javadoc)
+ * @see dp.concordancer.interfaces.ProjectDataAccessObject#getProjects(dp.model.concordancer.User)
+ */
 	
 	public List<Project> getProjects(User user) {
 
@@ -64,7 +70,10 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		}
 		return projects;
 	}
-	
+/*
+ * 	(non-Javadoc)
+ * @see dp.concordancer.interfaces.ProjectDataAccessObject#getProject(int, dp.model.concordancer.User)
+ */
 	
 	public Project getProject(int id, User u) {
 		Connection conn = null;
@@ -139,7 +148,10 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 		}
 
 	}
-
+/*
+ * (non-Javadoc)
+ * @see dp.concordancer.interfaces.ProjectDataAccessObject#createProject(dp.model.concordancer.User, java.lang.String)
+ */
 		public int createProject(User user, String projectname) {
 		Connection conn = null;
 		int projectid = 0;

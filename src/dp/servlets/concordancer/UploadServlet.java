@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-//import java.io.File;
-//import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -176,6 +174,10 @@ public class UploadServlet extends HttpServlet {
 			extension = "html";
 		return extension;
 	}
+	/*
+	 * Method convertTxt to pre-process plain text files.
+	 * @param Part filecontent: the Part object that contains the contents of the file uploaded.
+	 */
 
 	private String convertTxt(Part filecontent) throws IOException {
 		// Source: https://docs.oracle.com/javase/tutorial/i18n/text/stream.html
@@ -192,7 +194,11 @@ public class UploadServlet extends HttpServlet {
 		return result;
 
 	}
-
+	/*
+	 * Method convertPdf to pre-process and convert PDF files to text.
+	 * Uses the ApachePDFBox library for the conversion
+	 * @param Part filecontent: the Part object that contains the contents of the file uploaded.
+	 */
 	private String convertPdf(Part filecontent) throws IOException {
 
 		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");// necessary due to
@@ -213,7 +219,11 @@ public class UploadServlet extends HttpServlet {
 		}
 		return text;
 	}
-
+	/*
+	 * Method convertHtml to pre-process and convert HTML files to plain text.
+	 * Use the JSoup library.
+	 * @param Part filecontent: the Part object that contains the contents of the file uploaded.
+	 */
 	private String convertHtml(Part filecontent) throws IOException {
 
 		InputStream stream = null;

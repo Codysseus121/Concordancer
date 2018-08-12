@@ -18,6 +18,7 @@ import dp.model.concordancer.User;
 
 /**
  * Servlet implementation class ContextServlet
+ * to handle requests for more context to a kwic line.
  */
 @WebServlet("/ContextServlet")
 public class ContextServlet extends HttpServlet {

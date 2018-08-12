@@ -21,6 +21,7 @@ import dp.model.concordancer.User;
 
 /**
  * Servlet implementation class KWICServlet
+ * to handle requests for kwic lines.
  */
 @WebServlet("/KWICServlet")
 public class KWICServlet extends HttpServlet {
@@ -169,8 +170,8 @@ public class KWICServlet extends HttpServlet {
 	/*
 	 * A method to calculate all possible case permutations of a String.
 	 * 
-	 * @Return: List. Author:
-	 * https://www.geeksforgeeks.org/permute-string-changing-case/
+	 * @Return: List. 
+	 * @Author: https://www.geeksforgeeks.org/permute-string-changing-case/
 	 * 
 	 */
 	private List<String> permute(String input) {

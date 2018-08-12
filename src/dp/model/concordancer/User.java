@@ -2,6 +2,12 @@ package dp.model.concordancer;
 
 import java.io.Serializable;
 
+/*
+ * class User for User objects,
+ * implementing standard accessor and mutator methods
+ * for all class fields.
+ */
+
 public class User implements Serializable {
 
 

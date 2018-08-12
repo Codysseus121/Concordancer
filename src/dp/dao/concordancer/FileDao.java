@@ -12,8 +12,15 @@ import dp.model.concordancer.Project;
 import dp.model.concordancer.ProjectFile;
 import dp.model.concordancer.User;
 
-public class FileDao extends GetConnection implements FileDataAccessObject {
+/*class FileDao for database operations on File objects
+ * 
+ */
 
+public class FileDao extends GetConnection implements FileDataAccessObject {
+/*
+ * (non-Javadoc)
+ * @see dp.concordancer.interfaces.FileDataAccessObject#addFiles(java.lang.String, int, java.lang.String)
+ */
 	public void addFiles(String filename, int projectid, String text) throws SQLException, IOException {
 
 		PreparedStatement statement = null;
@@ -103,7 +110,10 @@ public class FileDao extends GetConnection implements FileDataAccessObject {
 		}
 		return filelist;
 	}
-
+/*
+ * (non-Javadoc)
+ * @see dp.concordancer.interfaces.FileDataAccessObject#getFile(dp.model.concordancer.Project, dp.model.concordancer.User, java.lang.String)
+ */
 	public String getFile(Project project, User user, String filename) {
 		Connection conn = null;
 		PreparedStatement statement = null;

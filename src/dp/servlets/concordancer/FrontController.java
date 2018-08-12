@@ -14,9 +14,11 @@ import java.io.IOException;
 
 /**
  * Servlet implementation class FrontController
+ * Takes incoming requests and dispatches them accordingly.
+ * 
  */
 @WebServlet(name = "/FrontControllerServlet", urlPatterns = "/concordancer")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10)//Accept files up to 10MB.
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -100,7 +102,7 @@ public class FrontController extends HttpServlet {
 				
 			case "logout":
 				 HttpSession session=request.getSession(true);  
-				session.invalidate();
+				 session.invalidate();
 
 			}
 

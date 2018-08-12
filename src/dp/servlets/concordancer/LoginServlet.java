@@ -112,10 +112,10 @@ public class LoginServlet extends HttpServlet {
 		else
 		{
 		
-		GetUserDataAccessObject logindao = new LoginDao();
+		GetUserDataAccessObject userdao = new GetUserDao();
 		User user = new User();
 		UserForm u = new UserForm(); // not serializable user object to check parameters for validity.
-		u = logindao.getUser(username, password);// call getUser method of LoginDao to find if user is registered.
+		u = userdao.getUser(username, password);// call getUser method of LoginDao to find if user is registered.
 
 		if (u.getIsRegistered() == true) { // Create User object
 

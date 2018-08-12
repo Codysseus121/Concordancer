@@ -3,6 +3,12 @@ package dp.model.concordancer;
 import java.util.*;
 import java.io.Serializable;
 
+/*
+ * class Project: a class for kwic projects,
+ * implementing standard mutator and accessor methods for all
+ * class fields.
+ */
+
 
 public class Project implements Serializable {
 
@@ -11,7 +17,8 @@ public class Project implements Serializable {
 	private String projectname;
 	private int project_id;
 	private int userid;
-	private List<ProjectFile> files =  new ArrayList<ProjectFile>();//change
+	private List<ProjectFile> files;
+	
 	
 
 	public void setProjectname (String name)
@@ -43,7 +50,10 @@ public class Project implements Serializable {
 	{
 		return userid;
 	}
-
+/*
+ * Mutator method to set the files private field of this class
+ * for Inversion of Control.
+ */
 	public void setFiles(List<ProjectFile> f)
 	{
 		this.files=f;

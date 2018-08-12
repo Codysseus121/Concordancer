@@ -14,11 +14,13 @@ import javax.servlet.http.HttpSession;
 import dp.dao.concordancer.*;
 import dp.model.concordancer.*;
 import dp.concordancer.forms.*;
+import dp.concordancer.interfaces.GetUserDataAccessObject;
 import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.concordancer.interfaces.RegisterDataAccessObject;
 
 /**
  * Servlet implementation class RegisterServlet
+ * for registering new users.
  */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -57,6 +59,7 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		RegisterDataAccessObject rdao = new RegisterDao();
+		GetUserDataAccessObject ldao = new GetUserDao();
 		PrintWriter writer = response.getWriter();
 		User user = new User();
 
@@ -84,7 +87,7 @@ public class RegisterServlet extends HttpServlet {
 			else 
 			{
 				rdao.registerUser(username, password);
-				UserForm u = rdao.getUser(username, password);
+				UserForm u = ldao.getUser(username, password);
 				user.setUserid(u.getUser_id());
 				user.setUsername(u.getUsername());
 				user.setPassword(u.getPassword());

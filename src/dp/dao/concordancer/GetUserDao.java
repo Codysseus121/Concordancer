@@ -8,9 +8,13 @@ import java.sql.SQLException;
 import dp.concordancer.forms.UserForm;
 import dp.concordancer.interfaces.GetUserDataAccessObject;
 
+/*A DAO class for user login that for getting
+ * use data from the database.
+ * 
+ */
 
 
-public abstract class GetUserDao extends GetConnection implements GetUserDataAccessObject {
+public class GetUserDao extends GetConnection implements GetUserDataAccessObject {
 
 	/*
 	 * Method getUser() to get User details from the persistence layer and return a UserForm object.
