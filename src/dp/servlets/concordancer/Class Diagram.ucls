@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="dp.model.concordancer.SuffixArrayX" project="Concordancer" 
+    file="/Concordancer/src/dp/model/concordancer/SuffixArrayX.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="101" y="878"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="dp.servlets.concordancer.CollocateServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/CollocateServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="498" y="741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="dp.servlets.concordancer.FrontController" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/FrontController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="651" y="98"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="dp.servlets.concordancer.LoginServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/LoginServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="259" y="124"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="dp.servlets.concordancer.RegisterServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/RegisterServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1010" y="111"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="dp.model.concordancer.User" project="Concordancer" 
+    file="/Concordancer/src/dp/model/concordancer/User.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="616" y="383"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="dp.model.concordancer.Project" project="Concordancer" 
+    file="/Concordancer/src/dp/model/concordancer/Project.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="392" y="408"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="dp.model.concordancer.ProjectFile" project="Concordancer" 
+    file="/Concordancer/src/dp/model/concordancer/ProjectFile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="164" y="397"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="dp.model.concordancer.Kwic" project="Concordancer" 
+    file="/Concordancer/src/dp/model/concordancer/Kwic.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="831" y="495"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="dp.dao.concordancer.FileDao" project="Concordancer" 
+    file="/Concordancer/src/dp/dao/concordancer/FileDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1133" y="274"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="dp.dao.concordancer.GetConnection" project="Concordancer" 
+    file="/Concordancer/src/dp/dao/concordancer/GetConnection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1314" y="476"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="dp.dao.concordancer.GetUserDao" project="Concordancer" 
+    file="/Concordancer/src/dp/dao/concordancer/GetUserDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1325" y="83"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="dp.dao.concordancer.ProjectDao" project="Concordancer" 
+    file="/Concordancer/src/dp/dao/concordancer/ProjectDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1366" y="307"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="dp.dao.concordancer.RegisterDao" project="Concordancer" 
+    file="/Concordancer/src/dp/dao/concordancer/RegisterDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1026" y="484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="dp.concordancer.forms.UserForm" project="Concordancer" 
+    file="/Concordancer/src/dp/concordancer/forms/UserForm.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1033" y="716"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="dp.servlets.concordancer.ConcordancerServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/ConcordancerServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1309" y="676"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="dp.servlets.concordancer.ContextServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/ContextServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="904" y="1001"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="dp.servlets.concordancer.KWICServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/KWICServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="377" y="1016"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="dp.servlets.concordancer.ProjectDeleteServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/ProjectDeleteServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="206" y="1297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="dp.servlets.concordancer.ProjectsServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/ProjectsServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1035" y="1182"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="dp.servlets.concordancer.UploadServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/UploadServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="584" y="1340"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="dp.servlets.concordancer.UseProjectServlet" project="Concordancer" 
+    file="/Concordancer/src/dp/servlets/concordancer/UseProjectServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1070" y="1384"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="23">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="30">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="35">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="39">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="45">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="47">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="48">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="49">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <dependency id="51">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="54">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="58">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <association id="60">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="61" name="files"/>      
+      <multiplicity id="62" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="63">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="65">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="66">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="67">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="68">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="69">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="70">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="71">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="72">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="73">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="74">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="75">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="76">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="78">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

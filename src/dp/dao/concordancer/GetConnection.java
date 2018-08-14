@@ -21,7 +21,7 @@ public class GetConnection {
 /*
  * Method getConnection to get a connection to the DB.
  */
-		public Connection getConnection() throws SQLException {
+		public static Connection getConnection() throws SQLException {
 			return DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/concordances?autoReconnect=true&useSSL=FALSE&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
 					"root", "");
@@ -29,7 +29,7 @@ public class GetConnection {
 /*
  * Method closeConnection to close the connection to the DB.
  */
-		public void closeConnection(Connection connection) {
+		public static void closeConnection(Connection connection) {
 			if (connection == null)
 				return;
 			try {

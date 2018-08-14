@@ -18,7 +18,7 @@ public interface FileDataAccessObject {
 	 * @param projectid: the key of the project to which this file belongs.
 	 * @param text: the contents of the file as String object.
 	 */
-	public void addFiles(String filename, int projectid, String text) throws SQLException, IOException;
+	public boolean addFiles(String filename, int projectid, String text) throws SQLException, IOException;
 	
 	/*
 	 * Method getFiles for accessing files from the database.

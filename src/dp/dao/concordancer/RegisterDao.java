@@ -54,7 +54,9 @@ public class RegisterDao extends GetUserDao implements RegisterDataAccessObject 
  * @see dp.concordancer.interfaces.RegisterDataAccessObject#registerUser(java.lang.String, java.lang.String)
  */
 	public void registerUser(String name, String password) {
+		
 		Connection conn = null;
+		
 
 		try {
 			String sql = "INSERT INTO users (USER_NAME, PASSWORD) VALUES (?, ?)";
@@ -63,11 +65,14 @@ public class RegisterDao extends GetUserDao implements RegisterDataAccessObject 
 			statement.setString(1, name);
 			statement.setString(2, password);
 			statement.execute();
+			
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			
 		}
 
 		finally {
+			
 			closeConnection(conn);
 		}
 	}

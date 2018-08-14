@@ -1,6 +1,6 @@
 package dp.dao.concordancer;
 
-import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +21,7 @@ public class FileDao extends GetConnection implements FileDataAccessObject {
  * (non-Javadoc)
  * @see dp.concordancer.interfaces.FileDataAccessObject#addFiles(java.lang.String, int, java.lang.String)
  */
-	public void addFiles(String filename, int projectid, String text) throws SQLException, IOException {
+	public boolean addFiles(String filename, int projectid, String text)  {
 
 		PreparedStatement statement = null;
 		Connection conn = null;
@@ -38,9 +38,11 @@ public class FileDao extends GetConnection implements FileDataAccessObject {
 			statement.executeQuery("SET CHARACTER SET 'UTF8'");
 			statement.executeUpdate();
 			conn.commit();
+			return true;
 		} catch (Exception e) {
-			System.err.println("Error: " + e.getMessage());
+			
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				statement.close();

@@ -1,9 +1,10 @@
 package dp.concordancer.interfaces;
-import dp.concordancer.forms.UserForm;
+
 /*
  * Interface GetUserDataAccessObject defines a single method
  * for user login
  */
+import dp.model.concordancer.User;
 
 public interface GetUserDataAccessObject {
 
@@ -13,7 +14,7 @@ public interface GetUserDataAccessObject {
 	 * 
 	 */
 		
-		public UserForm getUser (String name, String password);
+		 User getUser (String name, String password);
 
 	}
 

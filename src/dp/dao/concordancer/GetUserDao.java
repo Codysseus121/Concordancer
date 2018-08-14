@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import dp.concordancer.forms.UserForm;
 import dp.concordancer.interfaces.GetUserDataAccessObject;
+import dp.model.concordancer.User;
+
 
 /*A DAO class for user login that for getting
  * use data from the database.
@@ -23,8 +25,8 @@ public class GetUserDao extends GetConnection implements GetUserDataAccessObject
 	 * @param String password: the password
 	 */
 	
-	public UserForm getUser(String name, String password) {
-		UserForm user = new UserForm();
+	public  User getUser(String name, String password) {
+		User user = new User();
 		Connection conn = null;
 		String query = "SELECT * FROM users WHERE USER_NAME='" + name + "' AND PASSWORD='" + password + "';";
 		try {
@@ -35,6 +37,7 @@ public class GetUserDao extends GetConnection implements GetUserDataAccessObject
 
 			if (!uexists) {
 				user.setIsRegistered(false);
+				return null;
 
 			} else {
 
@@ -46,6 +49,7 @@ public class GetUserDao extends GetConnection implements GetUserDataAccessObject
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			return null;
 		}
 
 		finally {

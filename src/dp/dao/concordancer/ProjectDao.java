@@ -128,7 +128,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
  * @int pid : the project's key on the database
  * 
  */
-	public void deleteProject(User u, int pid) {
+	public boolean deleteProject(User u, int pid) {
 		Connection conn = null;
 		int user_id = u.getUser_id();
 		String query = "DELETE FROM PROJECT WHERE PROJECT_ID='" + pid + "' AND USER_ID='" + user_id + "';";
@@ -139,8 +139,12 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 			PreparedStatement statement2 = conn.prepareStatement(fileq);
 			statement2.execute();
 			statement.execute();
+			return true;
+			
 		} catch (SQLException ex) {
+			
 			ex.printStackTrace();
+			return false;
 		}
 
 		finally {

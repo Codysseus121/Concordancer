@@ -23,7 +23,7 @@ public List<Project> getProjects(User user);
  * @pid: the project's primary key.
  */
 
-public void deleteProject(User u, int pid);
+public boolean deleteProject(User u, int pid);
 
 /*Method createProject to create a new Project.
  * @param user: the user.

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import dp.dao.concordancer.*;
 import dp.model.concordancer.*;
+import dp.concordancer.ConcFacade.ConcFacadeImpl;
+import dp.concordancer.ConcFacade.ConcordancerFacade;
 import dp.concordancer.forms.*;
 import dp.concordancer.interfaces.GetUserDataAccessObject;
 import dp.concordancer.interfaces.ProjectDataAccessObject;
@@ -58,15 +60,15 @@ public class RegisterServlet extends HttpServlet {
 	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RegisterDataAccessObject rdao = new RegisterDao();
-		GetUserDataAccessObject ldao = new GetUserDao();
+		ConcordancerFacade facade = new ConcFacadeImpl();
+		
 		PrintWriter writer = response.getWriter();
 		User user = new User();
 
 		try {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			System.out.println(username + " " + password);
+			
 
 			if (username.length() == 0  || password.length() == 0) 
 			{
@@ -77,7 +79,7 @@ public class RegisterServlet extends HttpServlet {
 			} 
 			
 			
-			else if (rdao.checkUserName(username) == false)
+			else if (facade.checkUserName(username) == false)
 			{
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by Ajax
 				writer.flush();
@@ -86,13 +88,13 @@ public class RegisterServlet extends HttpServlet {
 			
 			else 
 			{
-				rdao.registerUser(username, password);
-				UserForm u = ldao.getUser(username, password);
-				user.setUserid(u.getUser_id());
-				user.setUsername(u.getUsername());
-				user.setPassword(u.getPassword());
-				user.setIsRegistered(u.getIsRegistered());
-				List<Project> projects = getProjects(user);
+				facade.registerUser(username, password);
+				user = facade.getUser(username, password);
+				//user.setUserid(u.getUser_id());
+				//user.setUsername(u.getUsername());
+				//user.setPassword(u.getPassword());
+				//user.setIsRegistered(u.getIsRegistered());
+				List<Project> projects = facade.getProjects(user);
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);// sets this User object as session attribute
 				session.setAttribute("projects", projects);// set this user's list of projects as session attribute
@@ -107,17 +109,5 @@ public class RegisterServlet extends HttpServlet {
 		}
 	}
 
-	/*
-	 * private getProjects method to get a user's list of projects.
-	 * 
-	 * @param: User
-	 */
-	private List<Project> getProjects(User user)
-
-	{
-		ProjectDataAccessObject pdao = new ProjectDao();
-		List<Project> projects = pdao.getProjects(user);
-
-		return projects;
-	}
+	
 }
