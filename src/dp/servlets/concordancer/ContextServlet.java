@@ -17,8 +17,8 @@ import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
 /**
- * Servlet implementation class ContextServlet
- * to handle requests for more context to a kwic line.
+ * Servlet implementation class ContextServlet to handle requests for more
+ * context to a kwic line.
  */
 @WebServlet("/ContextServlet")
 public class ContextServlet extends HttpServlet {
@@ -54,9 +54,10 @@ public class ContextServlet extends HttpServlet {
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		try {
 			HttpSession session = request.getSession(true);
-			PrintWriter writer = response.getWriter();
+			//PrintWriter writer = response.getWriter();
 			Project project = (Project) session.getAttribute("currentproject");
 			User user = (User) session.getAttribute("currentSessionUser");
 			int clength = 200;
@@ -64,8 +65,8 @@ public class ContextServlet extends HttpServlet {
 			String lindex = request.getParameter("lindex");
 
 			if (findex.length() == 0 || lindex.length() == 0) {
-				writer.flush();
-				writer.write("False");
+				
+				response.getWriter().write("False");
 			}
 
 			else {
@@ -77,10 +78,9 @@ public class ContextServlet extends HttpServlet {
 				String contextreq = moreContext(index1, index2, clength, user, project, filename);
 				System.out.println(contextreq);
 
-				response.setCharacterEncoding("UTF-8");// sends response back to client to be handled by
+				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
 																	// Ajax
-				writer.flush();
-				writer.write(contextreq);
+				response.getWriter().write(contextreq);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
