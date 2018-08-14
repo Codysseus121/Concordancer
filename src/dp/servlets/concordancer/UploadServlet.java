@@ -1,10 +1,7 @@
 package dp.servlets.concordancer;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -19,10 +16,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import dp.concordancer.ConcFacade.ConcFacadeImpl;
 import dp.concordancer.ConcFacade.ConcordancerFacade;
@@ -89,7 +82,7 @@ public class UploadServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		RequestDispatcher dispatcher = null;
 		response.setContentType("text/html");
-		ConcordancerFacade facade = new ConcFacadeImpl();
+		ConcordancerFacade service = new ConcFacadeImpl();
 		
 		String projectname = request.getParameter("projectname");
 		int projectid = 0;
@@ -98,7 +91,7 @@ public class UploadServlet extends HttpServlet {
 
 		// If collection not empty, create new project.
 		if (parts != null) {
-			projectid = facade.createProject(user, projectname);
+			projectid = service.createProject(user, projectname);
 		}
 
 		boolean validfname = false;
@@ -112,23 +105,9 @@ public class UploadServlet extends HttpServlet {
 
 					try {
 
-						String instring = "";
-
-						switch (fextension) {
-						case "txt":
-							instring = convertTxt(part);
-							break;
-
-						case "pdf":
-							instring = convertPdf(part);
-							break;
-
-						case "html":
-							instring = convertHtml(part);
-							break;
-						}
-						facade.addFiles(fileName, projectid, instring);// call method addFiles() of FileDao
-						Project project = facade.getProject(projectid, user);// get project and set it as attribute
+						String text = service.getText(part, fextension);
+						service.addFiles(fileName, projectid, text);// call method addFiles() of FileDao
+						Project project = service.getProject(projectid, user);// get project and set it as attribute
 						session.setAttribute("currentproject", project);
 
 					} catch (Exception ex) {
@@ -157,8 +136,7 @@ public class UploadServlet extends HttpServlet {
 	}
 
 	/*
-	 * Method getFileExtension to get a String representation of the filename's
-	 * extension.
+	 * Method getFileExtension to get a String representation of the filename's extension.
 	 * 
 	 * @return: String.
 	 */
@@ -172,75 +150,5 @@ public class UploadServlet extends HttpServlet {
 			extension = "html";
 		return extension;
 	}
-	/*
-	 * Method convertTxt to pre-process plain text files.
-	 * @param Part filecontent: the Part object that contains the contents of the file uploaded.
-	 */
-
-	private String convertTxt(Part filecontent) throws IOException {
-		// Source: https://docs.oracle.com/javase/tutorial/i18n/text/stream.html
-		StringBuffer buffer = new StringBuffer();
-		InputStreamReader isr = new InputStreamReader(filecontent.getInputStream());
-		Reader in = new BufferedReader(isr);
-		int ch;
-		while ((ch = in.read()) > -1) {
-			buffer.append((char) ch);
-		}
-		in.close();
-		String result = buffer.toString();
-
-		return result;
-
-	}
-	/*
-	 * Method convertPdf to pre-process and convert PDF files to text.
-	 * Uses the ApachePDFBox library for the conversion
-	 * @param Part filecontent: the Part object that contains the contents of the file uploaded.
-	 */
-	private String convertPdf(Part filecontent) throws IOException {
-
-		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");// necessary due to
-																						// incompatibility
-		String text = "";
-		PDDocument document = null;
-		InputStream stream = null;
-		try {
-			stream = filecontent.getInputStream();
-			document = PDDocument.load(stream);
-			PDFTextStripper pdfStripper = new PDFTextStripper();
-			text = pdfStripper.getText(document);
-
-		} finally {
-
-			document.close();
-			stream.close();
-		}
-		return text;
-	}
-	/*
-	 * Method convertHtml to pre-process and convert HTML files to plain text.
-	 * Use the JSoup library.
-	 * @param Part filecontent: the Part object that contains the contents of the file uploaded.
-	 */
-	private String convertHtml(Part filecontent) throws IOException {
-
-		InputStream stream = null;
-		String finaltext = "";
-
-		try {
-			stream = filecontent.getInputStream();
-			Document doc = Jsoup.parse(stream, "UTF-8", "");
-			String plaintxt = doc.toString();
-			finaltext = Jsoup.parse(plaintxt).body().text();
-			// finaltext = processText(finaltext);
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			stream.close();
-
-		}
-		return finaltext;
-	}
-
+	
 }

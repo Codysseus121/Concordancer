@@ -4,12 +4,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="dp.model.concordancer.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	response.setHeader("Cache-Control", "no-store");
-%>
-<%
-	response.setDateHeader("Expires", 0);
-%>
+<%	response.setHeader("Cache-Control", "no-store");%>
+<%	response.setDateHeader("Expires", 0);%>
 
 <!DOCTYPE html>
 <html>
@@ -168,7 +164,7 @@
 
 
 	<div class="gif-loader" id="loader" style="display: none">
-		<img src="../images/source.gif" class="img-fluid img-thumbnail" />
+		<img src="<%=request.getContextPath()%>/images/source.gif" class="img-fluid img-thumbnail" />
 	</div>
 
 	<!-- Modal -->

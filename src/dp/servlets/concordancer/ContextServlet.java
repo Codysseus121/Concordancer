@@ -75,8 +75,9 @@ public class ContextServlet extends HttpServlet {
 				String filename = request.getParameter("filename");
 
 				String contextreq = moreContext(index1, index2, clength, user, project, filename);
+				System.out.println(contextreq);
 
-				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
+				response.setCharacterEncoding("UTF-8");// sends response back to client to be handled by
 																	// Ajax
 				writer.flush();
 				writer.write(contextreq);

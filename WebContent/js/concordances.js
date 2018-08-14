@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			url : '/Concordancer/concordancer',
-
+			
 			data : {
 
 				action : "context",
@@ -52,6 +52,8 @@ $(document).ready(function() {
 				lindex : end,
 				filename : fname
 			},
+			dataType:    "text",
+		    cache:       false,
 			type : 'post',
 			success : function(response) {
 				$('#contextmodal').modal('show');

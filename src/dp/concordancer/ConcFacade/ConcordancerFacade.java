@@ -1,7 +1,10 @@
 package dp.concordancer.ConcFacade;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.TreeMap;
+
+import javax.servlet.http.Part;
 
 import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
@@ -26,6 +29,7 @@ public interface ConcordancerFacade {
 	List<String> permute(String input);
 	List<Kwic> getCollocates(List<Kwic> concordances, List<String> permutations);
 	TreeMap<String, Integer> generateIndex(Project project, User user);
+	String getText (Part part, String fextension) throws IOException;
 	
 	
 	
