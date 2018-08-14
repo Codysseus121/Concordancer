@@ -11,14 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dp.dao.concordancer.*;
+
 import dp.model.concordancer.*;
-import dp.concordancer.ConcFacade.ConcFacadeImpl;
-import dp.concordancer.ConcFacade.ConcordancerFacade;
-import dp.concordancer.forms.*;
-import dp.concordancer.interfaces.GetUserDataAccessObject;
-import dp.concordancer.interfaces.ProjectDataAccessObject;
-import dp.concordancer.interfaces.RegisterDataAccessObject;
+import dp.concordancer.ConcFacade.*;
+
 
 /**
  * Servlet implementation class RegisterServlet
@@ -90,10 +86,6 @@ public class RegisterServlet extends HttpServlet {
 			{
 				facade.registerUser(username, password);
 				user = facade.getUser(username, password);
-				//user.setUserid(u.getUser_id());
-				//user.setUsername(u.getUsername());
-				//user.setPassword(u.getPassword());
-				//user.setIsRegistered(u.getIsRegistered());
 				List<Project> projects = facade.getProjects(user);
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);// sets this User object as session attribute

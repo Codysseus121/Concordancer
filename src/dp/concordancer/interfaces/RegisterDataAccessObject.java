@@ -1,6 +1,6 @@
 package dp.concordancer.interfaces;
 
-import dp.concordancer.forms.UserForm;
+
 
 /*
 * Interface RegisterDataAccessObject defines methods

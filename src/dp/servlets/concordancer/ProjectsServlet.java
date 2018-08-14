@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dp.concordancer.interfaces.ProjectDataAccessObject;
-import dp.dao.concordancer.ProjectDao;
+
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
+import dp.concordancer.ConcFacade.*;
 
 /**
  * Servlet implementation class ProjectsServlet:
@@ -59,8 +59,8 @@ public class ProjectsServlet extends HttpServlet {
 		
 		try // get project and add it to the session
 		{
-			ProjectDataAccessObject pdao = new ProjectDao();
-			List <Project> projects = pdao.getProjects(user);	
+			ConcordancerFacade facade = new ConcFacadeImpl();
+			List <Project> projects = facade.getProjects(user);	
 			session.setAttribute("projects", projects);
 			session.removeAttribute("concordances");
 			dispatcher = request.getServletContext().getRequestDispatcher("/jsp/projects.jsp");

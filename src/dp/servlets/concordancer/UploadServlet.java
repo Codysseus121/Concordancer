@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -25,10 +24,9 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import dp.concordancer.interfaces.FileDataAccessObject;
-import dp.concordancer.interfaces.ProjectDataAccessObject;
-import dp.dao.concordancer.FileDao;
-import dp.dao.concordancer.ProjectDao;
+import dp.concordancer.ConcFacade.ConcFacadeImpl;
+import dp.concordancer.ConcFacade.ConcordancerFacade;
+
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
@@ -91,8 +89,8 @@ public class UploadServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		RequestDispatcher dispatcher = null;
 		response.setContentType("text/html");
-		ProjectDataAccessObject pdao = new ProjectDao();
-		FileDataAccessObject fdao = new FileDao();
+		ConcordancerFacade facade = new ConcFacadeImpl();
+		
 		String projectname = request.getParameter("projectname");
 		int projectid = 0;
 		User user = (User) session.getAttribute("currentSessionUser");
@@ -100,7 +98,7 @@ public class UploadServlet extends HttpServlet {
 
 		// If collection not empty, create new project.
 		if (parts != null) {
-			projectid = pdao.createProject(user, projectname);
+			projectid = facade.createProject(user, projectname);
 		}
 
 		boolean validfname = false;
@@ -129,11 +127,11 @@ public class UploadServlet extends HttpServlet {
 							instring = convertHtml(part);
 							break;
 						}
-						fdao.addFiles(fileName, projectid, instring);// call method addFiles() of FileDao
-						Project project = pdao.getProject(projectid, user);// get project and set it as attribute
+						facade.addFiles(fileName, projectid, instring);// call method addFiles() of FileDao
+						Project project = facade.getProject(projectid, user);// get project and set it as attribute
 						session.setAttribute("currentproject", project);
 
-					} catch (SQLException ex) {
+					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
 

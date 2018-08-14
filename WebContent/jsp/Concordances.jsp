@@ -134,7 +134,7 @@
 
 							<tbody id="mytable">
 
-								<c:forEach var="entry" items="${sessionScope.concordances}"
+								<c:forEach var="entry" items="${sessionScope.concordances.concordances}"
 									varStatus="myIndex">
 									<tr class="trows">
 

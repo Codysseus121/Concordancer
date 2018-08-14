@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dp.concordancer.forms.UserForm;
+
 import dp.concordancer.interfaces.GetUserDataAccessObject;
 import dp.model.concordancer.User;
 

@@ -13,11 +13,7 @@ import java.util.*;
 
 import dp.concordancer.interfaces.FileDataAccessObject;
 import dp.dao.concordancer.FileDao;
-import dp.model.concordancer.Kwic;
-import dp.model.concordancer.Project;
-import dp.model.concordancer.ProjectFile;
-import dp.model.concordancer.SuffixArrayX;
-import dp.model.concordancer.User;
+import dp.model.concordancer.*;
 
 /**
  * Servlet implementation class KWICServlet
@@ -75,9 +71,10 @@ public class KWICServlet extends HttpServlet {
 
 				User user = (User) session.getAttribute("currentSessionUser");
 				Project project = (Project) session.getAttribute("currentproject");
-				List<Kwic> conc = getConcordances(user, project, word);
+				Concordances conc = new Concordances(getConcordances(user, project, word));
+				
 
-				if (conc.isEmpty()) {
+				if (conc.getConcordances().isEmpty()) {
 					writer.flush();
 					writer.write("False");
 				}

@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dp.concordancer.interfaces.ProjectDataAccessObject;
-import dp.dao.concordancer.ProjectDao;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
+import dp.concordancer.ConcFacade.*;
 
 /**
  * Servlet implementation class ProjectDeleteServlet:
@@ -70,12 +69,13 @@ public class ProjectDeleteServlet extends HttpServlet {
 
 				int project_id = Integer.parseInt(pid);// convert it into int.
 				User user = (User) session.getAttribute("currentSessionUser");// get the session user.
-				deleteProject(user, project_id);// delete project from the database
+				ConcordancerFacade facade = new ConcFacadeImpl();
+				facade.deleteProject(user, project_id);// delete project from the database
 
 				// refresh list of projects after deletion
 
-				ProjectDataAccessObject pdao = new ProjectDao();
-				List<Project> projects = pdao.getProjects(user);
+				
+				List<Project> projects = facade.getProjects(user);
 				session.setAttribute("projects", projects);
 				writer.flush();
 				writer.write("True");
@@ -88,18 +88,5 @@ public class ProjectDeleteServlet extends HttpServlet {
 		}
 
 	}
-	/*
-	 * private method deleteProject() to delete a project from the persistence
-	 * layer.
-	 * 
-	 * @User: the user
-	 * 
-	 * @int id: the key of the project
-	 */
-
-	private void deleteProject(User u, int pid) {
-		ProjectDataAccessObject pdao = new ProjectDao();
-		pdao.deleteProject(u, pid);
-
-	}
+	
 }
