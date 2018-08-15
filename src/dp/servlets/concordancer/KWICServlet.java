@@ -59,6 +59,7 @@ public class KWICServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			String word = request.getParameter("keyword");
 			word = word.trim();
+			System.out.println(word);
 
 			if (word.length() == 0) // check validity
 

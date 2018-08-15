@@ -19,6 +19,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import dp.concordancer.interfaces.*;
 import dp.dao.concordancer.*;
 import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
@@ -28,24 +29,20 @@ import dp.model.concordancer.User;
 
 public class ConcFacadeImpl implements ConcordancerFacade {
 	
-	private GetUserDao udao = new GetUserDao();
-	private RegisterDao rdao = new RegisterDao();
-	private ProjectDao pdao = new ProjectDao();
+	private UserDataAccessObject udao = new UserDao();
+	private ProjectDataAccessObject pdao = new ProjectDao();
 	private FileDao fdao = new FileDao();
 
-	public GetUserDao GUDao() {
+	public UserDataAccessObject getUserDao() {
 		return udao;
 	}
 
-	public RegisterDao RDao() {
-		return rdao;
-	}
-
-	public ProjectDao PDao() {
+	
+	public ProjectDataAccessObject PDao() {
 		return pdao;
 	}
 
-	public FileDao FDao() {
+	public FileDataAccessObject FDao() {
 		return fdao;
 	}
 
@@ -54,11 +51,11 @@ public class ConcFacadeImpl implements ConcordancerFacade {
 	}
 
 	public boolean checkUserName(String username) {
-		return rdao.checkUserName(username);
+		return udao.checkUserName(username);
 	}
 
-	public void registerUser(String name, String password) {
-		rdao.registerUser(name, password);
+	public boolean registerUser(String name, String password) {
+		return udao.registerUser(name, password);
 	}
 
 	public List<Project> getProjects(User user) {
@@ -69,8 +66,8 @@ public class ConcFacadeImpl implements ConcordancerFacade {
 		return pdao.getProject(id, u);
 	}
 
-	public void deleteProject(User u, int pid) {
-		pdao.deleteProject(u, pid);
+	public boolean deleteProject(User u, int pid) {
+		return pdao.deleteProject(u, pid);
 	}
 
 	public int createProject(User user, String projectname) {
@@ -85,8 +82,8 @@ public class ConcFacadeImpl implements ConcordancerFacade {
 		return fdao.getFile(project, user, filename);
 	}
 
-	public void addFiles(String filename, int projectid, String text) {
-		fdao.addFiles(filename, projectid, text);
+	public boolean addFiles(String filename, int projectid, String text) {
+		return fdao.addFiles(filename, projectid, text);
 	}
 
 	/*

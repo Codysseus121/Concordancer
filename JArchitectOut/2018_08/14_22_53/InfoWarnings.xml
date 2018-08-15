@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<InfoWarnings>
+  <Info>Begin full analysis with JArchitect v2018.1.0</Info>
+  <Info>Bytecode parsing</Info>
+  <Info>Third Party parsing</Info>
+  <Info>Parsing Source Files</Info>
+  <Info>PMD is disabled.You can enable it from 'Project Properties=&gt;Plugins Tab' to have more checks</Info>
+  <Info>CheckStyle is disabled.You can enable it from 'Project Properties=&gt;Plugins Tab' to have more checks</Info>
+  <Info>FindBugs is disabled.You can enable it from 'Project Properties=&gt;Plugins Tab' to have more checks</Info>
+  <Info>No dependency cycle detected in assemblies referencement graph.</Info>
+  <Info>Log trend metrics values.</Info>
+  <Warning>1 quality gate fail.
+  - 'Critical Rules Violated' value 1 rules greater than fail threshold 0 rules</Warning>
+  <Info>JArchitect analysis done. Duration: 00:15</Info>
+</InfoWarnings>

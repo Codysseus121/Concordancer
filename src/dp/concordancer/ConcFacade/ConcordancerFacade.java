@@ -16,14 +16,14 @@ public interface ConcordancerFacade {
 
 	User getUser(String name, String password);
 	boolean checkUserName(String username);
-	void registerUser(String name, String password);
+	boolean registerUser(String name, String password);
 	List<Project> getProjects(User user);
 	Project getProject(int id, User u);
-	void deleteProject(User u, int pid);
+	boolean deleteProject(User u, int pid);
 	int createProject(User user, String projectname);
 	List<ProjectFile> getFiles(Project project, User user);
 	String getFile(Project project, User user, String filename);
-	void addFiles(String filename, int projectid, String text);
+	boolean addFiles(String filename, int projectid, String text);
 	List<Kwic> getConcordances(User u, Project p, String query);
 	List<Kwic> getKwic(ProjectFile file, String query, int context);
 	List<String> permute(String input);

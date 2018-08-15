@@ -16,14 +16,14 @@ public interface ProjectDataAccessObject {
  * @user: the user.
  * @return a List with the User's projects.
  */
-public List<Project> getProjects(User user);
+ List<Project> getProjects(User user);
 /*
  * Method deleteProject for deleting a single project from the database.
  * @user: the user.
  * @pid: the project's primary key.
  */
 
-public boolean deleteProject(User u, int pid);
+ boolean deleteProject(User u, int pid);
 
 /*Method createProject to create a new Project.
  * @param user: the user.
@@ -31,13 +31,13 @@ public boolean deleteProject(User u, int pid);
  * 
  */
 
-public int createProject(User user, String projectname);
+ int createProject(User user, String projectname);
 /*
  * Method getProject for getting a single project of a single user from the database.
  * @user: the user.
  * @return a Project object.
  */
-public Project getProject(int id, User u);
+ Project getProject(int id, User u);
 
 	
 }
