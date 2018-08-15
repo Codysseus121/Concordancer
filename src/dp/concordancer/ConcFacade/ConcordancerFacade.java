@@ -25,8 +25,6 @@ public interface ConcordancerFacade {
 	String getFile(Project project, User user, String filename);
 	boolean addFiles(String filename, int projectid, String text);
 	List<Kwic> getConcordances(User u, Project p, String query);
-	List<Kwic> getKwic(ProjectFile file, String query, int context);
-	List<String> permute(String input);
 	List<Kwic> getCollocates(List<Kwic> concordances, List<String> permutations);
 	TreeMap<String, Integer> generateIndex(Project project, User user);
 	String getText (Part part, String fextension) throws IOException;

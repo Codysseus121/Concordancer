@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dp.concordancer.ConcFacade.ConcFacadeImpl;
 import dp.concordancer.ConcFacade.ConcordancerFacade;
+import dp.concordancer.ConcFacade.TextService;
 import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
@@ -61,6 +62,7 @@ public class CollocateServlet extends HttpServlet {
 			String keyword2 = request.getParameter("keyword2");
 			PrintWriter writer = response.getWriter();
 			ConcordancerFacade service = new ConcFacadeImpl();
+			TextService textservice = new TextService();
 
 			if (keyword1.length() != 0 || keyword2.length() != 0) {
 
@@ -68,7 +70,7 @@ public class CollocateServlet extends HttpServlet {
 				Project project = (Project) session.getAttribute("currentproject");
 				
 				List<Kwic> conc = service.getConcordances(user, project, keyword1);
-				List<String> permutations = service.permute(keyword2);
+				List<String> permutations = textservice.permute(keyword2);
 				List<Kwic> collocates = service.getCollocates(conc, permutations);				
 
 				

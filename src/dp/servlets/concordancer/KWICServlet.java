@@ -1,7 +1,6 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -56,16 +55,16 @@ public class KWICServlet extends HttpServlet {
 		try {
 
 			HttpSession session = request.getSession(true);
-			PrintWriter writer = response.getWriter();
+			
 			String word = request.getParameter("keyword");
 			word = word.trim();
-			System.out.println(word);
+			//System.out.println(word);
 
 			if (word.length() == 0) // check validity
 
 			{
-				writer.flush();
-				writer.write("False");
+				
+				response.getWriter().write("False");
 
 			}
 
@@ -79,14 +78,12 @@ public class KWICServlet extends HttpServlet {
 				
 
 				if (conc.isEmpty()) {
-					writer.flush();
-					writer.write("False");
+				response.getWriter().write("False");
 				}
 
 				else {
 					session.setAttribute("concordances", conc);
-					writer.flush();
-					writer.write("True");
+					response.getWriter().write("True");
 				}
 
 			}

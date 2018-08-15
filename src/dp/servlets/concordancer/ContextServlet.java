@@ -1,8 +1,6 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dp.concordancer.interfaces.FileDataAccessObject;
-
-import dp.dao.concordancer.FileDao;
+import dp.concordancer.ConcFacade.TextService;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.User;
 
@@ -63,6 +59,7 @@ public class ContextServlet extends HttpServlet {
 			int clength = 200;
 			String findex = request.getParameter("findex");
 			String lindex = request.getParameter("lindex");
+			TextService textservice = new TextService();
 
 			if (findex.length() == 0 || lindex.length() == 0) {
 				
@@ -74,8 +71,7 @@ public class ContextServlet extends HttpServlet {
 				int index1 = Integer.parseInt(findex);
 				int index2 = Integer.parseInt(lindex);
 				String filename = request.getParameter("filename");
-
-				String contextreq = moreContext(index1, index2, clength, user, project, filename);
+				String contextreq = textservice.moreContext(index1, index2, clength, user, project, filename);
 				
 
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
@@ -88,30 +84,5 @@ public class ContextServlet extends HttpServlet {
 
 	}
 
-	/*
-	 * A method to generate more context for a given kwic line.
-	 */
-	private String moreContext(int findex, int lindex, int context, User u, Project p, String filename) {
-
-		// Get content of file
-		FileDataAccessObject fdao = new FileDao();
-		String morecontext = "";
-		String text = fdao.getFile(p, u, filename);
-		if (findex - context >= 0 && lindex + context <= text.length()) {
-			morecontext = text.substring(findex - context, lindex + context);
-		}
-
-		else if (findex - context < 0 && lindex + context <= text.length()) {
-			morecontext = text.substring(0, lindex + context);
-		}
-
-		else if (lindex + context > text.length() && findex - context >= 0) {
-			morecontext = text.substring(findex - context, text.length());
-		} else {
-			morecontext = text;
-		}
-
-		return morecontext;
-	}
-
+	
 }
