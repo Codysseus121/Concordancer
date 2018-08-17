@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import dp.concordancer.interfaces.ProjectDataAccessObject;
 import dp.dao.concordancer.ProjectDao;
-import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 
 /**
  * Servlet implementation class UseProjectServlet
@@ -63,13 +63,13 @@ public class UseProjectServlet extends HttpServlet {
 		session.removeAttribute("currentproject"); // clear previous session objects
 		session.removeAttribute("concordances");
 		RequestDispatcher dispatcher = null;
-		User user = (User) session.getAttribute("currentSessionUser");
+		UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
 		String url = "/ProjectsServlet";
 
 		try // get project and add it to the session
 		{
 			ProjectDataAccessObject pdao = new ProjectDao();
-			Project p = null;
+			ProjectInterface p = null;
 			Integer projectID = null;
 
 			// get attributes

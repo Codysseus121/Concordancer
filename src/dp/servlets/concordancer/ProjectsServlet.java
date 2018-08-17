@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 
 import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.UserInterface;
 import dp.concordancer.ConcFacade.*;
 
 /**
@@ -55,7 +55,7 @@ public class ProjectsServlet extends HttpServlet {
 		
 		RequestDispatcher dispatcher = null;
 		
-		User user = (User) session.getAttribute("currentSessionUser");
+		UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
 		
 		try // get project and add it to the session
 		{

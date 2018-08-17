@@ -24,7 +24,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
  * @see dp.concordancer.interfaces.ProjectDataAccessObject#getProjects(dp.model.concordancer.User)
  */
 	
-	public List<Project> getProjects(User user) {
+	public List<Project> getProjects(UserInterface user) {
 
 		Connection conn = null;
 		List<Project> projects = new ArrayList<Project>();
@@ -44,7 +44,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
 				projects.add(project);
 			}
 
-			for (Project p : projects) {
+			for (ProjectInterface p : projects) {
 
 				int project_id = p.getProject_id();
 				String files = "SELECT * FROM files WHERE project_id='" + project_id + "';";
@@ -75,9 +75,9 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
  * @see dp.concordancer.interfaces.ProjectDataAccessObject#getProject(int, dp.model.concordancer.User)
  */
 	
-	public Project getProject(int id, User u) {
+	public ProjectInterface getProject(int id, UserInterface u) {
 		Connection conn = null;
-		Project project = new Project();
+		ProjectInterface project = new Project();
 		List<ProjectFile> filelist = new ArrayList<ProjectFile>();
 		try {
 			conn = getConnection();
@@ -128,7 +128,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
  * @int pid : the project's key on the database
  * 
  */
-	public boolean deleteProject(User u, int pid) {
+	public boolean deleteProject(UserInterface u, int pid) {
 		Connection conn = null;
 		int user_id = u.getUser_id();
 		String query = "DELETE FROM PROJECT WHERE PROJECT_ID='" + pid + "' AND USER_ID='" + user_id + "';";
@@ -156,7 +156,7 @@ public class ProjectDao extends GetConnection implements ProjectDataAccessObject
  * (non-Javadoc)
  * @see dp.concordancer.interfaces.ProjectDataAccessObject#createProject(dp.model.concordancer.User, java.lang.String)
  */
-		public int createProject(User user, String projectname) {
+		public int createProject(UserInterface user, String projectname) {
 		Connection conn = null;
 		int projectid = 0;
 

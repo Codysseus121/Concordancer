@@ -21,8 +21,8 @@ import org.mockito.Mockito;
 
 import dp.dao.concordancer.*;
 import dp.model.concordancer.Kwic;
-import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 import dp.servlets.concordancer.ConcordancerServlet;
 import dp.servlets.concordancer.KWICServlet;
 
@@ -39,8 +39,8 @@ public class KWICServletTest extends Mockito {
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);
 
-		User user = null;
-		Project project = null;
+		UserInterface user = null;
+		ProjectInterface project = null;
 		String word = "";
 
 		ServletContext context = mock(ServletContext.class);

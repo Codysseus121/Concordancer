@@ -39,7 +39,7 @@ public class ProjectsServletTest extends Mockito {
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);	
 		RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-		User user = mock(User.class);
+		UserInterface user = mock(User.class);
 		ServletContext context = mock(ServletContext.class);
 				
 		

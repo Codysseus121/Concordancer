@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.UserInterface;
 import dp.concordancer.ConcFacade.*;
 
 /**
@@ -68,7 +68,7 @@ public class ProjectDeleteServlet extends HttpServlet {
 			{ 
 
 				int project_id = Integer.parseInt(pid);// convert it into int.
-				User user = (User) session.getAttribute("currentSessionUser");// get the session user.
+				UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");// get the session user.
 				ConcordancerFacade facade = new ConcFacadeImpl();
 				facade.deleteProject(user, project_id);// delete project from the database
 

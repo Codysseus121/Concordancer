@@ -14,9 +14,10 @@ import javax.servlet.http.HttpSession;
 import dp.concordancer.ConcFacade.ConcFacadeImpl;
 import dp.concordancer.ConcFacade.ConcordancerFacade;
 import dp.concordancer.ConcFacade.TextService;
+import dp.model.concordancer.KWICInterface;
 import dp.model.concordancer.Kwic;
-import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 
 /**
  * Servlet implementation class CollocateServlet
@@ -66,12 +67,12 @@ public class CollocateServlet extends HttpServlet {
 
 			if (keyword1.length() != 0 || keyword2.length() != 0) {
 
-				User user = (User) session.getAttribute("currentSessionUser");
-				Project project = (Project) session.getAttribute("currentproject");
+				UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
+				ProjectInterface project = (ProjectInterface) session.getAttribute("currentproject");
 				
-				List<Kwic> conc = service.getConcordances(user, project, keyword1);
+				List<KWICInterface> conc = service.getConcordances(user, project, keyword1);
 				List<String> permutations = textservice.permute(keyword2);
-				List<Kwic> collocates = service.getCollocates(conc, permutations);				
+				List<KWICInterface> collocates = service.getCollocates(conc, permutations);				
 
 				
 				if (collocates.isEmpty()) { //no collocates found.

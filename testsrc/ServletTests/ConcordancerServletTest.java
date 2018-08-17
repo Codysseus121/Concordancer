@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 import dp.servlets.concordancer.ConcordancerServlet;
 import dp.servlets.concordancer.UseProjectServlet;
 
@@ -37,8 +37,8 @@ public class ConcordancerServletTest extends Mockito {
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);	
 		RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-		User user = null;
-		Project project = null;
+		UserInterface user = null;
+		ProjectInterface project = null;
 		
 		ServletContext context = mock(ServletContext.class);
 				

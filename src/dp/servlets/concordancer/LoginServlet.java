@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 			
 
 			ConcordancerFacade facade = new ConcFacadeImpl();
-			User user = facade.getUser(name, pass);
+			UserInterface user = facade.getUser(name, pass);
 
 			if (user != null) {
 				session.setAttribute("currentSessionUser", user); // and set it as attribute for this session to be

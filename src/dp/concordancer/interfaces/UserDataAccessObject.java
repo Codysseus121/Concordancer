@@ -1,10 +1,10 @@
 package dp.concordancer.interfaces;
 
-import dp.model.concordancer.User;
+import dp.model.concordancer.UserInterface;
 
 public interface UserDataAccessObject {
 
-	User getUser(String name, String password);
+	UserInterface getUser(String name, String password);
 
 	/*
 	 * checkUserName for checking if the username is available.

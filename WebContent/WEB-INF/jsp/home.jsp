@@ -20,7 +20,7 @@
 
 
 <body>
-	<!-- Adapted from: https://codepen.io/colorlib/pen/rxddKy, Copyright (c) 2018 by Aigars Silkalns -->
+	<!-- Adapted partially from: https://codepen.io/colorlib/pen/rxddKy, Copyright (c) 2018 by Aigars Silkalns -->
 	<h1>
 		A<sup>2</sup>Z
 	</h1>

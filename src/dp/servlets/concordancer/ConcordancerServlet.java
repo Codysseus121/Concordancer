@@ -60,8 +60,8 @@ public class ConcordancerServlet extends HttpServlet {
 			response.setContentType("text/html");
 			RequestDispatcher dispatcher = null;
 			ConcordancerFacade service = new ConcFacadeImpl();
-			Project project = (Project) session.getAttribute("currentproject");
-			User user = (User) session.getAttribute("currentSessionUser");
+			ProjectInterface project = (ProjectInterface) session.getAttribute("currentproject");
+			UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
 
 			if (user != null && project != null) // check params for validity
 			{

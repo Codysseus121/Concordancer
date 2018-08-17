@@ -6,27 +6,29 @@ import java.util.TreeMap;
 
 import javax.servlet.http.Part;
 
+import dp.model.concordancer.KWICInterface;
 import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.ProjectFile;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 
 public interface ConcordancerFacade {
 	
 
-	User getUser(String name, String password);
+	UserInterface getUser(String name, String password);
 	boolean checkUserName(String username);
 	boolean registerUser(String name, String password);
-	List<Project> getProjects(User user);
-	Project getProject(int id, User u);
-	boolean deleteProject(User u, int pid);
-	int createProject(User user, String projectname);
-	List<ProjectFile> getFiles(Project project, User user);
-	String getFile(Project project, User user, String filename);
+	List<Project> getProjects(UserInterface user);
+	ProjectInterface getProject(int id, UserInterface u);
+	boolean deleteProject(UserInterface u, int pid);
+	int createProject(UserInterface user, String projectname);
+	List<ProjectFile> getFiles(ProjectInterface project, UserInterface user);
+	String getFile(ProjectInterface project, UserInterface user, String filename);
 	boolean addFiles(String filename, int projectid, String text);
-	List<Kwic> getConcordances(User u, Project p, String query);
-	List<Kwic> getCollocates(List<Kwic> concordances, List<String> permutations);
-	TreeMap<String, Integer> generateIndex(Project project, User user);
+	List<KWICInterface> getConcordances(UserInterface u, ProjectInterface p, String query);
+	List<KWICInterface> getCollocates(List<KWICInterface> concordances, List<String> permutations);
+	TreeMap<String, Integer> generateIndex(ProjectInterface project, UserInterface user);
 	String getText (Part part, String fextension) throws IOException;
 	
 	

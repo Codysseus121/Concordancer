@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
 		ConcordancerFacade facade = new ConcFacadeImpl();
 		
 		PrintWriter writer = response.getWriter();
-		User user = new User();
+		UserInterface user = new User();
 
 		try {
 			String username = request.getParameter("username");

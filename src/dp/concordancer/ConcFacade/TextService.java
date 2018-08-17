@@ -13,11 +13,14 @@ import java.util.TreeMap;
 import dp.concordancer.interfaces.FileDataAccessObject;
 import dp.concordancer.interfaces.TextServiceInterface;
 import dp.dao.concordancer.FileDao;
+import dp.model.concordancer.KWICInterface;
 import dp.model.concordancer.Kwic;
-import dp.model.concordancer.Project;
 import dp.model.concordancer.ProjectFile;
+import dp.model.concordancer.ProjectFileInterface;
+import dp.model.concordancer.ProjectInterface;
 import dp.model.concordancer.SuffixArrayX;
-import dp.model.concordancer.User;
+import dp.model.concordancer.SuffixArrayXInterface;
+import dp.model.concordancer.UserInterface;
 
 public class TextService implements TextServiceInterface {
 	
@@ -66,11 +69,11 @@ public class TextService implements TextServiceInterface {
 	 * 
 	 * @return: a List object.
 	 */
-	public List<Kwic> getKwic(String text, String filename, String query, int context) {
+	public List<KWICInterface> getKwic(String text, String filename, String query, int context) {
 		
 		int n = text.length();
-		List<Kwic> words = new ArrayList<Kwic>();
-		SuffixArrayX sa = new SuffixArrayX(text);
+		List<KWICInterface> words = new ArrayList<KWICInterface>();
+		SuffixArrayXInterface sa = new SuffixArrayX(text);
 		List<String> perms = permute(query);
 
 		// find all occurrences of queries with context and add to arraylist
@@ -106,18 +109,18 @@ public class TextService implements TextServiceInterface {
 	 * @return: List<Kwic> object with the kwics in context.
 	 * 
 	 */
-	public List<Kwic> getConcordances(User u, Project p, String query) {
+	public List<KWICInterface> getConcordances(UserInterface u, ProjectInterface p, String query) {
 
 		int context = 55;// 55 characters on either side. Can be refactored according to user
 							// requirements or to accept user input.
-		List<Kwic> c = new ArrayList<Kwic>();
-		List<Kwic> all = new ArrayList<Kwic>();
+		List<KWICInterface> c = new ArrayList<KWICInterface>();
+		List<KWICInterface> all = new ArrayList<KWICInterface>();
 		ConcordancerFacade service = new ConcFacadeImpl();
 
 		// read in text per file
 		List<ProjectFile> files = service.getFiles(p, u);
 
-		for (ProjectFile file : files) {
+		for (ProjectFileInterface file : files) {
 
 			c = getKwic(file.getFilecontent(), file.getFile_name(), query, context);
 			all.addAll(c);
@@ -126,11 +129,11 @@ public class TextService implements TextServiceInterface {
 		return all;
 	}
 
-	public List<Kwic> getCollocates(List<Kwic> concordances, List<String> permutations) {
+	public List<KWICInterface> getCollocates(List<KWICInterface> concordances, List<String> permutations) {
 		
-		List<Kwic> collocates = new ArrayList<Kwic>();
+		List<KWICInterface> collocates = new ArrayList<KWICInterface>();
 		
-		for (Kwic word : concordances) { // check for collocates
+		for (KWICInterface word : concordances) { // check for collocates
 			
 			String lcontext = word.getLcontext();
 			String rcontext = word.getRcontext();
@@ -150,7 +153,7 @@ public class TextService implements TextServiceInterface {
 	 * private method generateIndex() to generate the alphabetical index
 	 * of all the files in a project.
 	 */
-		public TreeMap<String, Integer> generateIndex(Project project, User user) {
+		public TreeMap<String, Integer> generateIndex(ProjectInterface project, UserInterface user) {
 
 			// Get all Files for this Project.
 			
@@ -164,7 +167,7 @@ public class TextService implements TextServiceInterface {
 			// Scanner object to tokenize text
 			Scanner scanner = null;
 
-			for (ProjectFile file : files) {
+			for (ProjectFileInterface file : files) {
 				String text = file.getFilecontent();
 				text = processText(text);
 				scanner = new Scanner(text);
@@ -202,7 +205,7 @@ public class TextService implements TextServiceInterface {
 		/*
 		 * A method to generate more context for a given kwic line.
 		 */
-		public String moreContext(int findex, int lindex, int context, User u, Project p, String filename) {
+		public String moreContext(int findex, int lindex, int context, UserInterface u, ProjectInterface p, String filename) {
 
 			// Get content of file
 			FileDataAccessObject fdao = new FileDao();

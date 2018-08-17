@@ -4,7 +4,7 @@ package dp.model.concordancer;
  * Copyright © 2000–2018 Robert Sedgewick and Kevin Wayne. All rights reserved.
  * https://algs4.cs.princeton.edu/63suffix/SuffixArrayX.java.html
  */
-public class SuffixArrayX {
+public class SuffixArrayX implements SuffixArrayXInterface {
 	
 	 private static final int CUTOFF =  5;   // cutoff to insertion sort (any value between 0 and 12)
 
@@ -80,36 +80,29 @@ public class SuffixArrayX {
 	        index[j] = swap;
 	    }
 
-	    /**
-	     * Returns the length of the input string.
-	     * @return the length of the input string
-	     */
-	    public int length() {
+	    /* (non-Javadoc)
+		 * @see dp.model.concordancer.SuffixArrayXInterface#length()
+		 */
+	    @Override
+		public int length() {
 	        return n;
 	    }
 
 
-	    /**
-	     * Returns the index into the original string of the <em>i</em>th smallest suffix.
-	     * That is, {@code text.substring(sa.index(i))} is the <em>i</em> smallest suffix.
-	     * @param i an integer between 0 and <em>n</em>-1
-	     * @return the index into the original string of the <em>i</em>th smallest suffix
-	     * @throws java.lang.IllegalArgumentException unless {@code 0 <=i < n}
-	     */
-	    public int index(int i) {
+	    /* (non-Javadoc)
+		 * @see dp.model.concordancer.SuffixArrayXInterface#index(int)
+		 */
+	    @Override
+		public int index(int i) {
 	        if (i < 0 || i >= n) throw new IllegalArgumentException();
 	        return index[i];
 	    }
 
-	    /**
-	     * Returns the length of the longest common prefix of the <em>i</em>th
-	     * smallest suffix and the <em>i</em>-1st smallest suffix.
-	     * @param i an integer between 1 and <em>n</em>-1
-	     * @return the length of the longest common prefix of the <em>i</em>th
-	     * smallest suffix and the <em>i</em>-1st smallest suffix.
-	     * @throws java.lang.IllegalArgumentException unless {@code 1 <= i < n}
-	     */
-	    public int lcp(int i) {
+	    /* (non-Javadoc)
+		 * @see dp.model.concordancer.SuffixArrayXInterface#lcp(int)
+		 */
+	    @Override
+		public int lcp(int i) {
 	        if (i < 1 || i >= n) throw new IllegalArgumentException();
 	        return lcp(index[i], index[i-1]);
 	    }
@@ -126,25 +119,20 @@ public class SuffixArrayX {
 	        return length;
 	    }
 
-	    /**
-	     * Returns the <em>i</em>th smallest suffix as a string.
-	     * @param i the index
-	     * @return the <em>i</em> smallest suffix as a string
-	     * @throws java.lang.IllegalArgumentException unless {@code 0 <= i < n}
-	     */
-	    public String select(int i) {
+	    /* (non-Javadoc)
+		 * @see dp.model.concordancer.SuffixArrayXInterface#select(int)
+		 */
+	    @Override
+		public String select(int i) {
 	        if (i < 0 || i >= n) throw new IllegalArgumentException();
 	        return new String(text, index[i], n - index[i]);
 	    }
 
-	    /**
-	     * Returns the number of suffixes strictly less than the {@code query} string.
-	     * We note that {@code rank(select(i))} equals {@code i} for each {@code i}
-	     * between 0 and <em>n</em>-1. 
-	     * @param query the query string
-	     * @return the number of suffixes strictly less than {@code query}
-	     */
-	    public int rank(String query) {
+	    /* (non-Javadoc)
+		 * @see dp.model.concordancer.SuffixArrayXInterface#rank(java.lang.String)
+		 */
+	    @Override
+		public int rank(String query) {
 	        int lo = 0, hi = n - 1;
 	        while (lo <= hi) {
 	            int mid = lo + (hi - lo) / 2;

@@ -70,11 +70,11 @@ public class KWICServlet extends HttpServlet {
 
 			else {
 
-				User user = (User) session.getAttribute("currentSessionUser");
-				Project project = (Project) session.getAttribute("currentproject");
+				UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
+				ProjectInterface project = (ProjectInterface) session.getAttribute("currentproject");
 				ConcordancerFacade service = new ConcFacadeImpl();
 			
-				List<Kwic> conc = service.getConcordances(user, project, word);
+				List<KWICInterface> conc = service.getConcordances(user, project, word);
 				
 
 				if (conc.isEmpty()) {

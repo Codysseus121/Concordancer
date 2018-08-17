@@ -3,9 +3,10 @@ package dp.concordancer.interfaces;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import dp.model.concordancer.Project;
+
 import dp.model.concordancer.ProjectFile;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 
 /*Interface FileDataAccessObject for accessing files from the database 
  */
@@ -26,7 +27,7 @@ public interface FileDataAccessObject {
 	 * @param user: the user of the project.
 	 * @return: a List  with ProjectFile objects.
 	 */
-	 List<ProjectFile> getFiles(Project project, User user);
+	 List<ProjectFile> getFiles(ProjectInterface project, UserInterface user);
 	/*
 	 * Method getFile for getting a single file from the database.
 	 * @param project: the name of the project.
@@ -34,7 +35,7 @@ public interface FileDataAccessObject {
 	 * @param filename: the name of the file.
 	 * @return: a String representation of the content
 	 */
-	 String getFile (Project project, User user, String filename);
+	 String getFile (ProjectInterface project, UserInterface user, String filename);
 	
 	
 }

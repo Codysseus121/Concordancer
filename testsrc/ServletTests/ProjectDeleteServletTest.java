@@ -21,6 +21,7 @@ import org.mockito.Mockito;
 
 
 import dp.model.concordancer.User;
+import dp.model.concordancer.UserInterface;
 import dp.servlets.concordancer.UseProjectServlet;
 
 /**
@@ -37,7 +38,7 @@ public class ProjectDeleteServletTest extends Mockito {
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);	
 		RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-		User user = new User();
+		UserInterface user = new User();
 		user.setUserid(2);
 		ServletContext context = mock(ServletContext.class);
 				
@@ -68,7 +69,7 @@ public class ProjectDeleteServletTest extends Mockito {
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);	
 		RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-		User user = new User();
+		UserInterface user = new User();
 		user.setUserid(2);
 		ServletContext context = mock(ServletContext.class);
 		String param="";

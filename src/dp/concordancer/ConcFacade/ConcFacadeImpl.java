@@ -8,10 +8,12 @@ import javax.servlet.http.Part;
 
 import dp.concordancer.interfaces.*;
 import dp.dao.concordancer.*;
+import dp.model.concordancer.KWICInterface;
 import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.ProjectFile;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 
 public class ConcFacadeImpl implements ConcordancerFacade {
 
@@ -33,7 +35,7 @@ public class ConcFacadeImpl implements ConcordancerFacade {
 		return fdao;
 	}
 
-	public User getUser(String name, String password) {
+	public UserInterface getUser(String name, String password) {
 		return udao.getUser(name, password);
 	}
 
@@ -45,27 +47,27 @@ public class ConcFacadeImpl implements ConcordancerFacade {
 		return udao.registerUser(name, password);
 	}
 
-	public List<Project> getProjects(User user) {
+	public List<Project> getProjects(UserInterface user) {
 		return pdao.getProjects(user);
 	}
 
-	public Project getProject(int id, User u) {
+	public ProjectInterface getProject(int id, UserInterface u) {
 		return pdao.getProject(id, u);
 	}
 
-	public boolean deleteProject(User u, int pid) {
+	public boolean deleteProject(UserInterface u, int pid) {
 		return pdao.deleteProject(u, pid);
 	}
 
-	public int createProject(User user, String projectname) {
+	public int createProject(UserInterface user, String projectname) {
 		return pdao.createProject(user, projectname);
 	}
 
-	public List<ProjectFile> getFiles(Project project, User user) {
+	public List<ProjectFile> getFiles(ProjectInterface project, UserInterface user) {
 		return fdao.getFiles(project, user);
 	}
 
-	public String getFile(Project project, User user, String filename) {
+	public String getFile(ProjectInterface project, UserInterface user, String filename) {
 		return fdao.getFile(project, user, filename);
 	}
 
@@ -73,17 +75,17 @@ public class ConcFacadeImpl implements ConcordancerFacade {
 		return fdao.addFiles(filename, projectid, text);
 	}
 
-	public List<Kwic> getConcordances(User u, Project p, String query) {
+	public List<KWICInterface> getConcordances(UserInterface u, ProjectInterface p, String query) {
 		return textservice.getConcordances(u, p, query);
 	}
 
-	public List<Kwic> getCollocates(List<Kwic> concordances, List<String> permutations) {
+	public List<KWICInterface> getCollocates(List<KWICInterface> concordances, List<String> permutations) {
 
 		return textservice.getCollocates(concordances, permutations);
 
 	}
 
-	public TreeMap<String, Integer> generateIndex(Project project, User user) {
+	public TreeMap<String, Integer> generateIndex(ProjectInterface project, UserInterface user) {
 
 		return textservice.generateIndex(project, user);
 	}

@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 import dp.servlets.concordancer.CollocateServlet;
 import dp.servlets.concordancer.KWICServlet;
 
@@ -35,8 +35,8 @@ public class CollocateServletTest extends Mockito {
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);
 
-		User user = null;
-		Project project = null;
+		UserInterface user = null;
+		ProjectInterface project = null;
 		String word1 = "";
 		String word2 = "";
 

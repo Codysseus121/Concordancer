@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import dp.concordancer.interfaces.UserDataAccessObject;
 import dp.model.concordancer.User;
+import dp.model.concordancer.UserInterface;
 
 public class UserDao extends GetConnection implements UserDataAccessObject {
 
@@ -20,8 +21,8 @@ public class UserDao extends GetConnection implements UserDataAccessObject {
 	 * @param String password: the password
 	 */
 
-	public User getUser(String name, String password) {
-		User user = new User();
+	public UserInterface getUser(String name, String password) {
+		UserInterface user = new User();
 		Connection conn = null;
 		String query = "SELECT * FROM users WHERE USER_NAME='" + name + "' AND PASSWORD='" + password + "';";
 		try {

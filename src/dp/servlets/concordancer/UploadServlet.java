@@ -19,9 +19,8 @@ import org.apache.commons.io.FilenameUtils;
 
 import dp.concordancer.ConcFacade.ConcFacadeImpl;
 import dp.concordancer.ConcFacade.ConcordancerFacade;
-
-import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 
 /**
  * Servlet implementation class UploadServlet. A servlet that handles requests
@@ -86,7 +85,7 @@ public class UploadServlet extends HttpServlet {
 		
 		String projectname = request.getParameter("projectname");
 		int projectid = 0;
-		User user = (User) session.getAttribute("currentSessionUser");
+		UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
 		Collection<Part> parts = request.getParts();// get all Part objects sent
 
 		// If collection not empty, create new project.
@@ -107,7 +106,7 @@ public class UploadServlet extends HttpServlet {
 
 						String text = service.getText(part, fextension);
 						service.addFiles(fileName, projectid, text);// call method addFiles() of FileDao
-						Project project = service.getProject(projectid, user);// get project and set it as attribute
+						ProjectInterface project = service.getProject(projectid, user);// get project and set it as attribute
 						session.setAttribute("currentproject", project);
 
 					} catch (Exception ex) {

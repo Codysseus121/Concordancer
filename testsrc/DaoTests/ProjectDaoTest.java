@@ -36,7 +36,7 @@ public class ProjectDaoTest extends Mockito
 
 		
 		ProjectDao pdao = mock(ProjectDao.class);
-		User user = mock(User.class);
+		UserInterface user = mock(User.class);
 		List<Project> projects = mock(ArrayList.class);
 		when(pdao.getProjects(user)).thenReturn(projects);
 		

@@ -8,7 +8,7 @@ package dp.model.concordancer;
 
 import java.io.Serializable;
 
-public class Kwic implements Serializable {
+public class Kwic implements Serializable, KWICInterface {
 
 	/**
 	 * 
@@ -36,61 +36,109 @@ public class Kwic implements Serializable {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#setLcontext(java.lang.String)
+	 */
+	@Override
 	public void setLcontext (String l)
 	{
 		lcontext = l;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#getLcontext()
+	 */
+	@Override
 	public String getLcontext ()
 	{
 		return lcontext;
 		}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#setRcontext(java.lang.String)
+	 */
+	@Override
 	public void setRcontext (String r)
 	{
 		rcontext = r;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#getRcontext()
+	 */
+	@Override
 	public String getRcontext ()
 	{
 		return rcontext;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#setKeyword(java.lang.String)
+	 */
+	@Override
 	public void setKeyword (String k)
 	{
 		keyword = k;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#getKeyword()
+	 */
+	@Override
 	public String getKeyword ()
 	{
 		return keyword;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#setFilename(java.lang.String)
+	 */
+	@Override
 	public void setFilename (String f)
 	{
 		filename = f;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#getFilename()
+	 */
+	@Override
 	public String getFilename()
 	{
 		return filename;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#getIndex1()
+	 */
+	@Override
 	public int getIndex1()
 	{
 		return index1;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#setIndex1(int)
+	 */
+	@Override
 	public void setIndex1(int index)
 	{
 		index1 = index;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#getIndex2()
+	 */
+	@Override
 	public int getIndex2()
 	{
 		return index2;
 	}
 	
+	/* (non-Javadoc)
+	 * @see dp.model.concordancer.KWICInterface#setIndex2(int)
+	 */
+	@Override
 	public void setIndex2(int index)
 	{
 		index2 = index;
@@ -98,6 +146,9 @@ public class Kwic implements Serializable {
 	
 	
 	
+/* (non-Javadoc)
+ * @see dp.model.concordancer.KWICInterface#toString()
+ */
 @Override
 	public String toString()
 	{

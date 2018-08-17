@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dp.concordancer.ConcFacade.TextService;
-import dp.model.concordancer.Project;
-import dp.model.concordancer.User;
+import dp.model.concordancer.ProjectInterface;
+import dp.model.concordancer.UserInterface;
 
 /**
  * Servlet implementation class ContextServlet to handle requests for more
@@ -54,8 +54,8 @@ public class ContextServlet extends HttpServlet {
 		try {
 			HttpSession session = request.getSession(true);
 			//PrintWriter writer = response.getWriter();
-			Project project = (Project) session.getAttribute("currentproject");
-			User user = (User) session.getAttribute("currentSessionUser");
+			ProjectInterface project = (ProjectInterface) session.getAttribute("currentproject");
+			UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
 			int clength = 200;
 			String findex = request.getParameter("findex");
 			String lindex = request.getParameter("lindex");
