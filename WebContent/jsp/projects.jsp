@@ -152,7 +152,7 @@
 						<div class="modal-footer" >
 							<button type="button" class="btn btn-secondary close btn-sm"
 								data-dismiss="modal">Cancel</button>
-							<button type="submit" id="uploadbutton" name="action"
+							<button type="button" id="uploadbutton" name="action"
 								value="newproject" class="btn btn-success">Submit</button>
 
 
