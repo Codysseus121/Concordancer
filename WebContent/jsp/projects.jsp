@@ -14,9 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../Bootstrap-4/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/projects.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Crimson+Text|Lora|Merriweather|Playfair+Display"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Lora|Merriweather|Playfair+Display" rel="stylesheet">
+<script src="../js/jquery-3.3.1.min.js"></script>
 
 
 
@@ -144,7 +143,7 @@
 						<div class="form-group">
 							<input type="text" class="form-control" id="projectname"
 								name="projectname" placeholder="Project Name"> <br>
-							<input type="file" name="file" class="form-control-file"
+							<input type="file" name="file" class="form-control-file multi"
 								id="files" multiple />
 
 						</div>
@@ -152,8 +151,8 @@
 						<div class="modal-footer" >
 							<button type="button" class="btn btn-secondary close btn-sm"
 								data-dismiss="modal">Cancel</button>
-							<button type="submit" id="uploadbutton" name="action"
-								value="newproject" class="btn btn-success">Submit</button>
+							<button type="submit" id="uploadbutton" name="action"  data-maxsize="1048576"
+						 accept="txt|html|pdf"	value="newproject" class="btn btn-success">Submit</button>
 
 
 						</div>
@@ -197,12 +196,11 @@
 		</form>
 	</div>
 
-	<script src="../js/jquery-3.3.1.min.js"></script>
+	
+	
+	<script src="../js/additional-methods.js"></script>	
 	<script src="../js/jquery.validate.js"></script>
-	<script src="../js/additional-methods.js"></script>
-	<script src="../Bootstrap-4/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="../js/jquery.MultiFile.min.js"></script>
 	<script src="../js/projects.js"></script>
 
 

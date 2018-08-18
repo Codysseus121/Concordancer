@@ -58,7 +58,7 @@ public class RegisterServlet extends HttpServlet {
 
 		ConcordancerFacade facade = new ConcFacadeImpl();
 		
-		PrintWriter writer = response.getWriter();
+		
 		UserInterface user = new User();
 
 		try {
@@ -69,8 +69,7 @@ public class RegisterServlet extends HttpServlet {
 			if (username.length() == 0  || password.length() == 0) 
 			{
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by Ajax
-				writer.flush();
-				writer.write("False");
+				response.getWriter().write("False");
 				
 			} 
 			
@@ -78,8 +77,8 @@ public class RegisterServlet extends HttpServlet {
 			else if (facade.checkUserName(username) == false)
 			{
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by Ajax
-				writer.flush();
-				writer.write("False");
+				
+				response.getWriter().write("False");
 			}
 			
 			else 
@@ -92,8 +91,8 @@ public class RegisterServlet extends HttpServlet {
 				session.setAttribute("projects", projects);// set this user's list of projects as session attribute
 				response.setContentType("text/html;charset=UTF-8");// sends response back to client to be handled by
 																	// Ajax
-				writer.flush();
-				writer.write("True");
+				
+				response.getWriter().write("True");
 			}
 
 		} catch (Exception e) {

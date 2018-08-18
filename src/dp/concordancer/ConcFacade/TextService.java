@@ -200,7 +200,7 @@ public class TextService implements TextServiceInterface {
 			text = text.replaceAll("[\\p{Space}\\p{Punct}]", " ").trim();
 			text = text.replaceAll("\\s{2,}", " ");
 			text = text.replaceAll("[0-9]", " ");
-			return text;
+			return text.toLowerCase();
 		}
 		/*
 		 * A method to generate more context for a given kwic line.

@@ -17,13 +17,13 @@
 
 
 
-<title>bag of Words</title>
+<title>kiWi</title>
 </head>
 
 
 <body>
-	<!-- Code snippets adapted from: https://codepen.io/colorlib/pen/rxddKy, Copyright (c) 2018 by Aigars Silkalns -->
-	<h1>bag of Words</h1>
+	<!-- Code snippets adapted in part from: https://codepen.io/colorlib/pen/rxddKy, Copyright (c) 2018 by Aigars Silkalns -->
+	<h1>kiWi</h1>
 	<h4>Concordancer</h4>
 	
 

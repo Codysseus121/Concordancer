@@ -28,7 +28,7 @@ import dp.model.concordancer.UserInterface;
  * uploading of the files requested.
  */
 @WebServlet("/UploadServlet")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10) // the maximum limit of the files that can be uploaded
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10, maxRequestSize=1024*1024*10) // the maximum limit of the files that can be uploaded
 
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

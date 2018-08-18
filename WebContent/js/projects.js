@@ -84,7 +84,7 @@ $("#newProject" ).validate({
 					}
     },messages: {
         file:{
-            filesize:" File size must be less than 12 MB.",
+            filesize:" File size must be less than 10 MB.",
             accept:"Please upload .txt, .html or .pdf files only.",
             required:"Please upload file."
         },
