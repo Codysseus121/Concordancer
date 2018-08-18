@@ -74,8 +74,7 @@ $(function() {
 		if (lg > 0) {
 			for (var i = 0; i < lg; i++) {
 
-				fileSize = fileSize + element.files[i].size; // get file size
-																// of all files
+				fileSize = fileSize + element.files[i].size; // get file size of all files
 
 			}
 		}
