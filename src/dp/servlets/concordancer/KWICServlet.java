@@ -57,7 +57,7 @@ public class KWICServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			
 			String word = request.getParameter("keyword");
-			word = word.trim();
+			//word = word.trim();
 			//System.out.println(word);
 
 			if (word.length() == 0) // check validity
@@ -82,8 +82,10 @@ public class KWICServlet extends HttpServlet {
 				}
 
 				else {
+					System.out.println("fetched");
 					session.setAttribute("concordances", conc);
 					response.getWriter().write("True");
+					
 				}
 
 			}

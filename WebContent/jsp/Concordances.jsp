@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-	
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="dp.model.concordancer.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%	response.setHeader("Cache-Control", "no-store");%>
-<%	response.setDateHeader("Expires", 0);%>
 
 <!DOCTYPE html>
 <html>
@@ -127,12 +124,25 @@
 									<th scope="col">File</th>
 								</tr>
 							</thead>
-
+<!-- https://stackoverflow.com/questions/31223395/how-to-paginate-using-only-jstl-cforeach-without-javascript-or-jquery-->
 							<tbody id="mytable">
 
-								<c:forEach var="entry" items="${sessionScope.concordances}"
-									varStatus="myIndex">
-									<tr class="trows">
+								<c:set var="words" scope="session" value="${sessionScope.concordances}" />
+								<c:set var="totalCount" scope="session" value="{concordances.size()}" />
+								<c:set var="perPage" scope="session" value="${25}" />
+								<c:set var="pageStart" value="${param.start}" />
+								<c:if test="${empty pageStart or pageStart < 0}">
+									<c:set var="pageStart" value="0" />
+								</c:if>
+								
+								<c:if test="${totalCount < pageStart}">
+									<c:set var="pageStart" value="${pageStart - perPage}" />
+								</c:if>
+								<a href="?start=${pageStart - perPage}"> << </a>${pageStart + 1} - ${pageStart + perPage}
+								<a href="?start=${pageStart + perPage}"> >> </a>
+								
+	<c:forEach var="entry" items="${sessionScope.concordances}" varStatus="myIndex" begin="${pageStart}" end="${pageStart + perPage - 1}">
+              <tr class="trows">
 
 										<td class="tentry" class="itemindex"><c:out
 												value="${myIndex.index+1}" /></td>
@@ -150,7 +160,11 @@
 												value="${entry.index2}" /></td>
 
 									</tr>
-								</c:forEach>
+
+   </c:forEach>
+
+
+				
 
 
 							</tbody>
@@ -164,7 +178,8 @@
 
 
 	<div class="gif-loader" id="loader" style="display: none">
-		<img src="<%=request.getContextPath()%>/images/source.gif" class="img-fluid img-thumbnail" />
+		<img src="<%=request.getContextPath()%>/images/source.gif"
+			class="img-fluid img-thumbnail" />
 	</div>
 
 	<!-- Modal -->
@@ -193,7 +208,7 @@
 
 	<script src="<%=request.getContextPath()%>/js/concordances.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.mark.min.js"></script>
-		
+
 
 
 
