@@ -1,5 +1,6 @@
 var oneword;
 
+
 /* Event listener to redirect to projects page */
 
 $(document).ready(function() {
@@ -197,6 +198,7 @@ $(document).ready(
 								$('#head').load(
 										"/Concordancer/jsp/Concordances.jsp"
 												+ ' #head');
+								
 
 							},
 							error : function(e) {
@@ -249,6 +251,7 @@ $(document).ready(
 												"/Concordancer/jsp/Concordances.jsp"
 														+ ' #head');
 										
+										
 									}
 
 								},
@@ -261,3 +264,6 @@ $(document).ready(
 					});
 			
 		});
+
+
+
