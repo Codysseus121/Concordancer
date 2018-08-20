@@ -135,7 +135,7 @@
 									<tr class="trows">
 
 										<td class="tentry" class="itemindex"><c:out
-												value="${myIndex.index}" /></td>
+												value="${myIndex.index+1}" /></td>
 										<td class="tentry lcontext contextus"><c:out
 												value="${entry.lcontext}" /></td>
 										<td class="tentry"><a class="morecontext key" href="#"><c:out
