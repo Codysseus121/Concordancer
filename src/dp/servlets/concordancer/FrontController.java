@@ -59,7 +59,7 @@ public class FrontController extends HttpServlet {
 		
 
 		if (action != null) {
-
+			System.out.println(action);
 			switch (action) {
 
 			case "login":
@@ -97,7 +97,11 @@ public class FrontController extends HttpServlet {
 				
 			case "collocate":
 				url = "/CollocateServlet";
-				break;				
+				break;	
+				
+			case "paginate":
+				url = "/PaginateServlet";
+				break;	
 				
 				
 			case "logout":

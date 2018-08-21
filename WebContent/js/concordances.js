@@ -152,9 +152,7 @@ $(document).ready(function() {
 		}
 		
 		
-		functioncalled = document.getElementById('function');
-		functioncalled.innerHTML="collocate";
-		alert(functioncalled.innerHTML);
+		
 	});
 	});
 
@@ -183,7 +181,7 @@ $( document ).ajaxComplete(function() {
 
 $(document).ready(
 		function() {
-			$(".kwic", '#next', '#previous').click(
+			$(".kwic").click(
 					function(event) {
 						oneword="";
 						event.preventDefault();
@@ -211,10 +209,7 @@ $(document).ready(
 								console.log(e);
 							}
 						});
-						 functioncalled = document.getElementById('function');
-							functioncalled.innerHTML="conc";
-							alert(functioncalled.innerHTML);
-
+						 
 					});
 		});
 
@@ -226,18 +221,9 @@ $(document).ready(
 $(document).ready(
 		function() {
 
-			$("#buttonkwic, .next, .previous").click(
+			$("#buttonkwic").click(
 					function(event) {
-						
-						var eventvalue1 = this.className;
-						var indexvalue;
-						var table = document.getElementById("mytable");
-						var cell =  table.getElementsByTagName("td");
-						if (table.rows.length > 0)
-							{var indexvalue = cell[0].innerHTML;
-							indexvalue = indexvalue-1;}
-						else
-							{indexvalue=0;}
+											
 						
 						oneword="";
 						var word = $('input[name="keywordbox"]').val();
@@ -251,9 +237,7 @@ $(document).ready(
 								data : {
 
 									action : "kwic",
-									keyword : word,
-									index: indexvalue,
-									eventvalue : eventvalue1
+									keyword : word
 								},
 								type : 'get',
 								success : function(data) {
@@ -288,4 +272,39 @@ $(document).ready(
 			
 		});
 
+$('#next').on('click', function (event){
 
+	
+	var table = document.getElementById("mytable");
+	var cell =  table.getElementsByTagName("td");
+	var indexvalue = cell[0].innerHTML;
+	var direction = "next";
+	
+	$.ajax({
+		url : '/Concordancer/concordancer',
+
+		data : {
+
+			action : "paginate",
+			index : indexvalue,
+			dir: direction
+		},
+										
+		type : 'get',
+		success : function(data) {
+				$('#head').load("/Concordancer/jsp/Concordances.jsp" + ' #head');
+				
+
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+
+
+
+	
+	alert(index);
+	console.log(content);
+
+});

@@ -127,25 +127,14 @@
 							</thead>
 							<!-- https://stackoverflow.com/questions/31223395/how-to-paginate-using-only-jstl-cforeach-without-javascript-or-jquery-->
 							<tbody id="mytable">
-								<c:set var="words" scope="session"
-									value="${sessionScope.concordances}" />
-								<c:set var="totalCount" scope="session"
-									value="${sessionScope.concordances.size()}" />
-								<c:set var="perPage" scope="session" value="${25}" />
-								<c:set var="pageStart" value="${param.start}" />
-								<c:if test="${empty pageStart or pageStart < 0}">
-									<c:set var="pageStart" value="0" />
-								</c:if>
-								<c:if test="${totalCount < pageStart}">
-									<c:set var="pageStart" value="${pageStart - perPage}" />
-								</c:if>
-
+								
+<c:set var="totalCount" scope="session" value="${sessionScope.concordances.size()}" />
 								<strong><c:out value="${totalCount}" /></strong>
 								<span> results</span>
 
 								<c:forEach var="entry" items="${sessionScope.concordances}"
-									varStatus="myIndex" begin="${pageStart}"
-									end="${pageStart + perPage - 1}">
+									varStatus="myIndex" begin="${sessionScope.pageStart}"
+									end="${sessionScope.pageEnd}">
 
 
 
@@ -176,15 +165,7 @@
 
 							</tbody>
 						</table>
-						<nav id="pagnav" aria-label="Page navigation example">
-
-							<ul class="pagination justify-content-end">
-								<li class="page-item"><a class="page-link previous" id="previous"
-									href="#">Previous</a></li>
-								<li class="page-item"><a class="page-link next" id="next"
-									href="#">Next</a></li>
-							</ul>
-						</nav>
+						
 					</div>
 
 				</div>
@@ -222,6 +203,15 @@
 			</div>
 		</div>
 	</div>
+	<nav id="pagnav" aria-label="Page navigation example">
+
+							<ul class="pagination justify-content-end">
+								<li class="page-item"><a class="page-link previous" id="previous"
+									href="#">Previous</a></li>
+								<li class="page-item next"><a class="page-link next" id="next"
+									href="#">Next</a></li>
+							</ul>
+						</nav>
 
 
 	<script src="<%=request.getContextPath()%>/js/concordances.js"></script>

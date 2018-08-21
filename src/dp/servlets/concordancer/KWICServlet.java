@@ -3,13 +3,13 @@ package dp.servlets.concordancer;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 import dp.concordancer.ConcFacade.ConcFacadeImpl;
 import dp.concordancer.ConcFacade.ConcordancerFacade;
@@ -47,7 +47,7 @@ public class KWICServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		doGet(request, response);
+		processRequest(request, response);
 	}
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -55,18 +55,13 @@ public class KWICServlet extends HttpServlet {
 		try {
 
 			HttpSession session = request.getSession(true);
-			
+			RequestDispatcher dispatcher = null;
 			String word = request.getParameter("keyword");
-			String index = request.getParameter("index");
-			String event = request.getParameter("eventvalue");
-			System.out.println(index);
-			System.out.println(event);
-			
 
 			if (word.length() == 0) // check validity
 
 			{
-				
+
 				response.getWriter().write("False");
 
 			}
@@ -76,22 +71,24 @@ public class KWICServlet extends HttpServlet {
 				UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
 				ProjectInterface project = (ProjectInterface) session.getAttribute("currentproject");
 				ConcordancerFacade service = new ConcFacadeImpl();
-			
+
 				List<KWICInterface> conc = service.getConcordances(user, project, word);
-				
 
 				if (conc.isEmpty()) {
-				response.getWriter().write("False");
+					response.getWriter().write("False");
+
 				}
 
 				else {
-					
 					session.setAttribute("concordances", conc);
 					response.getWriter().write("True");
-					
 				}
 
 			}
+			dispatcher = getServletContext().getRequestDispatcher("/PaginateServlet");
+			dispatcher.forward(request, response);
+			return;
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
