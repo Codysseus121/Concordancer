@@ -301,10 +301,42 @@ $('#next').on('click', function (event){
 		}
 	});
 
-
-
 	
-	alert(index);
-	console.log(content);
 
 });
+
+
+$('#previous').on('click', function (event){
+
+	
+	var table = document.getElementById("mytable");
+	var cell =  table.getElementsByTagName("td");
+	var indexvalue = cell[0].innerHTML;
+	var direction = "previous";
+	
+	$.ajax({
+		url : '/Concordancer/concordancer',
+
+		data : {
+
+			action : "paginate",
+			index : indexvalue,
+			dir: direction
+		},
+										
+		type : 'get',
+		success : function(data) {
+				$('#head').load("/Concordancer/jsp/Concordances.jsp" + ' #head');
+				
+
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+
+		
+
+});
+
+

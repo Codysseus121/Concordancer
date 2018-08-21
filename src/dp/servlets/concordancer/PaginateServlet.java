@@ -48,8 +48,7 @@ public class PaginateServlet extends HttpServlet {
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try 
-		{
+		try {
 			System.out.println("PagServlet accessed");
 			HttpSession session = request.getSession(true);
 			@SuppressWarnings("unchecked")
@@ -58,86 +57,83 @@ public class PaginateServlet extends HttpServlet {
 			String index = "";
 			index = request.getParameter("index");
 			int indexvalue = 0;
-			if (index != null)
-				 {indexvalue = Integer.parseInt(index);
-				 indexvalue = indexvalue-1;
-				 }
-			
-					
-			
-			
-			String direction = request.getParameter("dir");		
-			
+			if (index != null) {
+				indexvalue = Integer.parseInt(index);
+				indexvalue = indexvalue - 1;
+				System.out.println(indexvalue);
+			}
+
+			String direction = request.getParameter("dir");
+
 			if (direction == null)
-				direction="";
-			
+				direction = "";
+
 			int pageStart = 0;
 			int pageEnd = 0;
+
 			
-			System.out.println("Index " + index);
 			System.out.println("Direction " + direction);
-			
-			
-			
-			
-			if (conc.isEmpty()) 
-			{
+
+			if (conc.isEmpty()) {
 				response.getWriter().write("False");
 				session.setAttribute("pageStart", pageStart);
 				session.setAttribute("pageEnd", pageEnd);
 			}
 
-				else {
-					int size = conc.size();
-					switch (direction)
+			else {
+				int size = conc.size();
+				switch (direction) {
+
+				case "next":
+					pageStart = indexvalue + page;
+					pageEnd = pageStart + page;
+					// System.out.println("1st case" + pageStart + "" + pageEnd);
+
+					if (pageStart < size && pageStart + page < size) // if it can fit two pages
 					{
-					
-					case "next":
-					pageStart = indexvalue+page;
-					pageEnd = pageStart+page;
-					//System.out.println("1st case" + pageStart + "" + pageEnd);
-					
-					if (pageStart < size && pageStart+page < size) //if it can fit two pages
+						pageStart = pageStart + 1;
+						pageEnd = pageStart + page;
+						System.out.println("1st case" + pageStart + " " + pageEnd);
+					} 
+					else if (pageStart < size && pageStart + page > size)
 					{
-						pageStart = pageStart +1;
-						pageEnd = pageStart+page;
-						System.out.println("1st case" + pageStart + "" + pageEnd);
-					}
-					else if (pageStart < size && pageStart+page> size)
-						{
-						pageStart=pageStart+1;
+						pageStart = pageStart + 1;
 						pageEnd = size;
-						System.out.println("2nd case" + pageStart + "" + pageEnd);
-						}
-					
-					else if (pageStart > size)
-					{
-						pageStart=0;
-						pageEnd = pageStart+page;
-						System.out.println("3rd case" + pageStart + "" + pageEnd);
+						System.out.println("2nd case" + pageStart + " " + pageEnd);
+					}
+
+					else if (pageStart >= size) {
+						pageStart = indexvalue;
+						pageEnd = size;
+						System.out.println("3rd case" + pageStart + " " + pageEnd);
 					}
 					break;
-					
-					case "previous":
-						if (pageStart>25)
-						{
-							pageStart = pageStart-25;
-							pageEnd = pageStart+25;
-						}
-						else
-						{
-							pageStart=0;
-							pageEnd = 25;
-						}
-					default: pageStart=0;
-							pageEnd = 24;
-					
-				}
-					session.setAttribute("pageStart", pageStart);
-					session.setAttribute("pageEnd", pageEnd);
-					response.getWriter().write("True");
+
+				case "previous":
+					if (indexvalue == 0) 
+					{
+						pageStart = 0;
+						pageEnd = page;
+						System.out.println("Back 1" + pageStart + " " + pageEnd);
+					} 
+					else
+					{
+						System.out.println("Back current " + pageStart + " " + pageEnd);
+						pageStart = indexvalue - page-1;
+						pageEnd = pageStart + page;
+						System.out.println("Back 2 " + pageStart + " " + pageEnd);
 					}
-					
+					break;
+				default:
+					pageStart = 0;
+					pageEnd = 24;
+					break;
+
+				}
+				session.setAttribute("pageStart", pageStart);
+				session.setAttribute("pageEnd", pageEnd);
+				response.getWriter().write("True");
+			}
 
 		}
 
