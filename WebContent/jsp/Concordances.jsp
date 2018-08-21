@@ -125,10 +125,12 @@
 									<th scope="col">File</th>
 								</tr>
 							</thead>
-							<!-- https://stackoverflow.com/questions/31223395/how-to-paginate-using-only-jstl-cforeach-without-javascript-or-jquery-->
+
 							<tbody id="mytable">
 
-
+				<span>Results: </span><c:set var="totalCount" scope="session"
+					value="${sessionScope.concordances.size()}" />
+				<strong><c:out value="${totalCount}" /></strong>
 
 								<c:forEach var="entry" items="${sessionScope.concordances}"
 									varStatus="myIndex" begin="${sessionScope.pageStart}"
@@ -202,16 +204,19 @@
 		</div>
 	</div>
 
-	<div>
+	<div style="margin-top:50px;">
 
-		<nav id="pagnav" class="navbar sticky-bottom justify-content-end"
-			aria-label="Page navigation" style="background-color: #E8E8E8;">
-			
+		
+		<nav id="pagnav" aria-label="Page navigation example"
+			style="padding-right: 20px; margin-right: 20px; position: fixed; bottom: 0; width: 100%;">
+
 			<ul class="pagination justify-content-end">
+				
 				<li class="page-item"><a class="page-link previous"
-					id="previous" href="#">Previous</a></li>
+					id="previous" href="#" >Previous</a></li>
+
 				<li class="page-item next"><a class="page-link next" id="next"
-					href="#">Next</a></li>
+					href="#" >Next</a></li>
 			</ul>
 		</nav>
 	</div>

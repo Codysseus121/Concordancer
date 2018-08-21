@@ -74,10 +74,10 @@ public class PaginateServlet extends HttpServlet {
 			
 			System.out.println("Direction " + direction);
 
-			if (conc.isEmpty()) {
+			if (conc.isEmpty() || conc == null) {
 				response.getWriter().write("False");
-				session.setAttribute("pageStart", pageStart);
-				session.setAttribute("pageEnd", pageEnd);
+				//session.setAttribute("pageStart", pageStart);
+				//session.setAttribute("pageEnd", pageEnd);
 			}
 
 			else {
