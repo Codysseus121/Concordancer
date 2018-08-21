@@ -60,14 +60,10 @@ public class PaginateServlet extends HttpServlet {
 			int indexvalue = 0;
 			if (index != null)
 				 {indexvalue = Integer.parseInt(index);
-				 
+				 indexvalue = indexvalue-1;
 				 }
 			
-			if (indexvalue == 1)
-			 {indexvalue = 0;
-			 
-			 }
-		
+					
 			
 			
 			String direction = request.getParameter("dir");		
@@ -99,11 +95,11 @@ public class PaginateServlet extends HttpServlet {
 					case "next":
 					pageStart = indexvalue+page;
 					pageEnd = pageStart+page;
-					System.out.println("1st case" + pageStart + "" + pageEnd);
+					//System.out.println("1st case" + pageStart + "" + pageEnd);
 					
 					if (pageStart < size && pageStart+page < size) //if it can fit two pages
 					{
-						pageStart=pageStart+1;
+						pageStart = pageStart +1;
 						pageEnd = pageStart+page;
 						System.out.println("1st case" + pageStart + "" + pageEnd);
 					}
