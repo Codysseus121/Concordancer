@@ -28,7 +28,7 @@
 
 <body>
 
-
+<span id="function" style="display:none;"></span>
 
 	<nav class="navbar sticky-top navbar-expand-sm" id="mybar">
 		<div class="container-fluid">
@@ -179,10 +179,10 @@
 						<nav id="pagnav" aria-label="Page navigation example">
 
 							<ul class="pagination justify-content-end">
-								<li class="page-item"><a class="page-link" id="previous"
-									href="?start=${pageStart - perPage}">Previous</a></li>
-								<li class="page-item"><a class="page-link" id="next"
-									href="?start=${pageStart + perPage}">Next</a></li>
+								<li class="page-item"><a class="page-link previous" id="previous"
+									href="#">Previous</a></li>
+								<li class="page-item"><a class="page-link next" id="next"
+									href="#">Next</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -191,6 +191,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- Loader -->
 
 
@@ -225,27 +226,7 @@
 
 	<script src="<%=request.getContextPath()%>/js/concordances.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.mark.min.js"></script>
-	<script type="text/javascript">
-		var listSize;
-		$("#next").click(function() {
-
-			var next = parseInt('${pageStart}');
-			var ppage = 25;
-			var nextresults = next + ppgae;
-			alert(next);
-
-			$.ajax({
-				url : '?start=' + nextresults,
-				type : get,
-
-				success : function(data) {
-
-					alert('success');
-				}
-			});
-
-		});
-	</script>
+	
 
 
 </body>

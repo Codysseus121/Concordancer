@@ -57,6 +57,10 @@ public class KWICServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			
 			String word = request.getParameter("keyword");
+			String index = request.getParameter("index");
+			String event = request.getParameter("eventvalue");
+			System.out.println(index);
+			System.out.println(event);
 			
 
 			if (word.length() == 0) // check validity

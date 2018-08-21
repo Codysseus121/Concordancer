@@ -1,4 +1,5 @@
 var oneword;
+var functioncalled;
 
 
 /* Event listener to redirect to projects page */
@@ -136,8 +137,10 @@ $(document).ready(function() {
 					}
 
 					else {
+						
 						$('#head').load("/Concordancer/jsp/Concordances.jsp" +  ' #head');
 						oneword=collocate;
+						
 						
 					}
 
@@ -149,7 +152,9 @@ $(document).ready(function() {
 		}
 		
 		
-		
+		functioncalled = document.getElementById('function');
+		functioncalled.innerHTML="collocate";
+		alert(functioncalled.innerHTML);
 	});
 	});
 
@@ -178,7 +183,7 @@ $( document ).ajaxComplete(function() {
 
 $(document).ready(
 		function() {
-			$(".kwic").click(
+			$(".kwic", '#next', '#previous').click(
 					function(event) {
 						oneword="";
 						event.preventDefault();
@@ -199,12 +204,16 @@ $(document).ready(
 										"/Concordancer/jsp/Concordances.jsp"
 												+ ' #head');
 								
+								
 
 							},
 							error : function(e) {
 								console.log(e);
 							}
 						});
+						 functioncalled = document.getElementById('function');
+							functioncalled.innerHTML="conc";
+							alert(functioncalled.innerHTML);
 
 					});
 		});
@@ -217,8 +226,19 @@ $(document).ready(
 $(document).ready(
 		function() {
 
-			$("#buttonkwic").click(
+			$("#buttonkwic, .next, .previous").click(
 					function(event) {
+						
+						var eventvalue1 = this.className;
+						var indexvalue;
+						var table = document.getElementById("mytable");
+						var cell =  table.getElementsByTagName("td");
+						if (table.rows.length > 0)
+							{var indexvalue = cell[0].innerHTML;
+							indexvalue = indexvalue-1;}
+						else
+							{indexvalue=0;}
+						
 						oneword="";
 						var word = $('input[name="keywordbox"]').val();
 						if (word.length === 0) {
@@ -231,7 +251,9 @@ $(document).ready(
 								data : {
 
 									action : "kwic",
-									keyword : word
+									keyword : word,
+									index: indexvalue,
+									eventvalue : eventvalue1
 								},
 								type : 'get',
 								success : function(data) {
@@ -246,10 +268,11 @@ $(document).ready(
 									}
 
 									else {
-
+										
 										$('#head').load(
 												"/Concordancer/jsp/Concordances.jsp"
 														+ ' #head');
+										
 										
 										
 									}
@@ -260,10 +283,9 @@ $(document).ready(
 								}
 							});
 						}
-
+						 
 					});
 			
 		});
-
 
 
