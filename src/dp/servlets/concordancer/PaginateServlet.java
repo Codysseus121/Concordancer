@@ -123,6 +123,8 @@ public class PaginateServlet extends HttpServlet {
 					{
 						System.out.println("Back current " + pageStart + " " + pageEnd);
 						pageStart = indexvalue - page-1;
+						if (pageStart<0)
+							pageStart=0;
 						pageEnd = pageStart + page;
 						System.out.println("Back 2 " + pageStart + " " + pageEnd);
 					}
