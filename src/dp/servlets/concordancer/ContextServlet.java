@@ -53,7 +53,6 @@ public class ContextServlet extends HttpServlet {
 		
 		try {
 			HttpSession session = request.getSession(true);
-			//PrintWriter writer = response.getWriter();
 			ProjectInterface project = (ProjectInterface) session.getAttribute("currentproject");
 			UserInterface user = (UserInterface) session.getAttribute("currentSessionUser");
 			int clength = 200;

@@ -1,9 +1,9 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +15,6 @@ import dp.concordancer.ConcFacade.ConcFacadeImpl;
 import dp.concordancer.ConcFacade.ConcordancerFacade;
 import dp.concordancer.ConcFacade.TextService;
 import dp.model.concordancer.KWICInterface;
-import dp.model.concordancer.Kwic;
 import dp.model.concordancer.ProjectInterface;
 import dp.model.concordancer.UserInterface;
 
@@ -59,9 +58,9 @@ public class CollocateServlet extends HttpServlet {
 
 		try {
 			HttpSession session = request.getSession(true);
+			RequestDispatcher dispatcher = null;
 			String keyword1 = request.getParameter("keyword");
 			String keyword2 = request.getParameter("keyword2");
-			PrintWriter writer = response.getWriter();
 			ConcordancerFacade service = new ConcFacadeImpl();
 			TextService textservice = new TextService();
 
@@ -77,14 +76,17 @@ public class CollocateServlet extends HttpServlet {
 				
 				if (collocates.isEmpty()) { //no collocates found.
 
-					writer.flush();
-					writer.write("False");
+					
+					response.getWriter().write("False");
 
 				} else { //if found add to session to be used by the Concordances.jsp page.
 					session.removeAttribute("concordances");
 					session.setAttribute("concordances", collocates);
-					writer.flush();
-					writer.write("True");
+					
+					response.getWriter().write("True");
+					dispatcher = getServletContext().getRequestDispatcher("/PaginateServlet");
+					dispatcher.forward(request, response);
+					return;
 				}
 
 			}

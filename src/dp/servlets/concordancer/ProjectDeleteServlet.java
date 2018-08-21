@@ -1,7 +1,6 @@
 package dp.servlets.concordancer;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -58,7 +57,7 @@ public class ProjectDeleteServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		response.setContentType("plain/text");
-		PrintWriter writer = response.getWriter();
+		
 		String pid = request.getParameter("parameter_pid");// get the project's key parameter from the client
 
 		try {
@@ -77,11 +76,11 @@ public class ProjectDeleteServlet extends HttpServlet {
 				
 				List<Project> projects = facade.getProjects(user);
 				session.setAttribute("projects", projects);
-				writer.flush();
-				writer.write("True");
+				
+				response.getWriter().write("True");
 			} else {
-				writer.flush();
-				writer.write("False");
+				
+				response.getWriter().write("False");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
