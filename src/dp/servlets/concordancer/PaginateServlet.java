@@ -81,13 +81,13 @@ public class PaginateServlet extends HttpServlet {
 			}
 
 			else {
-				int size = conc.size();
+				int size = conc.size()-1;
 				switch (direction) {
 
 				case "next":
 					pageStart = indexvalue + page;
 					pageEnd = pageStart + page;
-					// System.out.println("1st case" + pageStart + "" + pageEnd);
+					System.out.println(pageStart + " " + size);
 
 					if (pageStart < size && pageStart + page < size) // if it can fit two pages
 					{
@@ -95,18 +95,21 @@ public class PaginateServlet extends HttpServlet {
 						pageEnd = pageStart + page;
 						System.out.println("1st case" + pageStart + " " + pageEnd);
 					} 
-					else if (pageStart < size && pageStart + page > size)
+					else if (pageStart < size && pageStart + page > size)//if word men
 					{
 						pageStart = pageStart + 1;
 						pageEnd = size;
 						System.out.println("2nd case" + pageStart + " " + pageEnd);
 					}
 
-					else if (pageStart >= size) {
+					else if (pageStart >= size) { //the missing = sign caused a bug for equality cases word calling
 						pageStart = indexvalue;
 						pageEnd = size;
 						System.out.println("3rd case" + pageStart + " " + pageEnd);
-					}
+						
+					}								
+					
+						
 					break;
 
 				case "previous":
