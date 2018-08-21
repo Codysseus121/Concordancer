@@ -54,7 +54,7 @@ public class PaginateServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			@SuppressWarnings("unchecked")
 			List<KWICInterface> conc = (List<KWICInterface>) session.getAttribute("concordances");
-			int page = 25;
+			int page = 24;
 			String index = "";
 			index = request.getParameter("index");
 			int indexvalue = 0;
@@ -103,11 +103,13 @@ public class PaginateServlet extends HttpServlet {
 					
 					if (pageStart < size && pageStart+page < size) //if it can fit two pages
 					{
+						pageStart=pageStart+1;
 						pageEnd = pageStart+page;
 						System.out.println("1st case" + pageStart + "" + pageEnd);
 					}
 					else if (pageStart < size && pageStart+page> size)
 						{
+						pageStart=pageStart+1;
 						pageEnd = size;
 						System.out.println("2nd case" + pageStart + "" + pageEnd);
 						}
@@ -132,7 +134,7 @@ public class PaginateServlet extends HttpServlet {
 							pageEnd = 25;
 						}
 					default: pageStart=0;
-							pageEnd = 25;
+							pageEnd = 24;
 					
 				}
 					session.setAttribute("pageStart", pageStart);
