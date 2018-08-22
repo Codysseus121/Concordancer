@@ -1,6 +1,7 @@
 var oneword;
 var functioncalled;
-
+var longword;
+var modalword;
 
 
 /* Event listener to redirect to projects page */
@@ -40,7 +41,7 @@ $(document).ready(function() {
 		let fname = $(this).find('td:eq(4)').text();
 		let start = $(this).find('td:eq(5)').text();
 		let end = $(this).find('td:eq(6)').text();
-		
+		longword = $(this).find('td:eq(2)').text();
 		
 		
 
@@ -64,6 +65,7 @@ $(document).ready(function() {
 				$('#contextmodalbody').html(response);
 				
 				
+				
 			},
 			error : function(e) {
 				console.log(e);
@@ -71,6 +73,24 @@ $(document).ready(function() {
 		});
 	});
 });
+
+$( document ).ajaxComplete(function() {
+
+
+	 $ctx = $("#contextmodalbody");
+	    $ctx.unmark({
+	      done: function() {
+	        $ctx.mark(longword,  {
+	            "element": "span",
+	            "className": "highlight" });
+	        $ctx.mark(oneword,  {
+	            "element": "span",
+	            "className": "highlight" });
+	      }
+	    });
+	    
+ });
+
 
 /** Logout function */
 $(document).ready(function() {
@@ -176,6 +196,7 @@ $( document ).ajaxComplete(function() {
 	    
    });
    
+
    
  
 
