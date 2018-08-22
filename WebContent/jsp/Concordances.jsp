@@ -127,10 +127,10 @@
 							</thead>
 
 							<tbody id="mytable">
-
-				<span>Results: </span><c:set var="totalCount" scope="session"
+<div id="results">
+				<span >Results: </span><c:set var="totalCount" scope="session"
 					value="${sessionScope.concordances.size()}" />
-				<strong><c:out value="${totalCount}" /></strong>
+				<strong><c:out value="${totalCount}" /></strong></div>
 
 								<c:forEach var="entry" items="${sessionScope.concordances}"
 									varStatus="myIndex" begin="${sessionScope.pageStart}"

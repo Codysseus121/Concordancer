@@ -53,6 +53,19 @@ public class PaginateServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			@SuppressWarnings("unchecked")
 			List<KWICInterface> conc = (List<KWICInterface>) session.getAttribute("concordances");
+			if (conc == null) 
+			{
+				response.getWriter().write("False");
+				System.out.println("null");
+			}
+			
+			else if (conc.isEmpty())
+			{
+				response.getWriter().write("False");
+				System.out.println("empty");
+			}
+			else
+			{
 			int page = 24;
 			String index = "";
 			index = request.getParameter("index");
@@ -60,7 +73,7 @@ public class PaginateServlet extends HttpServlet {
 			if (index != null) {
 				indexvalue = Integer.parseInt(index);
 				indexvalue = indexvalue - 1;
-				System.out.println(indexvalue);
+				//System.out.println(indexvalue);
 			}
 
 			String direction = request.getParameter("dir");
@@ -72,15 +85,7 @@ public class PaginateServlet extends HttpServlet {
 			int pageEnd = 0;
 
 			
-			System.out.println("Direction " + direction);
-
-			if (conc.isEmpty() || conc == null) {
-				response.getWriter().write("False");
-				//session.setAttribute("pageStart", pageStart);
-				//session.setAttribute("pageEnd", pageEnd);
-			}
-
-			else {
+					
 				int size = conc.size()-1;
 				switch (direction) {
 
@@ -140,7 +145,8 @@ public class PaginateServlet extends HttpServlet {
 				response.getWriter().write("True");
 			}
 
-		}
+		
+	}
 
 		catch (Exception ex) {
 			ex.printStackTrace();

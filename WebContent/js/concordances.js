@@ -2,6 +2,7 @@ var oneword;
 var functioncalled;
 
 
+
 /* Event listener to redirect to projects page */
 
 $(document).ready(function() {
@@ -41,6 +42,7 @@ $(document).ready(function() {
 		let end = $(this).find('td:eq(6)').text();
 		
 		
+		
 
 		event.preventDefault();
 
@@ -60,6 +62,7 @@ $(document).ready(function() {
 			success : function(response) {
 				$('#contextmodal').modal('show');
 				$('#contextmodalbody').html(response);
+				
 				
 			},
 			error : function(e) {
@@ -132,6 +135,7 @@ $(document).ready(function() {
 						var trow= $("#tablecon").find('tr');
 	            		$(trow).remove();
 	            		$('#mytable').html("No results").css("text-align", "center");
+	            		$('#results').remove();
 	            	
 
 					}
@@ -198,11 +202,24 @@ $(document).ready(
 							type : 'get',
 							success : function(data) {
 
-								$('#head').load(
-										"/Concordancer/jsp/Concordances.jsp"
-												+ ' #head');
-								
-								
+								if (data === "False") {
+
+									var trow = $("#tablecon").find('tr');
+									$(trow).remove();
+									$('#mytable').html("No results").css(
+											"text-align", "center");
+									$('#results').remove();
+
+								}
+
+								else {
+									
+									$('#head').load(
+											"/Concordancer/jsp/Concordances.jsp"
+													+ ' #head');
+																	
+									
+								}
 
 							},
 							error : function(e) {
@@ -241,13 +258,14 @@ $(document).ready(
 								},
 								type : 'get',
 								success : function(data) {
-
+									
 									if (data === "False") {
 
 										var trow = $("#tablecon").find('tr');
 										$(trow).remove();
 										$('#mytable').html("No results").css(
 												"text-align", "center");
+										$('#results').remove();
 
 									}
 
@@ -292,9 +310,23 @@ $('#next').on('click', function (event){
 										
 		type : 'get',
 		success : function(data) {
-				$('#head').load("/Concordancer/jsp/Concordances.jsp" + ' #head');
-				
+			
+			if (data === "False") {
 
+				var trow = $("#tablecon").find('tr');
+				$(trow).remove();
+				$('#mytable').html("No results").css(
+						"text-align", "center");
+
+			}
+
+			else {
+				
+				$('#head').load(
+						"/Concordancer/jsp/Concordances.jsp"
+						+ ' #head');
+				
+			}
 		},
 		error : function(e) {
 			console.log(e);
@@ -326,9 +358,24 @@ $('#previous').on('click', function (event){
 										
 		type : 'get',
 		success : function(data) {
-				$('#head').load("/Concordancer/jsp/Concordances.jsp" + ' #head');
-				
+			if (data === "False") {
 
+				var trow = $("#tablecon").find('tr');
+				$(trow).remove();
+				$('#mytable').html("No results").css(
+						"text-align", "center");
+
+			}
+
+			else {
+				
+				$('#head').load(
+						"/Concordancer/jsp/Concordances.jsp"
+								+ ' #head');
+				
+				
+				
+			}
 		},
 		error : function(e) {
 			console.log(e);

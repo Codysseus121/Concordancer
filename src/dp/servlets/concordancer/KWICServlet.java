@@ -57,7 +57,7 @@ public class KWICServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			RequestDispatcher dispatcher = null;
 			String word = request.getParameter("keyword");
-			word = word.trim();
+			//word = word.trim();
 			System.out.println(word);
 
 			if (word.length() == 0) // check validity
@@ -76,7 +76,7 @@ public class KWICServlet extends HttpServlet {
 
 				List<KWICInterface> conc = service.getConcordances(user, project, word);
 
-				if (conc.isEmpty()) {
+				if (conc.isEmpty() || conc == null) {
 					response.getWriter().write("False");
 
 				}
@@ -84,12 +84,13 @@ public class KWICServlet extends HttpServlet {
 				else {
 					session.setAttribute("concordances", conc);
 					response.getWriter().write("True");
+					dispatcher = getServletContext().getRequestDispatcher("/PaginateServlet");
+					dispatcher.forward(request, response);
+					return;
 				}
 
 			}
-			dispatcher = getServletContext().getRequestDispatcher("/PaginateServlet");
-			dispatcher.forward(request, response);
-			return;
+			
 
 
 		} catch (Exception e) {
