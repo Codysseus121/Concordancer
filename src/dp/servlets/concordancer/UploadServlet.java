@@ -2,6 +2,8 @@ package dp.servlets.concordancer;
 
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -19,6 +21,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import dp.concordancer.ConcFacade.ConcFacadeImpl;
 import dp.concordancer.ConcFacade.ConcordancerFacade;
+import dp.concordancer.ConcFacade.FileService;
 import dp.model.concordancer.ProjectInterface;
 import dp.model.concordancer.UserInterface;
 
@@ -97,7 +100,12 @@ public class UploadServlet extends HttpServlet {
 		for (Part part : parts) {
 			if (part.getContentType() != null) {
 
-				String fileName = getFilename(part);// get the filename of the part from the request
+				String fileName = part.getSubmittedFileName();// get the filename of the part from the request
+				System.out.println(fileName);
+				//FileService fservice = new FileService();
+				//response.setCharacterEncoding("UTF-8");
+				String utfname = URLEncoder.encode(fileName, "UTF-8");
+				System.out.println(utfname);
 				String fextension = getFileExtension(fileName);// get the extension of the filename
 				validfname = validFile(fileName);// validate filename extension and if valid add file.
 				if (fileName != null && !fileName.isEmpty() && (validfname == true)) {

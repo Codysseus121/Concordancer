@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -125,7 +126,9 @@ public class TextService implements TextServiceInterface {
 			c = getKwic(file.getFilecontent(), file.getFile_name(), query, context);
 			all.addAll(c);
 		}
-
+		Collections.sort(all);
+		for (KWICInterface kwic : all)
+			System.out.println(kwic.getLcontext()+kwic.getKeyword());
 		return all;
 	}
 

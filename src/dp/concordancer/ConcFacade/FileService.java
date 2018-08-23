@@ -1,6 +1,7 @@
 package dp.concordancer.ConcFacade;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -65,6 +66,26 @@ public class FileService implements FileServiceInterface {
 			return result;
 
 		}
+		
+		public String convertFileName(String filename) throws IOException {
+			// Source: https://docs.oracle.com/javase/tutorial/i18n/text/stream.html
+			StringBuffer buffer = new StringBuffer();
+			InputStream isr = new  ByteArrayInputStream(filename.getBytes());
+			InputStreamReader reader = new InputStreamReader(isr);
+			Reader in = new BufferedReader(reader);
+			int ch;
+			while ((ch = in.read()) > -1) {
+				buffer.append((char) ch);
+			}
+			in.close();
+			String result = buffer.toString();
+			System.out.println(result);
+
+			return result;
+
+		}
+		
+		
 		/*
 		 * Method convertPdf to pre-process and convert PDF files to text.
 		 * Uses the ApachePDFBox library for the conversion

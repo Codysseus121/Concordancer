@@ -8,7 +8,7 @@ package dp.model.concordancer;
 
 import java.io.Serializable;
 
-public class Kwic implements Serializable, KWICInterface {
+public class Kwic implements Serializable, KWICInterface, Comparable<KWICInterface> {
 
 	/**
 	 * 
@@ -154,6 +154,15 @@ public class Kwic implements Serializable, KWICInterface {
 	{
 		return lcontext + keyword + rcontext;
 	}
-	
+
+@Override 
+public int compareTo(KWICInterface kwic)
+{
+	String otherlcontext = kwic.getLcontext();
+	String otherlastchar = otherlcontext.substring(otherlcontext.length()-1);
+	String lastchar = lcontext.substring(otherlcontext.length()-1);
+	return lastchar.compareTo(otherlastchar);
+}
+
 	
 }

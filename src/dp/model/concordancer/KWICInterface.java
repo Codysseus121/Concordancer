@@ -1,6 +1,6 @@
 package dp.model.concordancer;
 
-public interface KWICInterface {
+public interface KWICInterface extends Comparable<KWICInterface> {
 
 	void setLcontext(String l);
 
@@ -27,5 +27,6 @@ public interface KWICInterface {
 	void setIndex2(int index);
 
 	String toString();
+	int compareTo(KWICInterface kwic);
 
 }

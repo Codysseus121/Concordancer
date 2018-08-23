@@ -211,6 +211,7 @@ $(document).ready(
 						oneword="";
 						event.preventDefault();
 						var word = event.target.innerHTML;
+						word = word.trim();
 
 						$.ajax({
 							url : '/Concordancer/concordancer',
