@@ -4,6 +4,9 @@ A web application in Java that provides corpus and concordance generation functi
 
 # Dependencies
 
+The app requires the Java 1.8.0_144 JDK, as well as the following dependencies: 
+
+Server-side:
 1. Apache  PDFBox  2.0.11  for  processing  PDF  files,  including  the 
 following libraries: 
   •  fontbox-2.0.11.jar 
@@ -14,9 +17,9 @@ following libraries:
 2  The Jsoup library Jsoup-1.11.3.jar for processing html files. 
 3.  The Apache Commons IO 2.6 File Utilities (commons-io-2.6.jar) 
 4.  The Java Standard Tag Library (JSTL), jstl1.2.jar 
-5.  The  JDBC  (mysql-connector-java-5.1.46.jar)  driver  installed  in  the 
-Apache Tomcat /lib folder. 
-  Front-end dependencies 
+5.  The  JDBC  (mysql-connector-java-5.1.46.jar)  driver  
+
+Client-side: 
 1.  The Bootstrap 4.0 framework 
 2.  The jQuery 3.3.1 framework 
 3.  The jQuery validate plugin.  
