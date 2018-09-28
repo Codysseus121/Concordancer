@@ -4,14 +4,14 @@ A web application in Java that provides corpus and concordance generation functi
 
 
 
-![alt tag](https://user-images.githubusercontent.com/32340325/46224789-35f6ce80-c34f-11e8-89a6-3a85456e6e59.png)
-![alt tag](https://user-images.githubusercontent.com/32340325/46224790-35f6ce80-c34f-11e8-9d55-5d504c4e43c8.png)
+![alt tag](https://user-images.githubusercontent.com/32340325/46225223-83c00680-c350-11e8-9116-3fce788fa20a.png)
+![alt tag](https://user-images.githubusercontent.com/32340325/46225224-84589d00-c350-11e8-9285-a2961e0fab78.png)
 
 
 # Built With
 •  Eclipse Oxygen IDE
 
-![alt tag](https://user-images.githubusercontent.com/32340325/46224788-35f6ce80-c34f-11e8-9a3c-0cd7f168825c.png)
+![alt tag](https://user-images.githubusercontent.com/32340325/46225225-84589d00-c350-11e8-84dd-39782ea88158.png)
 
 
 # Dependencies
@@ -30,7 +30,7 @@ following libraries:
 3.  The Apache Commons IO 2.6 File Utilities (commons-io-2.6.jar) 
 4.  The Java Standard Tag Library (JSTL), jstl1.2.jar 
 5.  The  JDBC  (mysql-connector-java-5.1.46.jar)  driver  
-![alt tag](https://user-images.githubusercontent.com/32340325/46224787-355e3800-c34f-11e8-9b3b-99ce41e11ada.png)
+![alt tag](https://user-images.githubusercontent.com/32340325/46225226-84f13380-c350-11e8-8830-42f914ac66ca.png)
 Client-side: 
 1.  The Bootstrap 4.0 framework 
 2.  The jQuery 3.3.1 framework 
@@ -38,3 +38,4 @@ Client-side:
 4.  The JavaScript mark.js library for word highlighting 
 5.   JavaScript ECMAScript 6 (2015) 
 6.  The Popper.js library for modals. 
+![alt tag](https://user-images.githubusercontent.com/32340325/46225229-84f13380-c350-11e8-8285-2fa1e80a6c14.png)
