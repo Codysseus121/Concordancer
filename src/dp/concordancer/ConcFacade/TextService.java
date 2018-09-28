@@ -23,6 +23,11 @@ import dp.model.concordancer.SuffixArrayX;
 import dp.model.concordancer.SuffixArrayXInterface;
 import dp.model.concordancer.UserInterface;
 
+/* class TextService is a service class providing methods for generating kwic lines, the index
+ * collocates and context
+ * 
+ */
+
 public class TextService implements TextServiceInterface {
 	
 	/*
@@ -127,8 +132,6 @@ public class TextService implements TextServiceInterface {
 			all.addAll(c);
 		}
 		Collections.sort(all);
-		for (KWICInterface kwic : all)
-			System.out.println(kwic.getLcontext()+kwic.getKeyword());
 		return all;
 	}
 

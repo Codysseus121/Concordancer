@@ -1,6 +1,11 @@
 package dp.concordancer.interfaces;
 
 import java.util.List;
+
+/*
+ * Interface TextServiceInterface with methods for generating kwic lines, collocates, context
+ * and a frequency list/index.
+ */
 import java.util.TreeMap;
 
 import dp.model.concordancer.KWICInterface;

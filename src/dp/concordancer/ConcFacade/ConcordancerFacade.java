@@ -1,4 +1,8 @@
 package dp.concordancer.ConcFacade;
+/*
+ * Interface ConcordancerFacade.
+ * An interface for the business layer.
+ */
 
 import java.io.IOException;
 import java.util.List;
@@ -7,7 +11,6 @@ import java.util.TreeMap;
 import javax.servlet.http.Part;
 
 import dp.model.concordancer.KWICInterface;
-import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.ProjectFile;
 import dp.model.concordancer.ProjectInterface;

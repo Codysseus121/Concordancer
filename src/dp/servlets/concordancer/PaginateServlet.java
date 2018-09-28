@@ -14,6 +14,7 @@ import dp.model.concordancer.KWICInterface;
 
 /**
  * Servlet implementation class PaginateServlet
+ * for pagination of results.
  */
 @WebServlet("/PaginateServlet")
 public class PaginateServlet extends HttpServlet {

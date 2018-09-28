@@ -27,6 +27,7 @@ public interface KWICInterface extends Comparable<KWICInterface> {
 	void setIndex2(int index);
 
 	String toString();
+	
 	int compareTo(KWICInterface kwic);
 
 }

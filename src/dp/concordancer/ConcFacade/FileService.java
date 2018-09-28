@@ -1,5 +1,10 @@
 package dp.concordancer.ConcFacade;
 
+/*
+ * The FileService class is a service class providing methods
+ * for file operations, converting files to String objects.
+ */
+
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -19,6 +24,11 @@ import org.jsoup.nodes.Document;
 import dp.concordancer.interfaces.FileServiceInterface;
 
 public class FileService implements FileServiceInterface {
+
+	/*
+	 * (non-Javadoc)
+	 * @see dp.concordancer.interfaces.FileServiceInterface#getText(javax.servlet.http.Part, java.lang.String)
+	 */
 	
 	public  String getText (Part part, String fextension) throws IOException
 	{

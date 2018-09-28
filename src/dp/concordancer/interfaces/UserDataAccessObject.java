@@ -1,7 +1,9 @@
 package dp.concordancer.interfaces;
 
 import dp.model.concordancer.UserInterface;
-
+/*
+ * UserdataAccessObject interface for user registration and login
+ */
 public interface UserDataAccessObject {
 
 	UserInterface getUser(String name, String password);

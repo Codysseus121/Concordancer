@@ -154,13 +154,16 @@ public class Kwic implements Serializable, KWICInterface, Comparable<KWICInterfa
 	{
 		return lcontext + keyword + rcontext;
 	}
-
+/*
+ * (non-Javadoc)
+ * @see dp.model.concordancer.KWICInterface#compareTo(dp.model.concordancer.KWICInterface)
+ */
 @Override 
 public int compareTo(KWICInterface kwic)
 {
 	String otherlcontext = kwic.getLcontext();
-	String otherlastchar = otherlcontext.substring(otherlcontext.length()-1);
-	String lastchar = lcontext.substring(otherlcontext.length()-1);
+	Character otherlastchar = otherlcontext.charAt(otherlcontext.length()-1);
+	Character lastchar = lcontext.charAt(lcontext.length()-1);
 	return lastchar.compareTo(otherlastchar);
 }
 

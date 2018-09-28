@@ -1,5 +1,9 @@
 package dp.concordancer.ConcFacade;
 
+/*
+ * class ConcFacadeImpl implementing the ConcordancerFacade Interface.
+ * Contains implementation of all the methods of the business layer.
+ */
 
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +13,6 @@ import javax.servlet.http.Part;
 import dp.concordancer.interfaces.*;
 import dp.dao.concordancer.*;
 import dp.model.concordancer.KWICInterface;
-import dp.model.concordancer.Kwic;
 import dp.model.concordancer.Project;
 import dp.model.concordancer.ProjectFile;
 import dp.model.concordancer.ProjectInterface;

@@ -28,7 +28,7 @@ import dp.servlets.concordancer.ContextServlet;
 @WebServlet("/ContextServletTest")
 public class ContextServletTest extends Mockito {
 	@Test
-	public void testEmptyCollocate() throws Exception {
+	public void testContext() throws Exception {
 
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
