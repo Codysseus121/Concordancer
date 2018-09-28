@@ -25,11 +25,10 @@ following libraries:
   •  pdfbox 2.0.11.jar 
   •  commons-text-1.4.jar 
   •  common-lang3.jar 
-  •  commons-logging-1.1.2.jar 
-  
-2  The Jsoup library Jsoup-1.11.3.jar for processing html files. 
-3.  The Apache Commons IO 2.6 File Utilities (commons-io-2.6.jar) 
-4.  The Java Standard Tag Library (JSTL), jstl1.2.jar 
+  •  commons-logging-1.1.2.jar
+2.  The Jsoup library Jsoup-1.11.3.jar for processing html files.
+3.  The Apache Commons IO 2.6 File Utilities (commons-io-2.6.jar)
+4.  The Java Standard Tag Library (JSTL), jstl1.2.jar
 5.  The  JDBC  (mysql-connector-java-5.1.46.jar)  driver   
 
 
