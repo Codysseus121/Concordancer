@@ -2,10 +2,10 @@
 
 A web application in Java that provides corpus and concordance generation functionality to registered users. The application is intended for professional translators, who once registered, can generate their own corpora by uploading txt, html or pdf files. The user can then search the corpus for one or more words in context. The full-text search algorithm will match any substring, not just seperate words. KiWi uses a suffix array to provide the core functionality. The implementation of the suffix array is by [Sedgwick & Kayne](https://algs4.cs.princeton.edu/63suffix/SuffixArrayX.java.html) The app was developed as my final project for the MSc Computer Science in Newcastle University and is not intended for commercial use.
 
-![alt text](Screenshots/Screenshot (32).png "Description goes here")
-![alt text](Screenshots/Screenshot (35).png "Description goes here")
-![alt text](Screenshots/Screenshot (43).png "Description goes here")
-![alt text](Screenshots/Screenshot (89).png "Description goes here")
+![picture](Screenshots/Screenshot (32).png "Description goes here")
+![picture](Screenshots/Screenshot (35).png "Description goes here")
+![picture](Screenshots/Screenshot (43).png "Description goes here")
+![picture](Screenshots/Screenshot (89).png "Description goes here")
 
 
 # Built With
