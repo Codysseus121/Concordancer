@@ -2,14 +2,16 @@
 
 A web application in Java that provides corpus and concordance generation functionality to registered users. The application is intended for professional translators, who once registered, can generate their own corpora by uploading txt, html or pdf files. The user can then search the corpus for one or more words in context. The full-text search algorithm will match any substring, not just seperate words. KiWi uses a suffix array to provide the core functionality. The implementation of the suffix array is by [Sedgwick & Kayne](https://algs4.cs.princeton.edu/63suffix/SuffixArrayX.java.html) The app was developed as my final project for the MSc Computer Science in Newcastle University and is not intended for commercial use.
 
-![alt tag](https://user-images.githubusercontent.com/32340325/46224787-355e3800-c34f-11e8-9b3b-99ce41e11ada.png)
-![alt tag](https://user-images.githubusercontent.com/32340325/46224788-35f6ce80-c34f-11e8-9a3c-0cd7f168825c.png)
+
+
 ![alt tag](https://user-images.githubusercontent.com/32340325/46224789-35f6ce80-c34f-11e8-89a6-3a85456e6e59.png)
 ![alt tag](https://user-images.githubusercontent.com/32340325/46224790-35f6ce80-c34f-11e8-9d55-5d504c4e43c8.png)
 
 
 # Built With
 •  Eclipse Oxygen IDE
+
+![alt tag](https://user-images.githubusercontent.com/32340325/46224788-35f6ce80-c34f-11e8-9a3c-0cd7f168825c.png)
 
 
 # Dependencies
@@ -28,7 +30,7 @@ following libraries:
 3.  The Apache Commons IO 2.6 File Utilities (commons-io-2.6.jar) 
 4.  The Java Standard Tag Library (JSTL), jstl1.2.jar 
 5.  The  JDBC  (mysql-connector-java-5.1.46.jar)  driver  
-
+![alt tag](https://user-images.githubusercontent.com/32340325/46224787-355e3800-c34f-11e8-9b3b-99ce41e11ada.png)
 Client-side: 
 1.  The Bootstrap 4.0 framework 
 2.  The jQuery 3.3.1 framework 
